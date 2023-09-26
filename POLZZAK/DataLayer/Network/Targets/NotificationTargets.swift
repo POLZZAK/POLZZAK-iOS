@@ -10,6 +10,8 @@ import Foundation
 enum NotificationTargets {
     case fetchNotificationList(startID: Int?)
     case removeNotification(notificationID: Int)
+    case fetchNotificationSettingList
+    case updateNotificationSettingList(_ notificationSettings: NotificationSettingModel)
 }
 
 extension NotificationTargets: BasicTargetType {
@@ -21,20 +23,26 @@ extension NotificationTargets: BasicTargetType {
         switch self {
         case .fetchNotificationList, .removeNotification:
             return "v1/notifications"
+        case .fetchNotificationSettingList, .updateNotificationSettingList:
+            return "v1/notifications/settings"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .fetchNotificationList:
+        case .fetchNotificationList, .fetchNotificationSettingList:
             return .get
         case .removeNotification:
             return .delete
+        case .updateNotificationSettingList:
+            return .patch
         }
     }
     
     var headers: [String : String]? {
         switch self {
+        case .updateNotificationSettingList:
+            return ["Content-Type": "application/json"]
         default:
             return nil
         }
@@ -49,11 +57,15 @@ extension NotificationTargets: BasicTargetType {
         case .removeNotification(let notificationID):
             query["notificationIds"] = notificationID
             return query
+        default:
+            return nil
         }
     }
     
     var bodyParameters: Encodable? {
         switch self {
+        case .updateNotificationSettingList(let notificationSettings):
+            return notificationSettings.toDictionary()
         default:
             return nil
         }
@@ -65,5 +77,4 @@ extension NotificationTargets: BasicTargetType {
             return nil
         }
     }
-
 }

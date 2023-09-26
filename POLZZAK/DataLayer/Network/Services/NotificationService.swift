@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NotificationService: LinkRequestService {
+final class NotificationService: LinkRequestService {
     let networkService: NetworkServiceProvider
     
     init(networkService: NetworkServiceProvider = NetworkService(requestInterceptor: TokenInterceptor())) {
@@ -20,5 +20,13 @@ class NotificationService: LinkRequestService {
     
     func removeNotification(with notificationID: Int) async throws -> (Data, URLResponse) {
         return try await handleResponse(NotificationTargets.removeNotification(notificationID: notificationID))
+    }
+    
+    func fetchNotificationSettingList() async throws -> (Data, URLResponse) {
+        return try await handleResponse(NotificationTargets.fetchNotificationSettingList)
+    }
+    
+    func updateNotificationSettingList(_ notificationSettings: NotificationSettingModel) async throws -> (Data, URLResponse) {
+        return try await handleResponse(NotificationTargets.updateNotificationSettingList(notificationSettings))
     }
 }

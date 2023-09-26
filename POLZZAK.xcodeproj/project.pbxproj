@@ -194,6 +194,10 @@
 		39D724AA2A9779A100D5409D /* TabState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D724A92A9779A100D5409D /* TabState.swift */; };
 		39D724AD2A9779BE00D5409D /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D724AC2A9779BE00D5409D /* FilterType.swift */; };
 		39D724B62A97B64900D5409D /* BaseFilterSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D724B52A97B64900D5409D /* BaseFilterSkeletonView.swift */; };
+		39E8D0842AC07B79001B1494 /* NotificationSettingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E8D0832AC07B79001B1494 /* NotificationSettingDTO.swift */; };
+		39E8D0862AC07CF9001B1494 /* NotificationSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E8D0852AC07CF9001B1494 /* NotificationSettingModel.swift */; };
+		39E8D0882AC14030001B1494 /* NotificationSettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E8D0872AC14030001B1494 /* NotificationSettingType.swift */; };
+		39E8D08A2AC15265001B1494 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E8D0892AC15265001B1494 /* SettingItem.swift */; };
 		39F0BDD02AB9B94300420BB2 /* ErrorHandlingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F0BDCF2AB9B94300420BB2 /* ErrorHandlingProtocol.swift */; };
 		39F0BDDF2AB9F9D200420BB2 /* CouponList_200_Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 39F0BDDE2AB9F9D200420BB2 /* CouponList_200_Sample.json */; };
 		39F0BDE92ABAA30D00420BB2 /* StampBoardsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F0BDE82ABAA30D00420BB2 /* StampBoardsServiceTests.swift */; };
@@ -501,6 +505,10 @@
 		39D724A92A9779A100D5409D /* TabState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabState.swift; sourceTree = "<group>"; };
 		39D724AC2A9779BE00D5409D /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
 		39D724B52A97B64900D5409D /* BaseFilterSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFilterSkeletonView.swift; sourceTree = "<group>"; };
+		39E8D0832AC07B79001B1494 /* NotificationSettingDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingDTO.swift; sourceTree = "<group>"; };
+		39E8D0852AC07CF9001B1494 /* NotificationSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingModel.swift; sourceTree = "<group>"; };
+		39E8D0872AC14030001B1494 /* NotificationSettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingType.swift; sourceTree = "<group>"; };
+		39E8D0892AC15265001B1494 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		39F0BDCF2AB9B94300420BB2 /* ErrorHandlingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingProtocol.swift; sourceTree = "<group>"; };
 		39F0BDDE2AB9F9D200420BB2 /* CouponList_200_Sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CouponList_200_Sample.json; sourceTree = "<group>"; };
 		39F0BDE82ABAA30D00420BB2 /* StampBoardsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampBoardsServiceTests.swift; sourceTree = "<group>"; };
@@ -857,6 +865,7 @@
 			children = (
 				393053F02AB111C700AA02A7 /* NotificationDTO.swift */,
 				393054032AB1353300AA02A7 /* SenderDTO.swift */,
+				39E8D0832AC07B79001B1494 /* NotificationSettingDTO.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -864,11 +873,14 @@
 		393053F22AB1149D00AA02A7 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				398E58752A5ED1580055CF37 /* NotificationModel.swift */,
 				398E58732A5EB9070055CF37 /* NotificationType.swift */,
 				393054382AB3568400AA02A7 /* NotificationLink.swift */,
-				398E58752A5ED1580055CF37 /* NotificationModel.swift */,
 				393054012AB1343400AA02A7 /* NotificationStatus.swift */,
 				393054052AB1353F00AA02A7 /* Sender.swift */,
+				39E8D0852AC07CF9001B1494 /* NotificationSettingModel.swift */,
+				39E8D0872AC14030001B1494 /* NotificationSettingType.swift */,
+				39E8D0892AC15265001B1494 /* SettingItem.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -2076,6 +2088,7 @@
 				DAC36B9A2A34C3E100BE5C8D /* AuthAPI.swift in Sources */,
 				390F42292A8D16EC005FC7B2 /* CouponSkeletonView.swift in Sources */,
 				393053E42AAC4A6300AA02A7 /* GuardianDTO.swift in Sources */,
+				39E8D08A2AC15265001B1494 /* SettingItem.swift in Sources */,
 				DABEC1B52A382D1800EAD8CA /* NeedRegisterDTO.swift in Sources */,
 				DACA496E2AB4DB1200A2FB77 /* MissionExampleButtonCell.swift in Sources */,
 				3C7416A02A25EF96001A1E50 /* BaseResponseDTO.swift in Sources */,
@@ -2127,6 +2140,7 @@
 				DACA496C2AB4D33D00A2FB77 /* MissonAddButtonCell.swift in Sources */,
 				39227BE52A21915D00C86049 /* MemberTypeView.swift in Sources */,
 				3993C7772AAB60FE00B328B2 /* CouponMapper.swift in Sources */,
+				39E8D0862AC07CF9001B1494 /* NotificationSettingModel.swift in Sources */,
 				393053F62AB1180A00AA02A7 /* NotificationMapper.swift in Sources */,
 				3993C7712AAAB97800B328B2 /* BaseResponse.swift in Sources */,
 				390F421B2A8C6E2A005FC7B2 /* BottomSheetViewController.swift in Sources */,
@@ -2150,8 +2164,10 @@
 				3C43C5CE2A1B64F800D7B9DD /* StampSize.swift in Sources */,
 				390F42492A925D55005FC7B2 /* UIView+Capture.swift in Sources */,
 				3900FAE52A3ABE62009EAC52 /* EmphasisStyle.swift in Sources */,
+				39E8D0842AC07B79001B1494 /* NotificationSettingDTO.swift in Sources */,
 				392B4C192AA0C03C00CE0546 /* LinkRequestAlertView.swift in Sources */,
 				39152B302A5AB2C200AAFA23 /* PaddedLabel .swift in Sources */,
+				39E8D0882AC14030001B1494 /* NotificationSettingType.swift in Sources */,
 				390165502A73862100A193D7 /* CouponListViewController.swift in Sources */,
 				390165552A77734B00A193D7 /* CouponListViewModel.swift in Sources */,
 				3900FA932A32BADC009EAC52 /* LinkManagementViewController.swift in Sources */,

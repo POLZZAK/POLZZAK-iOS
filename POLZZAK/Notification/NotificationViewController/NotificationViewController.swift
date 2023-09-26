@@ -116,7 +116,7 @@ extension NotificationViewController {
     }
     
     @objc private func notificationSetting() {
-        let notificationSettingViewController = NotificationSettingViewController()
+        let notificationSettingViewController = NotificationSettingViewController(viewModel: viewModel)
         notificationSettingViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(notificationSettingViewController, animated: true)
     }

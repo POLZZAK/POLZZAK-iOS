@@ -10,6 +10,8 @@ import Foundation
 protocol NotificationRepository {
     func fetchNotificationList(with startID: Int?) async throws -> NotificationResponse?
     func removeNotification(with notificationID: Int) async throws
+    func fetchNotificationSettingList() async throws -> NotificationSettingModel?
+    func updateNotificationSettingList(_ notificationSettings: NotificationSettingModel) async throws
 }
 
 final class NotificationDataRepository: DataRepositoryProtocol, NotificationRepository, LinkRequestRepository {
@@ -44,6 +46,20 @@ final class NotificationDataRepository: DataRepositoryProtocol, NotificationRepo
     
     func rejectLinkRequest(to memberID: Int) async throws {
         let (_, reponse) = try await service.rejectLinkRequest(from: memberID)
+        try fetchDataNoContent(response: reponse)
+    }
+    
+    func fetchNotificationSettingList() async throws -> NotificationSettingModel? {
+        let response: BaseResponse<NotificationSettingModel> = try await fetchData(
+            using: service.fetchNotificationSettingList,
+            decodingTo: BaseResponseDTO<NotificationSettingDTO>.self,
+            map: mapper.mapNotificationSettingReponse
+        )
+        return response.data
+    }
+    
+    func updateNotificationSettingList(_ notificationSettings: NotificationSettingModel) async throws {
+        let (_, reponse) = try await service.updateNotificationSettingList(notificationSettings)
         try fetchDataNoContent(response: reponse)
     }
 }
