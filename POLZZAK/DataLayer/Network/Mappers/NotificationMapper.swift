@@ -37,6 +37,24 @@ struct DefaultNotificationMapper: Mappable {
         )
     }
     
+    func mapNotificationSettingReponse(from response: BaseResponseDTO<NotificationSettingDTO>) -> BaseResponse<NotificationSettingModel> {
+        return mapBaseResponse(from: response, transform: mapNotificationSettingList)
+    }
+    
+    private func mapNotificationSettingList(_ dto: NotificationSettingDTO) -> NotificationSettingModel {
+        return NotificationSettingModel(
+            familyRequest: dto.familyRequest,
+            level: dto.level,
+            stampRequest: dto.stampRequest,
+            stampBoardComplete: dto.stampBoardComplete,
+            rewardRequest: dto.rewardRequest,
+            rewarded: dto.rewarded,
+            rewardFail: dto.rewardFail,
+            createdStampBoard: dto.createdStampBoard,
+            issuedCoupon: dto.issuedCoupon
+        )
+    }
+    
     private func mapSender(_ dto: SenderDTO) -> Sender {
         return Sender(
             id: dto.id,

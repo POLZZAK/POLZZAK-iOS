@@ -14,7 +14,7 @@ protocol NotificationTableViewCellDelegate: AnyObject {
     func didTapRemoveButton(_ cell: NotificationTableViewCell)
 }
 
-class NotificationTableViewCell: UITableViewCell {
+final class NotificationTableViewCell: UITableViewCell {
     static let reuseIdentifier = "NotificationTableViewCell"
     weak var delegate: NotificationTableViewCellDelegate?
     
@@ -427,17 +427,17 @@ extension NotificationTableViewCell {
     }
     
     @objc private func acceptButtonTapped() {
-        delegate?.didTapAcceptButton(self)
+//        delegate?.didTapAcceptButton(self)
         updateUIForCompletion(true)
         
     }
     
     @objc private func rejectButtonTapped() {
-        delegate?.didTapRejectButton(self)
+//        delegate?.didTapRejectButton(self)
         updateUIForCompletion(false)
     }
     
     @objc private func deleteButtonTapped() {
-        delegate?.didTapRemoveButton(self)
+//        delegate?.didTapRemoveButton(self)
     }
 }

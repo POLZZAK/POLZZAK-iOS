@@ -12,6 +12,7 @@ enum PolzzakError: Error {
     case invalidStatusCode(_ statusCode: Int)
     case serviceError(_ statusCode: Int)
     case serverError
+    case userDefalutsError
     case unknownError
 }
 
@@ -40,6 +41,9 @@ extension PolzzakError: CustomStringConvertible {
                 """
         case .serverError:
             return "ServerError"
+            
+        case .userDefalutsError:
+            return "UserDefalutsError"
             
         case .unknownError:
             return "UnknownError"

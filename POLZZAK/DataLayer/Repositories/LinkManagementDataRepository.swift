@@ -40,7 +40,7 @@ final class LinkManagementDataRepository: DataRepositoryProtocol, LinkManagement
     
     func getLinkedUsers() async throws -> [FamilyMember] {
         let response: BaseResponse<[FamilyMember]> = try await fetchData(
-            using: { try await service.fetchAllLinkedUsers() },
+            using: service.fetchAllLinkedUsers,
             decodingTo: BaseResponseDTO<FamilyMemberListDTO>.self,
             map: mapper.mapFamilyMemberListResponse
         )
@@ -49,7 +49,7 @@ final class LinkManagementDataRepository: DataRepositoryProtocol, LinkManagement
     
     func getReceivedLinkRequests() async throws -> [FamilyMember] {
         let response: BaseResponse<[FamilyMember]> = try await fetchData(
-            using: { try await service.fetchAllReceivedUsers() },
+            using: service.fetchAllReceivedUsers,
             decodingTo: BaseResponseDTO<FamilyMemberListDTO>.self,
             map: mapper.mapFamilyMemberListResponse
         )
@@ -58,7 +58,7 @@ final class LinkManagementDataRepository: DataRepositoryProtocol, LinkManagement
     
     func getSentLinkRequests() async throws -> [FamilyMember] {
         let response: BaseResponse<[FamilyMember]> = try await fetchData(
-            using: { try await service.fetchAllRequestUsers() },
+            using: service.fetchAllRequestUsers,
             decodingTo: BaseResponseDTO<FamilyMemberListDTO>.self,
             map: mapper.mapFamilyMemberListResponse
         )
@@ -97,7 +97,7 @@ final class LinkManagementDataRepository: DataRepositoryProtocol, LinkManagement
     
     func checkNewLinkRequest() async throws -> CheckLinkRequest? {
         let response: BaseResponse<CheckLinkRequest> = try await fetchData(
-            using: { try await service.checkNewLinkRequest() },
+            using: service.checkNewLinkRequest,
             decodingTo: BaseResponseDTO<CheckLinkRequestDTO>.self,
             map: mapper.mapCheckLinkRequestResponse
         )

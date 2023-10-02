@@ -22,13 +22,13 @@ extension LoadingViewModelProtocol {
         isSkeleton.send(false)
     }
     
-    func showLoading(for centerLoading: Bool) {
+    func showLoading(for centerLoading: Bool = true) {
         if true == centerLoading {
             isCenterLoading.send(true)
         }
     }
     
-    func hideLoading(for centerLoading: Bool) {
+    func hideLoading(for centerLoading: Bool = true) {
         if isSkeleton.value == true {
             self.hideSkeletonView()
         } else if true == centerLoading {

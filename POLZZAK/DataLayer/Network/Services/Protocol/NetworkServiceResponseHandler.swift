@@ -15,7 +15,6 @@ protocol NetworkServiceResponseHandler {
 extension NetworkServiceResponseHandler {
     func handleResponse(_ target: TargetType) async throws -> (Data, URLResponse) {
         let (data, response) = try await networkService.request(with: target)
-        
         if let httpURLResponse = response as? HTTPURLResponse {
             switch httpURLResponse.statusCode {
             case 200..<300:

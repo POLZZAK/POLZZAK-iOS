@@ -8,8 +8,13 @@
 import UIKit
 import SnapKit
 
+protocol NotificationSettingTableViewCellDelegate: AnyObject {
+    func didTapSwitchButton(_ cell: NotificationSettingTableViewCell)
+}
+
 final class NotificationSettingTableViewCell: UITableViewCell {
     static let reuseIdentifier = "NotificationSettingTableViewCell"
+    weak var delegate: NotificationSettingTableViewCellDelegate?
     
     private let headerView: UIView = {
         let view = UIView()
@@ -38,7 +43,6 @@ final class NotificationSettingTableViewCell: UITableViewCell {
     let customSwitch: UISwitch = {
         let customSwitfch = UISwitch()
         customSwitfch.onTintColor = .blue500
-        customSwitfch.isEnabled = false
         return customSwitfch
     }()
     
@@ -55,6 +59,12 @@ final class NotificationSettingTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        customSwitch.isOn = false
     }
 }
 
@@ -97,15 +107,22 @@ extension NotificationSettingTableViewCell {
             $0.height.equalTo(1)
         }
         
+        customSwitch.addTarget(self, action: #selector(didTapSwitchButton), for: .valueChanged)
+        
     }
     
-    func configure(titleText: String = "", detailText: String = "", isSwitchOn: Bool) {
+    func configure(titleText: String = "", detailText: String = "", isSwitchOn: Bool, tag: Int) {
         titleLabel.text = titleText
         detailLabel.text = detailText
         customSwitch.isOn = isSwitchOn
+        customSwitch.tag = tag
     }
     
     func hideBottomLine() {
         bottomLine.backgroundColor = .gray100
+    }
+    
+    @objc private func didTapSwitchButton() {
+        delegate?.didTapSwitchButton(self)
     }
 }
