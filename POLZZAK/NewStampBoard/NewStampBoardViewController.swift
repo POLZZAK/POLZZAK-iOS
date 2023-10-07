@@ -18,8 +18,8 @@ final class NewStampBoardViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
-    private let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
-    private let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+    private let doneButton = UIBarButtonItem(title: "등록")
+    private let cancelButton = UIBarButtonItem(image: UIImage(named: "new_stamp_board_arrow_back"))
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -37,6 +37,7 @@ final class NewStampBoardViewController: UIViewController {
         return stackView
     }()
     
+    private let headerView = NewStampBoardHeaderView()
     private let nameTextCheckView = TextCheckView(type: .stampBoardName)
     private let compensationTextCheckView = TextCheckView(type: .compensation)
     private let stampSizeSelectionView = StampSizeSelectionView()
@@ -77,12 +78,22 @@ final class NewStampBoardViewController: UIViewController {
         
         // FIXME: navigationBar
         let navigationBar = UINavigationBar()
-        navigationBar.tintColor = .black
         navigationBar.barTintColor = .white
         view.addSubview(navigationBar)
 
         let navigationItem = UINavigationItem(title: "도장판 생성")
+        
+        cancelButton.tintColor = .gray400
+        
         navigationItem.leftBarButtonItem = cancelButton
+        
+        let doneButtonTextAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.blue500,
+            .font: UIFont.subtitle16Sbd
+        ]
+        
+        doneButton.setTitleTextAttributes(doneButtonTextAttributes, for: .normal)
+        doneButton.setTitleTextAttributes(doneButtonTextAttributes, for: .highlighted)
         navigationItem.rightBarButtonItem = doneButton
 
         navigationBar.setItems([navigationItem], animated: false)
@@ -111,7 +122,7 @@ final class NewStampBoardViewController: UIViewController {
         
         // MARK: -
         
-        [nameTextCheckView, compensationTextCheckView, stampSizeSelectionView, missionAddView].forEach {
+        [headerView, nameTextCheckView, compensationTextCheckView, stampSizeSelectionView, missionAddView].forEach {
             contentStackView.addArrangedSubview($0)
         }
         
@@ -130,6 +141,10 @@ final class NewStampBoardViewController: UIViewController {
         missionAddView.snp.makeConstraints { make in
             missionAddViewHeightConstraint = make.height.equalTo(300).constraint
         }
+        
+        // MARK: -
+        
+        contentStackView.setCustomSpacing(32, after: headerView)
         
         // MARK: -
         

@@ -29,9 +29,9 @@ class MissonAddButtonCell: UICollectionViewCell {
             .foregroundColor: UIColor.gray400
         ]))
         button.configuration = config
-        button.layer.borderColor = UIColor.gray300.cgColor
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 8
+//        button.layer.borderColor = UIColor.gray300.cgColor
+//        button.layer.borderWidth = 1
+//        button.layer.cornerRadius = 8
         return button
     }()
     
@@ -63,7 +63,11 @@ extension MissonAddButtonCell {
         
         missonAddButton.snp.makeConstraints { make in
             make.verticalEdges.leading.equalToSuperview()
+            make.height.equalTo(45)
         }
+        
+        missonAddButton.addLineDashedStroke(pattern: [2, 2], radius: 8, color: UIColor.gray.cgColor)
+        self.layoutIfNeeded()
         
         deleteButton.snp.makeConstraints { make in
             make.top.trailing.equalToSuperview()
@@ -74,5 +78,28 @@ extension MissonAddButtonCell {
         
         deleteButton.setContentHuggingPriority(.init(1001), for: .horizontal)
         deleteButton.setContentCompressionResistancePriority(.init(1001), for: .horizontal)
+    }
+}
+
+extension UIView {
+    func addLineDashedStroke(pattern: [NSNumber]?, radius: CGFloat, color: CGColor) {
+//        let borderLayer = CAShapeLayer()
+//
+//        borderLayer.strokeColor = color
+//        borderLayer.lineDashPattern = pattern
+//        borderLayer.frame = bounds
+//        borderLayer.fillColor = nil
+//        borderLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: radius, height: radius)).cgPath
+//
+//        layer.addSublayer(borderLayer)
+        
+        let layer = CAShapeLayer()
+        let path = UIBezierPath(roundedRect: bounds, cornerRadius: 8)
+        layer.path = path.cgPath;
+        layer.strokeColor = UIColor.red.cgColor;
+        layer.lineDashPattern = [3,3];
+        layer.backgroundColor = UIColor.clear.cgColor;
+        layer.fillColor = UIColor.clear.cgColor;
+        self.layer.addSublayer(layer);
     }
 }

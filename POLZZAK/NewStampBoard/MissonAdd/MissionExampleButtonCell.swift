@@ -48,6 +48,7 @@ extension MissionExampleButtonCell {
         
         missonExampleButton.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+            make.height.equalTo(50)
         }
     }
 }
