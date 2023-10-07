@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -248,7 +248,6 @@
 		C7E6F1AE5BFBE38378E4EED2 /* PhotoAccessAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B238F3F419690A6163228560 /* PhotoAccessAlertController.swift */; };
 		CABCF6DFBE4C8C1313C04449 /* CouponListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DA2E5CC5996E391020B044 /* CouponListViewModel.swift */; };
 		CB2EF3CB564683001DC39FA4 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19715E719E4BC03E91239EFD /* BaseResponse.swift */; };
-		CB7F9A8D0C30C7F9C30FAB15 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE699E20886C3DE6B8E3BB /* PullToRefreshProtocol.swift */; };
 		CC8DE758885EC84337CAE988 /* MissionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9127239A174F69FC136E281F /* MissionStatusView.swift */; };
 		CCD36E53073C73A20E761D0F /* FamilyMemberListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4642E1142EA28E517E0C208D /* FamilyMemberListDTO.swift */; };
 		CDC73EFCC3DDAC4948EDF3A4 /* TabViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F9418A997C3860206B9A3C /* TabViews.swift */; };
@@ -282,7 +281,6 @@
 		E1FD7A5F163D3E56042ACE6C /* UIViewController+UINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DA591844188743324D25E7 /* UIViewController+UINavigation.swift */; };
 		E27A541630A6607A9D2E4286 /* CouponList_200_Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 32BA7B286EF2AC7C49B030B9 /* CouponList_200_Sample.json */; };
 		E33CE7DF52D5CF811D9CE427 /* StampAllowBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41655EF924C803861A4D080 /* StampAllowBottomSheetViewController.swift */; };
-		E38AA78EB5F2093DD5466602 /* CustomRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90FB2F679FEB18B8FCD5D4B /* CustomRefreshControl.swift */; };
 		E3EAE3D7AD896FF8DD8972A9 /* CouponHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D99CB50BB41EDCF9EAC4C4 /* CouponHeaderView.swift */; };
 		E568E54E11DAE80013B024C8 /* BaseFilterSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43661FE93E1C2B8B6BBC914F /* BaseFilterSkeletonView.swift */; };
 		E58BEEE6A80526388EA63919 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68DB9AC5B73752F3CF2136 /* UserAPI.swift */; };
@@ -486,7 +484,6 @@
 		6F4E4E3CA926768060FB2DDB /* LabelWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithPadding.swift; sourceTree = "<group>"; };
 		6F90C331737E23A75437A38A /* LinkManagementMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkManagementMapperTests.swift; sourceTree = "<group>"; };
 		70090073B75C0AE48545A989 /* LinkListTabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkListTabCell.swift; sourceTree = "<group>"; };
-		70DE699E20886C3DE6B8E3BB /* PullToRefreshProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshProtocol.swift; sourceTree = "<group>"; };
 		71A180640659C76662337857 /* InprogressStampBoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InprogressStampBoardCell.swift; sourceTree = "<group>"; };
 		71F451B1374D183481081183 /* Date+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
 		72073C7767F101C825BC7A4E /* CouponDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDetailViewController.swift; sourceTree = "<group>"; };
@@ -630,7 +627,6 @@
 		E6BC65189EC2DD128BBDDC26 /* QnaStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnaStackView.swift; sourceTree = "<group>"; };
 		E7DEE9AFE089C31B7ACF9824 /* LinkManagementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkManagementService.swift; sourceTree = "<group>"; };
 		E874E77A2AE612A429A226F1 /* NotificationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStatus.swift; sourceTree = "<group>"; };
-		E90FB2F679FEB18B8FCD5D4B /* CustomRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRefreshControl.swift; sourceTree = "<group>"; };
 		E9D5DE529B05D337310C6D04 /* NetworkServiceResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceResponseHandler.swift; sourceTree = "<group>"; };
 		EA38C9D61477602B7B549A06 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
 		EA7ED3FD67BCBCB26537242B /* RegisterUserTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserTypeViewController.swift; sourceTree = "<group>"; };
@@ -1634,7 +1630,6 @@
 			isa = PBXGroup;
 			children = (
 				07FAE78E89681B73F2C6E0A1 /* LoadingViewModelProtocol.swift */,
-				70DE699E20886C3DE6B8E3BB /* PullToRefreshProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1745,10 +1740,9 @@
 			isa = PBXGroup;
 			children = (
 				E2781D8A51F01567B4DF3940 /* Protocol */,
-				E90FB2F679FEB18B8FCD5D4B /* CustomRefreshControl.swift */,
-				3E55E230834B65EF9B8EED1B /* LoadingView.swift */,
-				8108C917F22AC6EEF5F2C54D /* FullScreenLoadingView.swift */,
 				E12B0E42652ACC983B76A0D3 /* FullLoadingView.swift */,
+				8108C917F22AC6EEF5F2C54D /* FullScreenLoadingView.swift */,
+				3E55E230834B65EF9B8EED1B /* LoadingView.swift */,
 			);
 			path = LoadingView;
 			sourceTree = "<group>";
@@ -2013,12 +2007,10 @@
 				5504AC4AF3631B4EF658E85A /* Constants.swift in Sources */,
 				271A1751CC92CAC4F1CE3469 /* EmptyView.swift in Sources */,
 				11B1D0708724B953C4CB8395 /* ErrorHandlingProtocol.swift in Sources */,
-				E38AA78EB5F2093DD5466602 /* CustomRefreshControl.swift in Sources */,
 				92F6088C869960908F55551F /* FullLoadingView.swift in Sources */,
 				3EE8CEB929CF9FCCF00D3FBD /* FullScreenLoadingView.swift in Sources */,
 				A649CF4733B8DB3D5B17FBAE /* LoadingView.swift in Sources */,
 				214DE4D776122A4A173C43B6 /* LoadingViewModelProtocol.swift in Sources */,
-				CB7F9A8D0C30C7F9C30FAB15 /* PullToRefreshProtocol.swift in Sources */,
 				8AB2185FF496CF24CCAD9AEF /* MemberTypeLabel.swift in Sources */,
 				8D1CF08B0DE077CAB84B9E1F /* MemberTypeView.swift in Sources */,
 				C2D251ACF0CAE616FA3B32ED /* MessageView.swift in Sources */,

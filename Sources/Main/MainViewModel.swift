@@ -5,23 +5,25 @@
 //  Created by 이정환 on 2023/08/23.
 //
 
-import Foundation
 import Combine
+import Foundation
+
+import PullToRefresh
 
 final class StampBoardViewModel: TabFilterViewModelProtocol, PullToRefreshProtocol, LoadingViewModelProtocol, ErrorHandlingProtocol {
+    var cancellables = Set<AnyCancellable>()
+    var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
+    var didEndDraggingSubject = PassthroughSubject<Bool, Never>()
+    var shouldEndRefreshing = PassthroughSubject<Bool, Never>()
+    
     private let repository: StampBoardsDataRepository
+    var userType: UserType
     
     var dataList = CurrentValueSubject<[StampBoardList], Never>([])
-    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
-    
-    var userType: UserType
     var isSkeleton = CurrentValueSubject<Bool, Never>(true)
     var isCenterLoading = CurrentValueSubject<Bool, Never>(false)
     var tabState = CurrentValueSubject<TabState, Never>(.inProgress)
     var filterType = CurrentValueSubject<FilterType, Never>(.all)
-    var apiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
-    var didEndDraggingSubject = PassthroughSubject<Void, Never>()
-    var shouldEndRefreshing = PassthroughSubject<Bool, Never>()
     var showErrorAlertSubject = PassthroughSubject<Error, Never>()
     
     init(repository: StampBoardsDataRepository) {
@@ -44,7 +46,7 @@ final class StampBoardViewModel: TabFilterViewModelProtocol, PullToRefreshProtoc
         Task {
             defer {
                 hideLoading(for: centerLoading)
-                apiFinishedLoadingSubject.send(true)
+                isApiFinishedLoadingSubject.send(true)
             }
             
             if true == isCenterLoading.value {

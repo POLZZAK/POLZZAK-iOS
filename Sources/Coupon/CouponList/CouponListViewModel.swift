@@ -5,23 +5,25 @@
 //  Created by 이정환 on 2023/07/31.
 //
 
-import Foundation
 import Combine
+import Foundation
+
+import PullToRefresh
 
 final class CouponListViewModel: TabFilterViewModelProtocol, PullToRefreshProtocol, LoadingViewModelProtocol {
+    var cancellables = Set<AnyCancellable>()
+    var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
+    var didEndDraggingSubject = PassthroughSubject<Bool, Never>()
+    var shouldEndRefreshing = PassthroughSubject<Bool, Never>()
+    
     private let repository: CouponRepository
+    var userType: UserType
     
     var dataList = CurrentValueSubject<[CouponList], Never>([])
-    var cancellables = Set<AnyCancellable>()
-    
-    var userType: UserType
     var isSkeleton = CurrentValueSubject<Bool, Never>(true)
     var isCenterLoading = CurrentValueSubject<Bool, Never>(false)
     var tabState = CurrentValueSubject<TabState, Never>(.inProgress)
     var filterType = CurrentValueSubject<FilterType, Never>(.all)
-    var apiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
-    var didEndDraggingSubject = PassthroughSubject<Void, Never>()
-    var shouldEndRefreshing = PassthroughSubject<Bool, Never>()
     var requestGiftSubject = PassthroughSubject<Void, Never>()
     var receiveGiftSubject = PassthroughSubject<Void, Never>()
     var dataChanged = CurrentValueSubject<IndexPath?, Never>(nil)
@@ -48,7 +50,7 @@ final class CouponListViewModel: TabFilterViewModelProtocol, PullToRefreshProtoc
         Task {
             defer {
                 hideLoading(for: centerLoading)
-                apiFinishedLoadingSubject.send(true)
+                isApiFinishedLoadingSubject.send(true)
             }
             
             if true == isCenterLoading.value {

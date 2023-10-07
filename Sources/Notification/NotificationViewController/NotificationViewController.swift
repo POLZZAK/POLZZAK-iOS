@@ -5,14 +5,16 @@
 //  Created by 이정환 on 2023/07/11.
 //
 
-import UIKit
-import SnapKit
 import Combine
+import UIKit
+
+import PullToRefresh
+import SnapKit
 
 final class NotificationViewController: UIViewController {
     enum Constants {
-        static let tableViewContentInset = UIEdgeInsets(top: 16, left: 0, bottom: -16, right: 0)
-        static let initialContentOffsetY = 16.0
+        static let topPadding = 16.0
+        static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: -topPadding, right: 0)
     }
     
     private var lastContentOffset: CGFloat = 0
@@ -27,8 +29,7 @@ final class NotificationViewController: UIViewController {
     private let fullLoadingView = FullLoadingView()
     
     private let customRefreshControl: CustomRefreshControl = {
-        let refreshControl = CustomRefreshControl(topPadding: -Constants.initialContentOffsetY)
-        refreshControl.initialContentOffsetY = Constants.initialContentOffsetY
+        let refreshControl = CustomRefreshControl(topPadding: Constants.topPadding)
         return refreshControl
     }()
     
@@ -135,11 +136,9 @@ extension NotificationViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] bool in
                 if true == bool {
-                    self?.customRefreshControl.endRefreshing()
                     self?.viewModel.resetPullToRefreshSubjects()
-                } else {
-                    self?.customRefreshControl.endRefreshing()
                 }
+                self?.customRefreshControl.endRefreshing()
             }
             .store(in: &cancellables)
         
@@ -184,9 +183,7 @@ extension NotificationViewController {
             viewModel.fetchNotificationList(isFirst: true, more: false)
             notificationSkeletonView.showSkeletonView()
         } else {
-            customRefreshControl.isStartRefresh = true
             notificationSkeletonView.hideSkeletonView()
-            viewModel.resetPullToRefreshSubjects()
         }
     }
     
@@ -216,6 +213,7 @@ extension NotificationViewController {
     }
     
     @objc func handleRefresh() {
+        customRefreshControl.beginRefreshing()
         viewModel.loadData()
     }
 }
@@ -304,13 +302,13 @@ extension NotificationViewController: NotificationTableViewCellDelegate {
 
 extension NotificationViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        customRefreshControl.resetRefreshControl()
         viewModel.resetPullToRefreshSubjects()
         viewModel.resetBottomRefreshSubjects()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        viewModel.didEndDraggingSubject.send()
-        customRefreshControl.isStartRefresh = true
+        viewModel.didEndDraggingSubject.send(true)
         
         if decelerate && scrollView.contentOffset.y > lastContentOffset {
             checkIfReachedBottom(scrollView)

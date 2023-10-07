@@ -5,10 +5,12 @@
 //  Created by Jinyoung Kim on 2023/05/12.
 //
 
-import UIKit
-import SnapKit
 import Combine
+import UIKit
+
 import CombineCocoa
+import SnapKit
+import PullToRefresh
 
 final class MainViewController: UIViewController {
     enum Constants {
@@ -40,8 +42,7 @@ final class MainViewController: UIViewController {
     private let fullLoadingView = FullLoadingView()
     
     private let customRefreshControl: CustomRefreshControl = {
-        let refreshControl = CustomRefreshControl(topPadding: -Constants.headerTabHeight)
-        refreshControl.initialContentOffsetY = Constants.filterHeight
+        let refreshControl = CustomRefreshControl(topPadding: Constants.filterHeight)
         return refreshControl
     }()
     
@@ -87,7 +88,6 @@ final class MainViewController: UIViewController {
         
         customRefreshControl.observe(scrollView: collectionView)
         collectionView.refreshControl = customRefreshControl
-        
         return collectionView
     }()
     
@@ -206,11 +206,9 @@ extension MainViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] bool in
                 if true == bool {
-                    self?.customRefreshControl.endRefreshing()
                     self?.viewModel.resetPullToRefreshSubjects()
-                } else {
-                    self?.customRefreshControl.endRefreshing()
                 }
+                self?.customRefreshControl.endRefreshing()
             }
             .store(in: &cancellables)
         
@@ -303,7 +301,6 @@ extension MainViewController {
             stampBoardSkeletonView.showSkeletonView()
         } else {
             tabViews.initTabViews()
-            customRefreshControl.isStartRefresh = true
             stampBoardSkeletonView.hideSkeletonView()
             addStampBoardButton.isHidden = false
         }
@@ -338,8 +335,8 @@ extension MainViewController {
     }
     
     @objc func handleRefresh() {
+        customRefreshControl.beginRefreshing()
         viewModel.loadData()
-        tabViews.setTouchInteractionEnabled(false)
     }
     
     @objc private func filterButtonTapped() {
@@ -511,17 +508,13 @@ extension MainViewController: CollectionLayoutConfigurable {
     func createSection(for sectionIndex: Int) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
         let groupSizeHeight: CGFloat
         if viewModel.filterType.value == .none {
             groupSizeHeight = Constants.notLinkGroupSizeHeight
         } else {
             groupSizeHeight = viewModel.tabState.value == .inProgress ? Constants.inprogressGroupSizeHeight : Constants.completedGroupSizeHeight
         }
-        
         let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(Constants.groupSizeWidth), heightDimension: .estimated(groupSizeHeight))
-        
-        
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = Constants.contentInsets
@@ -537,12 +530,12 @@ extension MainViewController: CollectionLayoutConfigurable {
 
 extension MainViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        customRefreshControl.resetRefreshControl()
         viewModel.resetPullToRefreshSubjects()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        viewModel.didEndDraggingSubject.send()
-        customRefreshControl.isStartRefresh = true
+        viewModel.didEndDraggingSubject.send(true)
     }
 }
 

@@ -5,25 +5,26 @@
 //  Created by 이정환 on 2023/07/11.
 //
 
-import Foundation
 import Combine
+import Foundation
+
+import PullToRefresh
 
 final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtocol, ErrorHandlingProtocol {
+    var cancellables = Set<AnyCancellable>()
+    var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
+    var didEndDraggingSubject = PassthroughSubject<Bool, Never>()
+    var shouldEndRefreshing = PassthroughSubject<Bool, Never>()
+    
     private let repository: NotificationDataRepository
     var userType: UserType
-    
     @Published var saveStartID: Int? = nil
     @Published var notificationList: [NotificationData] = []
     @Published var notificationSettingList: [SettingItem] = []
     @Published var SettingBool: Bool? = nil
     
-    var cancellables = Set<AnyCancellable>()
-    
     var isSkeleton = CurrentValueSubject<Bool, Never>(true)
     var isCenterLoading = CurrentValueSubject<Bool, Never>(false)
-    var apiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
-    var didEndDraggingSubject = PassthroughSubject<Void, Never>()
-    var shouldEndRefreshing = PassthroughSubject<Bool, Never>()
     var rechedBottomSubject = CurrentValueSubject<Bool, Never>(false)
     var showErrorAlertSubject = PassthroughSubject<Error, Never>()
     
@@ -70,7 +71,7 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
         Task {
             defer {
                 hideLoading(for: centerLoading)
-                apiFinishedLoadingSubject.send(true)
+                isApiFinishedLoadingSubject.send(true)
             }
             
             if true == isCenterLoading.value {

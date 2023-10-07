@@ -5,10 +5,12 @@
 //  Created by 이정환 on 2023/07/28.
 //
 
-import UIKit
-import SnapKit
 import Combine
+import UIKit
+
 import CombineCocoa
+import SnapKit
+import PullToRefresh
 
 final class CouponListViewController: UIViewController {
     enum Constants {
@@ -40,8 +42,7 @@ final class CouponListViewController: UIViewController {
     private let fullLoadingView = FullLoadingView()
     
     private let customRefreshControl: CustomRefreshControl = {
-        let refreshControl = CustomRefreshControl(topPadding: -Constants.headerTabHeight)
-        refreshControl.initialContentOffsetY = Constants.filterHeight
+        let refreshControl = CustomRefreshControl(topPadding: Constants.filterHeight)
         return refreshControl
     }()
     
@@ -188,11 +189,9 @@ extension CouponListViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] bool in
                 if true == bool {
-                    self?.customRefreshControl.endRefreshing()
                     self?.viewModel.resetPullToRefreshSubjects()
-                } else {
-                    self?.customRefreshControl.endRefreshing()
                 }
+                self?.customRefreshControl.endRefreshing()
             }
             .store(in: &cancellables)
         
@@ -317,7 +316,6 @@ extension CouponListViewController {
             couponSkeletonView.showSkeletonView()
         } else {
             tabViews.initTabViews()
-            customRefreshControl.isStartRefresh = true
             couponSkeletonView.hideSkeletonView()
         }
     }
@@ -358,8 +356,8 @@ extension CouponListViewController {
     }
     
     @objc func handleRefresh() {
+        customRefreshControl.beginRefreshing()
         viewModel.loadData()
-        tabViews.setTouchInteractionEnabled(false)
     }
     
     @objc private func filterButtonTapped() {
@@ -544,12 +542,12 @@ extension CouponListViewController: CollectionLayoutConfigurable {
 
 extension CouponListViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        customRefreshControl.resetRefreshControl()
         viewModel.resetPullToRefreshSubjects()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        viewModel.didEndDraggingSubject.send()
-        customRefreshControl.isStartRefresh = true
+        viewModel.didEndDraggingSubject.send(true)
     }
 }
 
