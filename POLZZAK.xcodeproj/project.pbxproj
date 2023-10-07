@@ -281,6 +281,7 @@
 		DACA496A2AB4D20E00A2FB77 /* MissonAddTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACA49692AB4D20E00A2FB77 /* MissonAddTextFieldCell.swift */; };
 		DACA496C2AB4D33D00A2FB77 /* MissonAddButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACA496B2AB4D33D00A2FB77 /* MissonAddButtonCell.swift */; };
 		DACA496E2AB4DB1200A2FB77 /* MissionExampleButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACA496D2AB4DB1200A2FB77 /* MissionExampleButtonCell.swift */; };
+		DAD7C6A82AC83D7400C385B9 /* NewStampBoardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD7C6A72AC83D7400C385B9 /* NewStampBoardHeaderView.swift */; };
 		DAD9608A2AA90910009A7557 /* POLZZAKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD960892AA90910009A7557 /* POLZZAKTests.swift */; };
 		DAD960922AA909D0009A7557 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DAD960912AA909D0009A7557 /* SnapKit */; settings = {ATTRIBUTES = (Required, ); }; };
 		DAD960942AA909DF009A7557 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DAD960932AA909DF009A7557 /* CombineCocoa */; };
@@ -572,6 +573,7 @@
 		DACA49692AB4D20E00A2FB77 /* MissonAddTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissonAddTextFieldCell.swift; sourceTree = "<group>"; };
 		DACA496B2AB4D33D00A2FB77 /* MissonAddButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissonAddButtonCell.swift; sourceTree = "<group>"; };
 		DACA496D2AB4DB1200A2FB77 /* MissionExampleButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionExampleButtonCell.swift; sourceTree = "<group>"; };
+		DAD7C6A72AC83D7400C385B9 /* NewStampBoardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStampBoardHeaderView.swift; sourceTree = "<group>"; };
 		DAD960872AA90910009A7557 /* POLZZAKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = POLZZAKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD960892AA90910009A7557 /* POLZZAKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POLZZAKTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1603,6 +1605,7 @@
 			isa = PBXGroup;
 			children = (
 				DACA495B2AB48FA500A2FB77 /* TextCheckView.swift */,
+				DAD7C6A72AC83D7400C385B9 /* NewStampBoardHeaderView.swift */,
 				DACA495D2AB498C200A2FB77 /* NewStampBoardViewController.swift */,
 				DACA49642AB4CEED00A2FB77 /* MissonAdd */,
 				DACA49612AB4AF6400A2FB77 /* StampSizeSelection */,
@@ -1971,6 +1974,7 @@
 				393054452AB4DDEB00AA02A7 /* MappableResponse.swift in Sources */,
 				DA38E6192A4DA78800229282 /* NicknameCheckView.swift in Sources */,
 				39227BE12A1E498700C86049 /* CompletedStampBoardCell.swift in Sources */,
+				DAD7C6A82AC83D7400C385B9 /* NewStampBoardHeaderView.swift in Sources */,
 				DA65893C2AB1D25500746D5A /* TitleLoadingViewController.swift in Sources */,
 				39C5730A2A9BC4DD00CD6362 /* Filterable.swift in Sources */,
 				390178462A938217001D0E90 /* PhotoAccessAlertController.swift in Sources */,

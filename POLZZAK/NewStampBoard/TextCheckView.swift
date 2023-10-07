@@ -5,9 +5,8 @@
 //  Created by Jinyoung Kim on 2023/09/15.
 //
 
-import Foundation
-
 import Combine
+import Foundation
 import UIKit
 
 import CombineCocoa
@@ -37,7 +36,7 @@ final class TextCheckView: UIView {
         return label
     }()
     
-    private let textField = CheckTextField()
+    let textField = CheckTextField()
     
     private let labelStackView: UIStackView = {
         let stackView = UIStackView()
@@ -85,6 +84,7 @@ final class TextCheckView: UIView {
     }
     
     private func configureView() {
+        countLabel.text = "0/\(type.maxCharacters)"
         titleLabel.text = type.title
         textField.setPlaceholder(text: type.placeholderText)
         

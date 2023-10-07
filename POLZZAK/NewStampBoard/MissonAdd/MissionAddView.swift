@@ -58,7 +58,7 @@ extension MissionAddView: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissonAddTextFieldCell.reuseIdentifier, for: indexPath) as? MissonAddTextFieldCell else { fatalError("Couldn't dequeue MissonAddTextFieldCell") }
-            
+            cell.cellHeightUpdateDelegate = self
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissonAddButtonCell.reuseIdentifier, for: indexPath) as? MissonAddButtonCell else { fatalError("Couldn't dequeue MissonAddButtonCell") }
@@ -71,7 +71,18 @@ extension MissionAddView: UICollectionViewDataSource {
         default:
             fatalError("")
         }
-        
+    }
+}
+
+// MARK: - MissonAddTextFieldCellDelegate
+
+extension MissionAddView: MissonAddTextFieldCellDelegate {
+    func didUpdateHeight() {
+        print("?C?C?C?C?")
+        self.performBatchUpdates {
+            self.collectionViewLayout.invalidateLayout()
+            self.layoutIfNeeded()
+        }
     }
 }
 
@@ -82,7 +93,7 @@ extension MissionAddView {
         // Item
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
+            heightDimension: .estimated(50.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
