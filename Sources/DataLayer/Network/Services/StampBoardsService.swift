@@ -7,6 +7,8 @@
 
 import Foundation
 
+import DynamicTabView
+
 protocol StampBoardsService {
     func fetchStampBoardList(for tabState: TabState) async throws -> (Data, URLResponse)
 }

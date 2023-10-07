@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		198E4343B6F8382295AE2A1B /* SharedResources.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FD4781AC1B7887C1DEE10D45 /* SharedResources.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1F0996A964A4B11FF0D0898E /* PolzzakUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB5073237226B60CBF8328E /* PolzzakUIKit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2DA84E9A25D47262D3931095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DD4061FC8598D8EB830CC1 /* AppDelegate.swift */; };
 		3ADCF06C9A4A8E5F49E7C21F /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 5624E2882B976A0415DCDD5C /* Nimble */; };
 		4E27542F117858378E047202 /* Extension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A69BEEDC3B3C8FA7E7301D3 /* Extension.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -24,6 +25,7 @@
 		CF723F5F54C4114D99CAD9D1 /* Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A69BEEDC3B3C8FA7E7301D3 /* Extension.framework */; platformFilter = ios; };
 		D27232381BA64B3BC704CAAB /* BottomSheetModalDemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959F3D5AAA039D8F9E7B5AD8 /* BottomSheetModalDemoAppUITests.swift */; };
 		DA86F74230EBCC96417FD1B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9898037829FB9D8CB65B610 /* LaunchScreen.storyboard */; };
+		EE722B9FDF4ABE850F98FBAD /* PolzzakUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB5073237226B60CBF8328E /* PolzzakUIKit.framework */; platformFilter = ios; };
 		EE7E9F3700AACC052C2FFEF3 /* BottomSheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3635FCDC1AFB71E4AFF329E3 /* BottomSheetPresentationController.swift */; };
 		EEF7227AC48A3F0CB878FE6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D1E4B3198BF5D97DC7AD3 /* SceneDelegate.swift */; };
 		EFB9A81620C170CCCFA6E7C6 /* BottomSheetModal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE386B3EE567B9D72304426C /* BottomSheetModal.framework */; platformFilter = ios; };
@@ -62,6 +64,7 @@
 			files = (
 				9B0CBC86F24A4DA2B0FC626E /* BottomSheetModal.framework in Embed Frameworks */,
 				4E27542F117858378E047202 /* Extension.framework in Embed Frameworks */,
+				1F0996A964A4B11FF0D0898E /* PolzzakUIKit.framework in Embed Frameworks */,
 				198E4343B6F8382295AE2A1B /* SharedResources.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -114,6 +117,7 @@
 		8005B08AAF1C189F4322E0D7 /* BottomSheetModalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BottomSheetModalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8972D6694C6336480A529133 /* BottomSheetState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetState.swift; sourceTree = "<group>"; };
 		959F3D5AAA039D8F9E7B5AD8 /* BottomSheetModalDemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetModalDemoAppUITests.swift; sourceTree = "<group>"; };
+		9FB5073237226B60CBF8328E /* PolzzakUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PolzzakUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A571FA9C3F8568E95C66C83B /* BottomSheetModalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BottomSheetModalTests-Info.plist"; sourceTree = "<group>"; };
 		AE386B3EE567B9D72304426C /* BottomSheetModal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BottomSheetModal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C864E6BB82118074B9FD07 /* BottomSheetModalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetModalTests.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF723F5F54C4114D99CAD9D1 /* Extension.framework in Frameworks */,
+				EE722B9FDF4ABE850F98FBAD /* PolzzakUIKit.framework in Frameworks */,
 				521E0CD5A2D0DF283CB1E8DA /* SharedResources.framework in Frameworks */,
 				9AA286351E24430F3CBA27F4 /* SnapKit in Frameworks */,
 			);
@@ -286,6 +291,7 @@
 				4D7EF5C062F98FF3780CA5EB /* BottomSheetModalDemoAppUITests.xctest */,
 				8005B08AAF1C189F4322E0D7 /* BottomSheetModalTests.xctest */,
 				5A69BEEDC3B3C8FA7E7301D3 /* Extension.framework */,
+				9FB5073237226B60CBF8328E /* PolzzakUIKit.framework */,
 				FD4781AC1B7887C1DEE10D45 /* SharedResources.framework */,
 			);
 			name = Products;

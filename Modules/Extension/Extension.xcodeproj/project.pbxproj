@@ -24,7 +24,6 @@
 		AFF3D7DAE9F77C5418E98687 /* UIViewController+UINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FF7B8DA5133696C153AA3D /* UIViewController+UINavigation.swift */; };
 		D52BCA6BEE7A8BB460969A33 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F55D3A9184F857D7668B1 /* UITextView.swift */; };
 		DA99EBB12D50802D4E1DBE1F /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9760256729AE890520E2077 /* UIView+Border.swift */; };
-		DE10E212719DAFC91D085355 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76E77ABD86F6E4D95CF401 /* UIView+Animation.swift */; };
 		F39920551753E183F383FD07 /* UIView+Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34DC1BD2F2C97292CB72158 /* UIView+Capture.swift */; };
 		FA03A5BA8C47DD899B8C4100 /* String+BoldTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE24345BC2E6447061103029 /* String+BoldTag.swift */; };
 /* End PBXBuildFile section */
@@ -53,7 +52,6 @@
 		6A716F69C3DD68A5CAE1ADC3 /* UICollectionView+reloadDataWIthAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+reloadDataWIthAnimation.swift"; sourceTree = "<group>"; };
 		8988137634308452C8C0A979 /* Date+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
 		8A21337A6ED0742A7042AFAE /* DecodingError+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecodingError+extension.swift"; sourceTree = "<group>"; };
-		8C76E77ABD86F6E4D95CF401 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		A34DC1BD2F2C97292CB72158 /* UIView+Capture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Capture.swift"; sourceTree = "<group>"; };
 		A87B8936E3D03970439D62E8 /* Extension-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Extension-Info.plist"; sourceTree = "<group>"; };
 		C9760256729AE890520E2077 /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 				3E99BDE5E84B5CD2BBC9A137 /* UILabel+extension.swift */,
 				2C96E389A79438669589E7A0 /* UIStackView+extension.swift */,
 				D52F55D3A9184F857D7668B1 /* UITextView.swift */,
-				8C76E77ABD86F6E4D95CF401 /* UIView+Animation.swift */,
 				C9760256729AE890520E2077 /* UIView+Border.swift */,
 				A34DC1BD2F2C97292CB72158 /* UIView+Capture.swift */,
 				E2FF7B8DA5133696C153AA3D /* UIViewController+UINavigation.swift */,
@@ -233,7 +230,6 @@
 				A34B6FF946BA99F260EB0F3B /* UILabel+extension.swift in Sources */,
 				AE924A15325899ADE33501CE /* UIStackView+extension.swift in Sources */,
 				D52BCA6BEE7A8BB460969A33 /* UITextView.swift in Sources */,
-				DE10E212719DAFC91D085355 /* UIView+Animation.swift in Sources */,
 				DA99EBB12D50802D4E1DBE1F /* UIView+Border.swift in Sources */,
 				F39920551753E183F383FD07 /* UIView+Capture.swift in Sources */,
 				AFF3D7DAE9F77C5418E98687 /* UIViewController+UINavigation.swift in Sources */,

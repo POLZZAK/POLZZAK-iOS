@@ -126,6 +126,62 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2D4B11385A200813B84DBFF5"
+               BuildableName = "DynamicTabView.framework"
+               BlueprintName = "DynamicTabView"
+               ReferencedContainer = "container:Modules/DynamicTabView/DynamicTabView.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F9C9BCD0FD0C69204AB24B6E"
+               BuildableName = "DynamicTabViewDemoApp.app"
+               BlueprintName = "DynamicTabViewDemoApp"
+               ReferencedContainer = "container:Modules/DynamicTabView/DynamicTabView.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CB53D5E6B2CA958E903B72D3"
+               BuildableName = "DynamicTabViewDemoAppUITests.xctest"
+               BlueprintName = "DynamicTabViewDemoAppUITests"
+               ReferencedContainer = "container:Modules/DynamicTabView/DynamicTabView.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D1C746393CEAA24CFFF09F73"
+               BuildableName = "DynamicTabViewTests.xctest"
+               BlueprintName = "DynamicTabViewTests"
+               ReferencedContainer = "container:Modules/DynamicTabView/DynamicTabView.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "BC1A26ED2E6121943F2AB58D"
                BuildableName = "Extension.framework"
                BlueprintName = "Extension"
@@ -186,6 +242,62 @@
                BuildableName = "FilterBottomSheetTests.xctest"
                BlueprintName = "FilterBottomSheetTests"
                ReferencedContainer = "container:Modules/FilterBottomSheet/FilterBottomSheet.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "36D8994457E4D33444FFACF8"
+               BuildableName = "Loading.framework"
+               BlueprintName = "Loading"
+               ReferencedContainer = "container:Modules/Loading/Loading.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7CFAD56A7E9BB3EBCF2F4B3B"
+               BuildableName = "LoadingDemoApp.app"
+               BlueprintName = "LoadingDemoApp"
+               ReferencedContainer = "container:Modules/Loading/Loading.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BC1A80D4CBC759BDB052405E"
+               BuildableName = "LoadingDemoAppUITests.xctest"
+               BlueprintName = "LoadingDemoAppUITests"
+               ReferencedContainer = "container:Modules/Loading/Loading.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E9BB734CD829E8F9B60AFF17"
+               BuildableName = "LoadingTests.xctest"
+               BlueprintName = "LoadingTests"
+               ReferencedContainer = "container:Modules/Loading/Loading.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -336,10 +448,122 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E05EAA3616CFED4F6FF609BE"
+               BuildableName = "SearchBar.framework"
+               BlueprintName = "SearchBar"
+               ReferencedContainer = "container:Modules/SearchBar/SearchBar.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1CA79214CC11C3C624635269"
+               BuildableName = "SearchBarDemoApp.app"
+               BlueprintName = "SearchBarDemoApp"
+               ReferencedContainer = "container:Modules/SearchBar/SearchBar.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BB2EE6E23A2E76C67EBA9907"
+               BuildableName = "SearchBarDemoAppUITests.xctest"
+               BlueprintName = "SearchBarDemoAppUITests"
+               ReferencedContainer = "container:Modules/SearchBar/SearchBar.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6173356C5741F814AF5E2C4E"
+               BuildableName = "SearchBarTests.xctest"
+               BlueprintName = "SearchBarTests"
+               ReferencedContainer = "container:Modules/SearchBar/SearchBar.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "F86DAFF9FF4CA50599276510"
                BuildableName = "SharedResources.framework"
                BlueprintName = "SharedResources"
                ReferencedContainer = "container:Modules/SharedResources/SharedResources.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "20F3065121F4330C64986211"
+               BuildableName = "Toast.framework"
+               BlueprintName = "Toast"
+               ReferencedContainer = "container:Modules/Toast/Toast.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E7E245E963038F9457B3B1E9"
+               BuildableName = "ToastDemoApp.app"
+               BlueprintName = "ToastDemoApp"
+               ReferencedContainer = "container:Modules/Toast/Toast.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D053311676EB8ABCC754DD1F"
+               BuildableName = "ToastDemoAppUITests.xctest"
+               BlueprintName = "ToastDemoAppUITests"
+               ReferencedContainer = "container:Modules/Toast/Toast.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F4309ACB9630C8B92361B746"
+               BuildableName = "ToastTests.xctest"
+               BlueprintName = "ToastTests"
+               ReferencedContainer = "container:Modules/Toast/Toast.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -394,6 +618,26 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CB53D5E6B2CA958E903B72D3"
+               BuildableName = "DynamicTabViewDemoAppUITests.xctest"
+               BlueprintName = "DynamicTabViewDemoAppUITests"
+               ReferencedContainer = "container:Modules/DynamicTabView/DynamicTabView.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D1C746393CEAA24CFFF09F73"
+               BuildableName = "DynamicTabViewTests.xctest"
+               BlueprintName = "DynamicTabViewTests"
+               ReferencedContainer = "container:Modules/DynamicTabView/DynamicTabView.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "C28A81789E9DF351059AC6D3"
                BuildableName = "FilterBottomSheetDemoAppUITests.xctest"
                BlueprintName = "FilterBottomSheetDemoAppUITests"
@@ -408,6 +652,26 @@
                BuildableName = "FilterBottomSheetTests.xctest"
                BlueprintName = "FilterBottomSheetTests"
                ReferencedContainer = "container:Modules/FilterBottomSheet/FilterBottomSheet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BC1A80D4CBC759BDB052405E"
+               BuildableName = "LoadingDemoAppUITests.xctest"
+               BlueprintName = "LoadingDemoAppUITests"
+               ReferencedContainer = "container:Modules/Loading/Loading.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E9BB734CD829E8F9B60AFF17"
+               BuildableName = "LoadingTests.xctest"
+               BlueprintName = "LoadingTests"
+               ReferencedContainer = "container:Modules/Loading/Loading.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -458,6 +722,46 @@
                BuildableName = "PullToRefreshTests.xctest"
                BlueprintName = "PullToRefreshTests"
                ReferencedContainer = "container:Modules/PullToRefresh/PullToRefresh.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BB2EE6E23A2E76C67EBA9907"
+               BuildableName = "SearchBarDemoAppUITests.xctest"
+               BlueprintName = "SearchBarDemoAppUITests"
+               ReferencedContainer = "container:Modules/SearchBar/SearchBar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6173356C5741F814AF5E2C4E"
+               BuildableName = "SearchBarTests.xctest"
+               BlueprintName = "SearchBarTests"
+               ReferencedContainer = "container:Modules/SearchBar/SearchBar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D053311676EB8ABCC754DD1F"
+               BuildableName = "ToastDemoAppUITests.xctest"
+               BlueprintName = "ToastDemoAppUITests"
+               ReferencedContainer = "container:Modules/Toast/Toast.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F4309ACB9630C8B92361B746"
+               BuildableName = "ToastTests.xctest"
+               BlueprintName = "ToastTests"
+               ReferencedContainer = "container:Modules/Toast/Toast.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

@@ -99,7 +99,7 @@ open class AlertButtonView: BaseAlertViewController {
         self.buttonStyle = buttonStyle
         self.contentStyle = contentStyle
         
-        super.init()
+        super.init(nibName: nil, bundle: nil)
         
         setupButtonStyles()
     }

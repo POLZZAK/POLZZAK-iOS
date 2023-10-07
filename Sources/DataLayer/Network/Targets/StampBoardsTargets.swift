@@ -7,6 +7,8 @@
 
 import Foundation
 
+import DynamicTabView
+
 enum StampBoardsTargets {
     case fetchStampBoardList(tabState: TabState)
 }

@@ -19,7 +19,8 @@ let project = Project(
             dependencies: [
                 .package(product: "SnapKit"),
                 .project(target: "Extension", path: "../Extension"),
-                .project(target: "SharedResources", path: "../SharedResources")
+                .project(target: "SharedResources", path: "../SharedResources"),
+                .project(target: "PolzzakUIKit", path: "../PolzzakUIKit")
             ]
         ),
         Target(

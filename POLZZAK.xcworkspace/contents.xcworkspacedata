@@ -14,10 +14,16 @@
          location = "group:BottomSheetModal/BottomSheetModal.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:DynamicTabView/DynamicTabView.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Extension/Extension.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:FilterBottomSheet/FilterBottomSheet.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Loading/Loading.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:PolzzakUIKit/PolzzakUIKit.xcodeproj">
@@ -26,7 +32,13 @@
          location = "group:PullToRefresh/PullToRefresh.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:SearchBar/SearchBar.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:SharedResources/SharedResources.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Toast/Toast.xcodeproj">
       </FileRef>
    </Group>
 </Workspace>
