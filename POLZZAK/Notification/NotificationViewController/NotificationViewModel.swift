@@ -8,11 +8,15 @@
 import Foundation
 import Combine
 
-final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtocol {
-    private let useCase: NotificationUseCase
+final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtocol, ErrorHandlingProtocol {
+    private let repository: NotificationDataRepository
+    var userType: UserType
     
     @Published var saveStartID: Int? = nil
-    @Published var notificationList: [Notification] = []
+    @Published var notificationList: [NotificationData] = []
+    @Published var notificationSettingList: [SettingItem] = []
+    @Published var SettingBool: Bool? = nil
+    
     var cancellables = Set<AnyCancellable>()
     
     var isSkeleton = CurrentValueSubject<Bool, Never>(true)
@@ -23,26 +27,30 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
     var rechedBottomSubject = CurrentValueSubject<Bool, Never>(false)
     var showErrorAlertSubject = PassthroughSubject<Error, Never>()
     
-    init(useCase: NotificationUseCase) {
-        self.useCase = useCase
+    init(repository: NotificationDataRepository) {
+        self.repository = repository
+        
+        let userInfo = UserInfoManager.readUserInfo()
+        userType = (userInfo?.memberType.detail == "아이" ? .child : .parent)
         
         setupPullToRefreshBinding()
         setupBottomRefreshBindings()
     }
     
     private func setupBottomRefreshBindings() {
-        didEndDraggingSubject.combineLatest(rechedBottomSubject)
-            .filter { _, rechedBottom in
+        rechedBottomSubject.combineLatest(didEndDraggingSubject)
+            .map { rechedBottom, _ -> Bool in
                 return rechedBottom
             }
-            .filter { [weak self] _, _ in
+            .filter { $0 }
+            .filter { [weak self] _ in
                 return false == self?.isCenterLoading.value
             }
-            .filter { [weak self] _, _ in
+            .filter { [weak self] _ in
                 guard let self else { return false }
                 return self.notificationList.count >= 10
             }
-            .sink { [weak self] _, _ in
+            .sink { [weak self] _ in
                 self?.fetchNotificationList(for: true)
             }
             .store(in: &cancellables)
@@ -76,17 +84,20 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
             }
             
             do {
-                let task = useCase.fetchNotificationList(with: saveStartID)
-                let result = try await task.value
+                let result = try await repository.fetchNotificationList(with: saveStartID)
                 guard let result else { return }
                 if false == more {
                     saveStartID = result.startID
                     notificationList = result.notificationList ?? []
                 } else {
-                    var currentList = notificationList
-                    currentList.append(contentsOf: result.notificationList ?? [])
-                    notificationList = currentList
-                    saveStartID = result.startID
+                    if saveStartID == nil {
+                        notificationList = result.notificationList ?? []
+                    } else {
+                        var currentList = notificationList
+                        currentList.append(contentsOf: result.notificationList ?? [])
+                        notificationList = currentList
+                        saveStartID = result.startID
+                    }
                 }
             } catch {
                 handleError(error)
@@ -98,8 +109,7 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
         do {
             if notificationList[index].status != .requestLink {
                 let notificationID = notificationList[index].id
-                let task = useCase.removeNotification(with: notificationID)
-                try await task.value
+                try await repository.removeNotification(with: notificationID)
                 removeData(for: notificationID)
             }
         } catch {
@@ -114,8 +124,7 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
     
     func linkApproveDidTap(for memberID: Int) async {
         do {
-            let task = useCase.approveReceivedLinkRequest(from: memberID)
-            try await task.value
+            try await repository.approveLinkRequest(to: memberID)
             removeData(for: memberID)
         } catch {
             handleError(error)
@@ -124,43 +133,99 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
     
     func linkRejectDidTap(for memberID: Int) async {
         do {
-            let task = useCase.rejectReceivedLinkRequest(from: memberID)
-            try await task.value
+            try await repository.rejectLinkRequest(to: memberID)
             removeData(for: memberID)
         } catch {
             handleError(error)
         }
     }
     
-    func handleError(_ error: Error) {
-        if let internalError = error as? PolzzakError<Void> {
-            handleInternalError(internalError)
-        } else if let networkError = error as? NetworkError {
-            handleNetworkError(networkError)
-        } else if let decodingError = error as? DecodingError {
-            handleDecodingError(decodingError)
-        } else {
-            handleUnknownError(error)
+    func resetBottomRefreshSubjects() {
+        self.rechedBottomSubject.send(false)
+    }
+    
+    func fetchNotificationSettingList() {
+        Task {
+            defer {
+                hideLoading()
+            }
+            
+            if true == isCenterLoading.value {
+                return
+            }
+            
+            showLoading()
+            
+            do {
+                let result = try await repository.fetchNotificationSettingList()
+                guard let result else { return }
+                notificationSettingList = result.toOrderedArray(userType: userType)
+            } catch {
+                handleError(error)
+            }
         }
     }
     
-    private func handleInternalError(_ error: PolzzakError<Void>) {
-        showErrorAlertSubject.send(error)
+    func indexToNotificationSettingTitle(_ index: Int) -> String {
+        guard index >= 0 && index < notificationSettingList.count else {
+            return ""
+        }
+        
+        return notificationSettingList[index].type.titleText(userType: userType)
     }
     
-    private func handleNetworkError(_ error: NetworkError) {
-        showErrorAlertSubject.send(error)
+    func indexToNotificationSettingDetail(_ index: Int) -> String {
+        guard index >= 0 && index < notificationSettingList.count else {
+            return ""
+        }
+        
+        return notificationSettingList[index].type.detailText(userType: userType)
     }
     
-    private func handleDecodingError(_ error: DecodingError) {
-        showErrorAlertSubject.send(error)
+    func indexToNotificationSettingisEnabled(_ index: Int) -> Bool {
+        guard index >= 0 && index < notificationSettingList.count else {
+            return false
+        }
+        
+        return notificationSettingList[index].isEnabled
     }
     
-    private func handleUnknownError(_ error: Error) {
-        showErrorAlertSubject.send(error)
+    func updateNotificationSetting(index: Int? = nil, bool: Bool? = nil) {
+        Task {
+            defer {
+                hideLoading()
+            }
+            
+            if true == isCenterLoading.value {
+                return
+            }
+            
+            showLoading()
+            
+            do {
+                if let index {
+                    let requestModel = requestSettingModel(index: index)
+                    try await repository.updateNotificationSettingList(requestModel)
+                    notificationSettingList[index].isEnabled = !notificationSettingList[index].isEnabled
+                } else if let bool {
+                    let requestModel = requestAllSettingModel(bool: bool)
+                    try await repository.updateNotificationSettingList(requestModel)
+                    notificationSettingList = requestAllSettingModel(bool: bool).toOrderedArray(userType: userType)
+                } else {
+                    throw PolzzakError.unknownError
+                }
+            } catch {
+                handleError(error)
+            }
+        }
     }
     
-    func resetBottomRefreshSubjects() {
-        self.rechedBottomSubject.send(false)
+    func requestAllSettingModel(bool: Bool) -> NotificationSettingModel {
+        return NotificationSettingModel(settingItems: notificationSettingList, bool: bool)
+    }
+    
+    func requestSettingModel(index: Int) -> NotificationSettingModel {
+        let data = notificationSettingList[index]
+        return NotificationSettingModel(type: data.type, value: !data.isEnabled)
     }
 }

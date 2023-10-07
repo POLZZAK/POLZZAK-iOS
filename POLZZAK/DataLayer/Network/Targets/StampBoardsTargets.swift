@@ -8,7 +8,7 @@
 import Foundation
 
 enum StampBoardsTargets {
-    case fetchStampBoardList(tabState: String)
+    case fetchStampBoardList(tabState: TabState)
 }
 
 extension StampBoardsTargets: BasicTargetType {
@@ -41,7 +41,7 @@ extension StampBoardsTargets: BasicTargetType {
         var query = [String : String]()
         switch self {
         case .fetchStampBoardList(let tabState):
-            query["stampBoardGroup"] = tabState
+            query["stampBoardGroup"] = tabState.rawValue
             return query
         }
     }
@@ -57,6 +57,15 @@ extension StampBoardsTargets: BasicTargetType {
         switch self {
         default:
             return nil
+        }
+    }
+}
+
+extension StampBoardsTargets: Equatable {
+    static func == (lhs: StampBoardsTargets, rhs: StampBoardsTargets) -> Bool {
+        switch (lhs, rhs) {
+        case (.fetchStampBoardList(let lhsTabState), .fetchStampBoardList(let rhsTabState)):
+            return lhsTabState == rhsTabState
         }
     }
 }

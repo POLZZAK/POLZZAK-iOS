@@ -14,7 +14,7 @@ protocol NotificationTableViewCellDelegate: AnyObject {
     func didTapRemoveButton(_ cell: NotificationTableViewCell)
 }
 
-class NotificationTableViewCell: UITableViewCell {
+final class NotificationTableViewCell: UITableViewCell {
     static let reuseIdentifier = "NotificationTableViewCell"
     weak var delegate: NotificationTableViewCellDelegate?
     
@@ -326,7 +326,6 @@ extension NotificationTableViewCell {
         
         completionImageView.snp.makeConstraints {
             $0.top.leading.bottom.equalToSuperview()
-            $0.width.height.equalTo(20)
         }
         
         completionLabel.snp.makeConstraints {
@@ -350,7 +349,7 @@ extension NotificationTableViewCell {
         
     }
     
-    func configure(data: Notification) {
+    func configure(data: NotificationData) {
         if data.title.startsWithEmoji {
             let dataTitle = data.title.components(separatedBy: " ")
             emojiLabel.text = dataTitle[0]
@@ -428,17 +427,17 @@ extension NotificationTableViewCell {
     }
     
     @objc private func acceptButtonTapped() {
-        delegate?.didTapAcceptButton(self)
+//        delegate?.didTapAcceptButton(self)
         updateUIForCompletion(true)
         
     }
     
     @objc private func rejectButtonTapped() {
-        delegate?.didTapRejectButton(self)
+//        delegate?.didTapRejectButton(self)
         updateUIForCompletion(false)
     }
     
     @objc private func deleteButtonTapped() {
-        delegate?.didTapRemoveButton(self)
+//        delegate?.didTapRemoveButton(self)
     }
 }
