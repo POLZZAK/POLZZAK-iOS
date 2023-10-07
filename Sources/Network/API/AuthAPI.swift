@@ -6,8 +6,9 @@
 //
 
 import AuthenticationServices
-import Foundation
 import UIKit
+
+import Extension
 
 enum AuthAPIError: LocalizedError {
     case appleLoginNoIdentityToken

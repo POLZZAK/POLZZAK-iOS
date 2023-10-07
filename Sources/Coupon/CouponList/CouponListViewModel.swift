@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 
+import FilterBottomSheet
 import PullToRefresh
 
 final class CouponListViewModel: TabFilterViewModelProtocol, PullToRefreshProtocol, LoadingViewModelProtocol {

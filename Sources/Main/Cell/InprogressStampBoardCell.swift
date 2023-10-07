@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+import PolzzakUIKit
 import SnapKit
 
 final class InprogressStampBoardCell: UICollectionViewCell {

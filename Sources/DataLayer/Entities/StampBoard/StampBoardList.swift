@@ -7,6 +7,8 @@
 
 import Foundation
 
+import PolzzakUIKit
+
 struct StampBoardList: Equatable {
     let family: FamilyMember
     let stampBoardSummaries: [StampBoardSummary]

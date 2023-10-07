@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FilterBottomSheet
+
 protocol CollectionLayoutConfigurable {
     var collectionView: UICollectionView! { get }
     func configureHeaderAndFooter(for section: NSCollectionLayoutSection, isDataNotEmpty: Bool, filterType: FilterType)

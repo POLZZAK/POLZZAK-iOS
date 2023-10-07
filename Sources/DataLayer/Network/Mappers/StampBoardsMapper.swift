@@ -7,6 +7,8 @@
 
 import Foundation
 
+import PolzzakUIKit
+
 protocol StampBoardsMapper {
     func mapStampBoardListResponse(from response: BaseResponseDTO<[StampBoardListDTO]>) -> BaseResponse<[StampBoardList]>
 }

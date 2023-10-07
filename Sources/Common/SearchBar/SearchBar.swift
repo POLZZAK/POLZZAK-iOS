@@ -7,6 +7,9 @@
 
 import UIKit
 
+import Extension
+import SharedResources
+
 protocol SearchBarDelegate: AnyObject {
     func searchBarDidBeginEditing(_ searchBar: SearchBar)
     func searchBarDidEndEditing(_ searchBar: SearchBar)

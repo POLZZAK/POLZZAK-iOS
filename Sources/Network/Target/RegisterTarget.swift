@@ -5,8 +5,9 @@
 //  Created by Jinyoung Kim on 2023/06/19.
 //
 
-import Foundation
 import UIKit
+
+import Extension
 
 enum RegisterTargetError: LocalizedError {
     case noRegsiterData

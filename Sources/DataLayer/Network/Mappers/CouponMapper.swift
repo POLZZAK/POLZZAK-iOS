@@ -7,6 +7,8 @@
 
 import Foundation
 
+import PolzzakUIKit
+
 protocol CouponMapper {
     func mapCouponListResponse(from response: BaseResponseDTO<[CouponListDTO]>) -> BaseResponse<[CouponList]>
     func mapCouponDetailResponse(from response: BaseResponseDTO<CouponDetailDTO>) -> BaseResponse<CouponDetail>

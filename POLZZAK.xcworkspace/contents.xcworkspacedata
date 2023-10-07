@@ -8,6 +8,21 @@
       location = "group:Modules"
       name = "Modules">
       <FileRef
+         location = "group:Alert/Alert.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:BottomSheetModal/BottomSheetModal.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Extension/Extension.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:FilterBottomSheet/FilterBottomSheet.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:PolzzakUIKit/PolzzakUIKit.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:PullToRefresh/PullToRefresh.xcodeproj">
       </FileRef>
       <FileRef

@@ -7,6 +7,8 @@
 
 import Foundation
 
+import Extension
+
 struct StampBoardDetailAPI {
     typealias APIReturnType = (Data, URLResponse)
     

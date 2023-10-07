@@ -7,6 +7,10 @@
 
 import UIKit
 
+import Alert
+import Extension
+import SharedResources
+
 class AlertDoubleButtonTitleLoadingView: AlertButtonView {
     
     enum Constants {

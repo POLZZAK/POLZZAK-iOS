@@ -5,9 +5,11 @@
 //  Created by 이정환 on 2023/09/10.
 //
 
-import Foundation
-
 import UIKit
+
+import Alert
+import SharedResources
+
 
 class CouponReceiveAlertView: AlertButtonView {
     

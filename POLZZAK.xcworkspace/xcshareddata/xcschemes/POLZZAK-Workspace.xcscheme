@@ -14,6 +14,188 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8ECA97818FC6EF37E28C2F0F"
+               BuildableName = "Alert.framework"
+               BlueprintName = "Alert"
+               ReferencedContainer = "container:Modules/Alert/Alert.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "16ED300488B80993701C3839"
+               BuildableName = "AlertDemoApp.app"
+               BlueprintName = "AlertDemoApp"
+               ReferencedContainer = "container:Modules/Alert/Alert.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BA13431DD1E00573013C1BAE"
+               BuildableName = "AlertDemoAppUITests.xctest"
+               BlueprintName = "AlertDemoAppUITests"
+               ReferencedContainer = "container:Modules/Alert/Alert.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DDD11FEFE0B973AE8B140BF4"
+               BuildableName = "AlertTests.xctest"
+               BlueprintName = "AlertTests"
+               ReferencedContainer = "container:Modules/Alert/Alert.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA14ADD2FCE367FA760048C3"
+               BuildableName = "BottomSheetModal.framework"
+               BlueprintName = "BottomSheetModal"
+               ReferencedContainer = "container:Modules/BottomSheetModal/BottomSheetModal.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B6B31B6562D396077C640961"
+               BuildableName = "BottomSheetModalDemoApp.app"
+               BlueprintName = "BottomSheetModalDemoApp"
+               ReferencedContainer = "container:Modules/BottomSheetModal/BottomSheetModal.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA7D4356CA8509BD24FE91B1"
+               BuildableName = "BottomSheetModalDemoAppUITests.xctest"
+               BlueprintName = "BottomSheetModalDemoAppUITests"
+               ReferencedContainer = "container:Modules/BottomSheetModal/BottomSheetModal.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9BC81DDAE08676DB36BD5AD5"
+               BuildableName = "BottomSheetModalTests.xctest"
+               BlueprintName = "BottomSheetModalTests"
+               ReferencedContainer = "container:Modules/BottomSheetModal/BottomSheetModal.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BC1A26ED2E6121943F2AB58D"
+               BuildableName = "Extension.framework"
+               BlueprintName = "Extension"
+               ReferencedContainer = "container:Modules/Extension/Extension.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E77B1A77FCA4A1632215ADC2"
+               BuildableName = "FilterBottomSheet.framework"
+               BlueprintName = "FilterBottomSheet"
+               ReferencedContainer = "container:Modules/FilterBottomSheet/FilterBottomSheet.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "87AE3003C8E0EE3F0452F6A7"
+               BuildableName = "FilterBottomSheetDemoApp.app"
+               BlueprintName = "FilterBottomSheetDemoApp"
+               ReferencedContainer = "container:Modules/FilterBottomSheet/FilterBottomSheet.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C28A81789E9DF351059AC6D3"
+               BuildableName = "FilterBottomSheetDemoAppUITests.xctest"
+               BlueprintName = "FilterBottomSheetDemoAppUITests"
+               ReferencedContainer = "container:Modules/FilterBottomSheet/FilterBottomSheet.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1552B0F6FDB6B812394A7DED"
+               BuildableName = "FilterBottomSheetTests.xctest"
+               BlueprintName = "FilterBottomSheetTests"
+               ReferencedContainer = "container:Modules/FilterBottomSheet/FilterBottomSheet.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B0D32E58CC797774E579C4D4"
                BuildableName = "POLZZAK.app"
                BlueprintName = "POLZZAK"
@@ -32,6 +214,62 @@
                BuildableName = "POLZZAKTests.xctest"
                BlueprintName = "POLZZAKTests"
                ReferencedContainer = "container:POLZZAK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "804BF04E59C96347ECF2AEF4"
+               BuildableName = "PolzzakUIKit.framework"
+               BlueprintName = "PolzzakUIKit"
+               ReferencedContainer = "container:Modules/PolzzakUIKit/PolzzakUIKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5BD7F2867782829C4F921899"
+               BuildableName = "PolzzakUIKitDemoApp.app"
+               BlueprintName = "PolzzakUIKitDemoApp"
+               ReferencedContainer = "container:Modules/PolzzakUIKit/PolzzakUIKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1BBD31BFCF8B4CBB9B7B3E13"
+               BuildableName = "PolzzakUIKitDemoAppUITests.xctest"
+               BlueprintName = "PolzzakUIKitDemoAppUITests"
+               ReferencedContainer = "container:Modules/PolzzakUIKit/PolzzakUIKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C31F2EE4F5F0ACE1C1A850A4"
+               BuildableName = "PolzzakUIKitTests.xctest"
+               BlueprintName = "PolzzakUIKitTests"
+               ReferencedContainer = "container:Modules/PolzzakUIKit/PolzzakUIKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -116,10 +354,90 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BA13431DD1E00573013C1BAE"
+               BuildableName = "AlertDemoAppUITests.xctest"
+               BlueprintName = "AlertDemoAppUITests"
+               ReferencedContainer = "container:Modules/Alert/Alert.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DDD11FEFE0B973AE8B140BF4"
+               BuildableName = "AlertTests.xctest"
+               BlueprintName = "AlertTests"
+               ReferencedContainer = "container:Modules/Alert/Alert.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA7D4356CA8509BD24FE91B1"
+               BuildableName = "BottomSheetModalDemoAppUITests.xctest"
+               BlueprintName = "BottomSheetModalDemoAppUITests"
+               ReferencedContainer = "container:Modules/BottomSheetModal/BottomSheetModal.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9BC81DDAE08676DB36BD5AD5"
+               BuildableName = "BottomSheetModalTests.xctest"
+               BlueprintName = "BottomSheetModalTests"
+               ReferencedContainer = "container:Modules/BottomSheetModal/BottomSheetModal.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C28A81789E9DF351059AC6D3"
+               BuildableName = "FilterBottomSheetDemoAppUITests.xctest"
+               BlueprintName = "FilterBottomSheetDemoAppUITests"
+               ReferencedContainer = "container:Modules/FilterBottomSheet/FilterBottomSheet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1552B0F6FDB6B812394A7DED"
+               BuildableName = "FilterBottomSheetTests.xctest"
+               BlueprintName = "FilterBottomSheetTests"
+               ReferencedContainer = "container:Modules/FilterBottomSheet/FilterBottomSheet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "067C7522EF0BB22122770651"
                BuildableName = "POLZZAKTests.xctest"
                BlueprintName = "POLZZAKTests"
                ReferencedContainer = "container:POLZZAK.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1BBD31BFCF8B4CBB9B7B3E13"
+               BuildableName = "PolzzakUIKitDemoAppUITests.xctest"
+               BlueprintName = "PolzzakUIKitDemoAppUITests"
+               ReferencedContainer = "container:Modules/PolzzakUIKit/PolzzakUIKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C31F2EE4F5F0ACE1C1A850A4"
+               BuildableName = "PolzzakUIKitTests.xctest"
+               BlueprintName = "PolzzakUIKitTests"
+               ReferencedContainer = "container:Modules/PolzzakUIKit/PolzzakUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -154,16 +472,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B0D32E58CC797774E579C4D4"
-            BuildableName = "POLZZAK.app"
-            BlueprintName = "POLZZAK"
-            ReferencedContainer = "container:POLZZAK.xcodeproj">
+            BlueprintIdentifier = "8ECA97818FC6EF37E28C2F0F"
+            BuildableName = "Alert.framework"
+            BlueprintName = "Alert"
+            ReferencedContainer = "container:Modules/Alert/Alert.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -171,16 +488,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B0D32E58CC797774E579C4D4"
-            BuildableName = "POLZZAK.app"
-            BlueprintName = "POLZZAK"
-            ReferencedContainer = "container:POLZZAK.xcodeproj">
+            BlueprintIdentifier = "8ECA97818FC6EF37E28C2F0F"
+            BuildableName = "Alert.framework"
+            BlueprintName = "Alert"
+            ReferencedContainer = "container:Modules/Alert/Alert.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

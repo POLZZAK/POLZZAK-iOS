@@ -6,9 +6,13 @@
 //
 
 import UIKit
+
+import Extension
+import FilterBottomSheet
+import PolzzakUIKit
 import SnapKit
 
-final class CouponFilterView: BaseFilterView {
+public final class CouponFilterView: BaseFilterView {
     private let nameStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.setStackView(axis: .horizontal, spacing: 8)
@@ -23,7 +27,15 @@ final class CouponFilterView: BaseFilterView {
         return label
     }()
     
-    override func commonSetup() {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func commonSetup() {
         super.commonSetup()
         
         [headerLabel, sectionStackView].forEach {

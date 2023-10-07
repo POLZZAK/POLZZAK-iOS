@@ -7,6 +7,8 @@
 
 import Foundation
 
+import PolzzakUIKit
+
 protocol LinkManagementMapper {
     func mapCheckLinkRequestResponse(from response: BaseResponseDTO<CheckLinkRequestDTO>) -> BaseResponse<CheckLinkRequest>
     func mapFamilyMemberResponse(from response: BaseResponseDTO<FamilyMemberDTO>) -> BaseResponse<FamilyMember>

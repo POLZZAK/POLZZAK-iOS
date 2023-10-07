@@ -7,6 +7,8 @@
 
 import Foundation
 
+import Extension
+
 struct UserAPI {
     typealias APIReturnType = (Data, URLResponse)
     

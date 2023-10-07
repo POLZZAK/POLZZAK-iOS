@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+import PolzzakUIKit
 import SnapKit
 
 protocol LinkListTabCellDelegate: AnyObject {
@@ -15,7 +17,6 @@ protocol LinkListTabCellDelegate: AnyObject {
 final class LinkListTabCell: UITableViewCell {
     static let reuseIdentifier = "LinkListCell"
     weak var delegate: LinkListTabCellDelegate?
-//    var family: FamilyMember?
     
     private let profileImage: UIImageView = {
         let imageView = UIImageView()

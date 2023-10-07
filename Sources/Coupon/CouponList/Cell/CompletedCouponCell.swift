@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+import Extension
 import SnapKit
 
 final class CompletedCouponCell: UICollectionViewCell {

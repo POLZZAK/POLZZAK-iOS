@@ -7,6 +7,8 @@
 
 import Foundation
 
+import Extension //Error
+
 final class DetailBoardRepository {
     private let stampBoardID: Int
     private let dataMapper = StampBoardDetailMapper()

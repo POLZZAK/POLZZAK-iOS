@@ -7,6 +7,8 @@
 
 import Foundation
 
+import PolzzakUIKit
+
 struct CouponList: Equatable {
     let family: FamilyMember
     var coupons: [Coupon]

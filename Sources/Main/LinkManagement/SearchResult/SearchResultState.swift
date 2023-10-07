@@ -7,6 +7,8 @@
 
 import UIKit
 
+import PolzzakUIKit
+
 enum SearchResultState {
     case unlinked(FamilyMember)
     case linked(FamilyMember)

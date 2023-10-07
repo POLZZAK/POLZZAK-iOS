@@ -7,6 +7,8 @@
 
 import Foundation
 
+import Extension
+
 class TokenInterceptor: RequestInterceptor {
     func adapt(for urlRequest: URLRequest) async throws -> URLRequest {
         var urlRequest = urlRequest

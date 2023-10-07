@@ -6,6 +6,9 @@
 //
 
 import UIKit
+
+import Alert
+import PolzzakUIKit
 import SnapKit
 
 final class AlertTableViewController: BaseAlertViewController {

@@ -7,6 +7,8 @@
 
 import Foundation
 
+import PolzzakUIKit
+
 protocol LinkManagementRepository {
     func getUserByNickname(_ nickname: String) async throws -> FamilyMember?
     func getLinkedUsers() async throws -> [FamilyMember]

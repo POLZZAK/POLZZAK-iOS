@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alert
 
 class LinkRequestAlertView: AlertButtonView {
     

@@ -7,7 +7,9 @@
 
 import UIKit
 
-class PhotoAccessAlertController: AlertButtonView {
+import Alert
+
+public class PhotoAccessAlertController: AlertButtonView {
     
     enum Constants {
         static let contentLabel = "설정 > 폴짝 > 사진에서\n접근권한을 '사진만 추가'로\n변경해 주세요"
