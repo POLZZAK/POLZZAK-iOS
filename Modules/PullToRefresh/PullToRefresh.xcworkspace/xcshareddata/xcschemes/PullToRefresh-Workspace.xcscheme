@@ -14,38 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B0D32E58CC797774E579C4D4"
-               BuildableName = "POLZZAK.app"
-               BlueprintName = "POLZZAK"
-               ReferencedContainer = "container:POLZZAK.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "067C7522EF0BB22122770651"
-               BuildableName = "POLZZAKTests.xctest"
-               BlueprintName = "POLZZAKTests"
-               ReferencedContainer = "container:POLZZAK.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "8B9E839953A8D2167A7ECB25"
                BuildableName = "PullToRefresh.framework"
                BlueprintName = "PullToRefresh"
-               ReferencedContainer = "container:Modules/PullToRefresh/PullToRefresh.xcodeproj">
+               ReferencedContainer = "container:PullToRefresh.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -59,7 +31,7 @@
                BlueprintIdentifier = "91C1C28DBE4B8FC9A2C5B248"
                BuildableName = "PullToRefreshDemoApp.app"
                BlueprintName = "PullToRefreshDemoApp"
-               ReferencedContainer = "container:Modules/PullToRefresh/PullToRefresh.xcodeproj">
+               ReferencedContainer = "container:PullToRefresh.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -73,7 +45,7 @@
                BlueprintIdentifier = "3843B6C40EB6BA105B859DC5"
                BuildableName = "PullToRefreshDemoAppUITests.xctest"
                BlueprintName = "PullToRefreshDemoAppUITests"
-               ReferencedContainer = "container:Modules/PullToRefresh/PullToRefresh.xcodeproj">
+               ReferencedContainer = "container:PullToRefresh.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -87,7 +59,7 @@
                BlueprintIdentifier = "F2A98BFB479DB578F2DA7C77"
                BuildableName = "PullToRefreshTests.xctest"
                BlueprintName = "PullToRefreshTests"
-               ReferencedContainer = "container:Modules/PullToRefresh/PullToRefresh.xcodeproj">
+               ReferencedContainer = "container:PullToRefresh.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -101,7 +73,7 @@
                BlueprintIdentifier = "F86DAFF9FF4CA50599276510"
                BuildableName = "SharedResources.framework"
                BlueprintName = "SharedResources"
-               ReferencedContainer = "container:Modules/SharedResources/SharedResources.xcodeproj">
+               ReferencedContainer = "container:../SharedResources/SharedResources.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -116,20 +88,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "067C7522EF0BB22122770651"
-               BuildableName = "POLZZAKTests.xctest"
-               BlueprintName = "POLZZAKTests"
-               ReferencedContainer = "container:POLZZAK.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "3843B6C40EB6BA105B859DC5"
                BuildableName = "PullToRefreshDemoAppUITests.xctest"
                BlueprintName = "PullToRefreshDemoAppUITests"
-               ReferencedContainer = "container:Modules/PullToRefresh/PullToRefresh.xcodeproj">
+               ReferencedContainer = "container:PullToRefresh.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -139,7 +101,7 @@
                BlueprintIdentifier = "F2A98BFB479DB578F2DA7C77"
                BuildableName = "PullToRefreshTests.xctest"
                BlueprintName = "PullToRefreshTests"
-               ReferencedContainer = "container:Modules/PullToRefresh/PullToRefresh.xcodeproj">
+               ReferencedContainer = "container:PullToRefresh.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -154,16 +116,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B0D32E58CC797774E579C4D4"
-            BuildableName = "POLZZAK.app"
-            BlueprintName = "POLZZAK"
-            ReferencedContainer = "container:POLZZAK.xcodeproj">
+            BlueprintIdentifier = "8B9E839953A8D2167A7ECB25"
+            BuildableName = "PullToRefresh.framework"
+            BlueprintName = "PullToRefresh"
+            ReferencedContainer = "container:PullToRefresh.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -171,16 +132,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B0D32E58CC797774E579C4D4"
-            BuildableName = "POLZZAK.app"
-            BlueprintName = "POLZZAK"
-            ReferencedContainer = "container:POLZZAK.xcodeproj">
+            BlueprintIdentifier = "8B9E839953A8D2167A7ECB25"
+            BuildableName = "PullToRefresh.framework"
+            BlueprintName = "PullToRefresh"
+            ReferencedContainer = "container:PullToRefresh.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

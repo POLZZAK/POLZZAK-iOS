@@ -36,7 +36,7 @@ let project = Project(
                 .package(product: "PanModal"),
                 .package(product: "CombineCocoa"),
                 .package(product: "FSCalendar"),
-                .project(target: "SharedResources", path: "Modules/SharedResources")
+                .project(target: "SharedResources", path: "Modules/SharedResources"),
 //                .project(target: "Toast", path: "Modules/Toast"),
 //                .project(target: "SearchBar", path: "Modules/SearchBar"),
 //                .project(target: "Alert", path: "Modules/Alert"),
@@ -47,7 +47,7 @@ let project = Project(
 //                .project(target: "LoadingModule", path: "Modules/LoadingModule"),
 //                .project(target: "FilterView", path: "Modules/FilterView"),
 //                .project(target: "ErrorModule", path: "Modules/ErrorModule"),
-//                .project(target: "PullToRefresh", path: "Modules/PullToRefresh")
+                .project(target: "PullToRefresh", path: "Modules/PullToRefresh")
             ]
         ),
         Target(

@@ -8,6 +8,9 @@
       location = "group:Modules"
       name = "Modules">
       <FileRef
+         location = "group:PullToRefresh/PullToRefresh.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:SharedResources/SharedResources.xcodeproj">
       </FileRef>
    </Group>

@@ -1,58 +1,62 @@
 import ProjectDescription
 
 let project = Project(
-    name: "{{ name }}",
+    name: "PullToRefresh",
     packages: [
+            .package(url: "https://github.com/SnapKit/SnapKit", .upToNextMajor(from: "5.0.0")),
             .package(url: "https://github.com/Quick/Nimble", .upToNextMajor(from: "12.0.0"))
     ],
     targets: [
         Target(
-            name: "{{ name }}",
+            name: "PullToRefresh",
             platform: .iOS,
             product: .framework,
-            bundleId: "polzzak.module.{{ name }}",
+            bundleId: "polzzak.module.PullToRefresh",
             deploymentTarget: .iOS(targetVersion: "15.0", devices: .iphone),
             infoPlist: .default,
             sources: ["Sources/**"],
-            resources: ["Resources/**"],
-            dependencies: []
+            resources: [],
+            dependencies: [
+                .package(product: "SnapKit"),
+                .project(target: "SharedResources", path: "../SharedResources")
+            ]
         ),
         Target(
-            name: "{{ name }}Tests",
+            name: "PullToRefreshTests",
             platform: .iOS,
             product: .unitTests,
-            bundleId: "polzzak.module.{{ name }}Tests",
+            bundleId: "polzzak.module.PullToRefreshTests",
             deploymentTarget: .iOS(targetVersion: "15.0", devices: .iphone),
             infoPlist: .default,
             sources: ["Tests/**"],
             dependencies: [
-                .target(name: "{{ name }}"),
+                .target(name: "PullToRefresh"),
                 .package(product: "Nimble")
             ]
         ),
         Target(
-            name: "{{ name }}DemoApp",
+            name: "PullToRefreshDemoApp",
             platform: .iOS,
             product: .app,
-            bundleId: "polzzak.demo.{{ name }}DemoApp",
+            bundleId: "polzzak.demo.PullToRefreshDemoApp",
             deploymentTarget: .iOS(targetVersion: "15.0", devices: .iphone),
             infoPlist: "Config/Info.plist",
             sources: ["DemoApp/DemoAppSources/**"],
             resources: ["DemoApp/DemoAppResources/**"],
             dependencies: [
-                .target(name: "{{ name }}")
+                .target(name: "PullToRefresh")
             ]
         ),
         Target(
-            name: "{{ name }}DemoAppUITests",
+            name: "PullToRefreshDemoAppUITests",
             platform: .iOS,
             product: .uiTests,
-            bundleId: "polzzak.demo.{{ name }}DemoApp.UITests",
+            bundleId: "polzzak.demo.PullToRefreshDemoApp.UITests",
             deploymentTarget: .iOS(targetVersion: "15.0", devices: .iphone),
             infoPlist: .default,
             sources: ["DemoApp/DemoAppUITests/**"],
             dependencies: [
-                .target(name: "{{ name }}DemoApp"),
+                .target(name: "PullToRefreshDemoApp"),
                 .package(product: "Nimble")
             ]
         )
