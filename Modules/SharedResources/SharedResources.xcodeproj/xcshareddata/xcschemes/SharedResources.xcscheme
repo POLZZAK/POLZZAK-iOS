@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B0D32E58CC797774E579C4D4"
-               BuildableName = "POLZZAK.app"
-               BlueprintName = "POLZZAK"
-               ReferencedContainer = "container:POLZZAK.xcodeproj">
+               BlueprintIdentifier = "F86DAFF9FF4CA50599276510"
+               BuildableName = "SharedResources.framework"
+               BlueprintName = "SharedResources"
+               ReferencedContainer = "container:SharedResources.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,18 +26,9 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      disableMainThreadChecker = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "067C7522EF0BB22122770651"
-               BuildableName = "POLZZAKTests.xctest"
-               BlueprintName = "POLZZAKTests"
-               ReferencedContainer = "container:POLZZAK.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -50,16 +41,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B0D32E58CC797774E579C4D4"
-            BuildableName = "POLZZAK.app"
-            BlueprintName = "POLZZAK"
-            ReferencedContainer = "container:POLZZAK.xcodeproj">
+            BlueprintIdentifier = "F86DAFF9FF4CA50599276510"
+            BuildableName = "SharedResources.framework"
+            BlueprintName = "SharedResources"
+            ReferencedContainer = "container:SharedResources.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -67,16 +57,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B0D32E58CC797774E579C4D4"
-            BuildableName = "POLZZAK.app"
-            BlueprintName = "POLZZAK"
-            ReferencedContainer = "container:POLZZAK.xcodeproj">
+            BlueprintIdentifier = "F86DAFF9FF4CA50599276510"
+            BuildableName = "SharedResources.framework"
+            BlueprintName = "SharedResources"
+            ReferencedContainer = "container:SharedResources.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

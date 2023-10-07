@@ -1,0 +1,60 @@
+import ProjectDescription
+
+let project = Project(
+    name: "{{ name }}",
+    packages: [
+            .package(url: "https://github.com/Quick/Nimble", .upToNextMajor(from: "12.0.0"))
+    ],
+    targets: [
+        Target(
+            name: "{{ name }}",
+            platform: .iOS,
+            product: .framework,
+            bundleId: "polzzak.module.{{ name }}",
+            deploymentTarget: .iOS(targetVersion: "15.0", devices: .iphone),
+            infoPlist: .default,
+            sources: ["Sources/**"],
+            resources: ["Resources/**"],
+            dependencies: []
+        ),
+        Target(
+            name: "{{ name }}Tests",
+            platform: .iOS,
+            product: .unitTests,
+            bundleId: "polzzak.module.{{ name }}Tests",
+            deploymentTarget: .iOS(targetVersion: "15.0", devices: .iphone),
+            infoPlist: .default,
+            sources: ["Tests/**"],
+            dependencies: [
+                .target(name: "{{ name }}"),
+                .package(product: "Nimble")
+            ]
+        ),
+        Target(
+            name: "{{ name }}DemoApp",
+            platform: .iOS,
+            product: .app,
+            bundleId: "polzzak.demo.{{ name }}DemoApp",
+            deploymentTarget: .iOS(targetVersion: "15.0", devices: .iphone),
+            infoPlist: "Config/Info.plist",
+            sources: ["DemoAppSources/**"],
+            resources: ["DemoAppResources/**"],
+            dependencies: [
+                .target(name: "{{ name }}")
+            ]
+        ),
+        Target(
+            name: "{{ name }}DemoAppUITests",
+            platform: .iOS,
+            product: .uiTests,
+            bundleId: "polzzak.demo.{{ name }}DemoApp.UITests",
+            deploymentTarget: .iOS(targetVersion: "15.0", devices: .iphone),
+            infoPlist: .default,
+            sources: ["DemoAppUITests/**"],
+            dependencies: [
+                .target(name: "{{ name }}DemoApp"),
+                .package(product: "Nimble")
+            ]
+        )
+    ]
+)

@@ -20,6 +20,34 @@
                ReferencedContainer = "container:POLZZAK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "067C7522EF0BB22122770651"
+               BuildableName = "POLZZAKTests.xctest"
+               BlueprintName = "POLZZAKTests"
+               ReferencedContainer = "container:POLZZAK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F86DAFF9FF4CA50599276510"
+               BuildableName = "SharedResources.framework"
+               BlueprintName = "SharedResources"
+               ReferencedContainer = "container:Modules/SharedResources/SharedResources.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
