@@ -7,8 +7,8 @@
 
 import UIKit
 
-import PolzzakUIKit
 import SnapKit
+import SharedResources
 
 open class BaseFilterView: UIView, Filterable {
     let contentView: UIView = {
@@ -32,9 +32,9 @@ open class BaseFilterView: UIView, Filterable {
         return stackView
     }()
     
-    let memberTypeLabel = MemberTypeLabel()
+    public let memberTypeLabel = MemberTypeLabel()
     
-    let nickNameLabel: UILabel = {
+    public let nickNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray800
         label.font = .subtitle18Sbd
@@ -50,9 +50,9 @@ open class BaseFilterView: UIView, Filterable {
         return label
     }()
     
-    let filterImageView: UIButton = {
+    public let filterImageView: UIButton = {
         let imageView = UIButton()
-        imageView.setImage(.filterButton, for: .normal)
+        imageView.setImage(PolzzakUIKitAsset.filterButton.image, for: .normal)
         imageView.isUserInteractionEnabled = false
         return imageView
     }()

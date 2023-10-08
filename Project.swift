@@ -43,7 +43,6 @@ let project = Project(
                 .project(target: "BottomSheetModal", path: "Modules/BottomSheetModal"),
                 .project(target: "DynamicTabView", path: "Modules/DynamicTabView"),
                 .project(target: "Extension", path: "Modules/Extension"),
-                .project(target: "FilterBottomSheet", path: "Modules/FilterBottomSheet"),
                 .project(target: "SharedResources", path: "Modules/SharedResources"),
                 .project(target: "Loading", path: "Modules/Loading"),
                 .project(target: "PolzzakUIKit", path: "Modules/PolzzakUIKit"),

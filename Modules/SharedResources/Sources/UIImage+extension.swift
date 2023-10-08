@@ -19,7 +19,6 @@ public extension UIImage {
     //MARK: - Button
     
     static let myConnectionsButton = UIImage.bundledImage(named: "myConnectionsButton")
-    static let filterButton = UIImage.bundledImage(named: "filterButton")
     static let rightArrowButton = UIImage.bundledImage(named: "rightArrowButton")
     static let addStampBoardButton = UIImage.bundledImage(named: "addStampBoardButton")
     static let searchButton = UIImage.bundledImage(named: "searchButton")

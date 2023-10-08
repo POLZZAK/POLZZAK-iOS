@@ -12,7 +12,6 @@ import BottomSheetModal
 import CombineCocoa
 import DynamicTabView
 import Extension
-import FilterBottomSheet
 import Loading
 import PolzzakUIKit
 import PullToRefresh
@@ -272,11 +271,10 @@ extension MainViewController {
         case .section(let memberId):
             guard let index = viewModel.sectionOfMember(with: memberId) else { return }
             let family = viewModel.dataList.value[index].family
-            if viewModel.userType == .child {
-                filterView.handleChildSectionFilterButtonTap(with: family)
-            } else {
-                filterView.handleParentSectionFilterButtonTap(with: family)
-            }
+            let nickname = family.nickname
+            let memberName = family.memberType.detail ?? ""
+            let isParent = viewModel.userType == .parent
+            filterView.handleSectionFilterButtonTap(isParent: isParent, nickname: nickname, memberName: memberName)
         case .none:
             break
         }
