@@ -2,9 +2,7 @@
 
 ## 0. ScreenShot
 
-![DemoApp.Gif](PullToRefresh%20556ae5ab903b4c48b805f3bf8692fc15/PullToRefreshDemoApp.gif)
-
-DemoApp.Gif
+![PullToRefreshDemoApp](https://github.com/POLZZAK/POLZZAK-iOS/assets/62927862/b8dfd219-91d7-4ec4-8ddf-9abf78975148)
 
 ## **1. 모듈 개요**
 
