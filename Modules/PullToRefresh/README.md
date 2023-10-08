@@ -1,5 +1,11 @@
 # PullToRefresh
 
+## 0. ScreenShot
+
+![DemoApp.Gif](PullToRefresh%20556ae5ab903b4c48b805f3bf8692fc15/PullToRefreshDemoApp.gif)
+
+DemoApp.Gif
+
 ## **1. 모듈 개요**
 
 - **모듈 이름**: PullToRefresh
@@ -84,7 +90,6 @@
 
 ### **6.1. DemoApp**
 
-- **위치**: **`DemoApp`**
 - **`ViewController.swift`**에서 모듈 사용 방법 확인.
 
 ## **7. 의존성**
