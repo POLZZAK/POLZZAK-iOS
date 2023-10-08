@@ -17,7 +17,7 @@ final class StampBoardViewModel: TabFilterViewModelProtocol, PullToRefreshProtoc
     var cancellables = Set<AnyCancellable>()
     var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
     var didEndDraggingSubject = PassthroughSubject<Bool, Never>()
-    var shouldEndRefreshing = PassthroughSubject<Bool, Never>()
+    var shouldEndRefreshing = PassthroughSubject<Void, Never>()
     
     private let repository: StampBoardsDataRepository
     var userType: UserType
@@ -59,7 +59,7 @@ final class StampBoardViewModel: TabFilterViewModelProtocol, PullToRefreshProtoc
             showLoading(for: centerLoading)
             
             if true == isFirst {
-                self.shouldEndRefreshing.send(true)
+                self.shouldEndRefreshing.send()
             }
             
             do {

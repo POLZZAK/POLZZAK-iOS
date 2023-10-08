@@ -5,13 +5,13 @@
 //  Created by 이정환 on 2023/09/13.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 public protocol PullToRefreshProtocol: AnyObject {
     var isApiFinishedLoadingSubject: CurrentValueSubject<Bool, Never> { get }
     var didEndDraggingSubject: PassthroughSubject<Bool, Never> { get }
-    var shouldEndRefreshing: PassthroughSubject<Bool, Never> { get }
+    var shouldEndRefreshing: PassthroughSubject<Void, Never> { get }
     var cancellables: Set<AnyCancellable> { get set }
     func setupPullToRefreshBinding()
     func resetPullToRefreshSubjects()
@@ -26,7 +26,7 @@ extension PullToRefreshProtocol {
             }
             .filter { $0 }
             .sink { [weak self] apiFinished in
-                self?.shouldEndRefreshing.send(!apiFinished)
+                self?.shouldEndRefreshing.send()
             }
             .store(in: &cancellables)
     }

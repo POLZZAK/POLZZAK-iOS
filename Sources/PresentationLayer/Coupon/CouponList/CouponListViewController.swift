@@ -85,6 +85,7 @@ final class CouponListViewController: UIViewController {
         collectionView.register(NotLinkCell.self, forCellWithReuseIdentifier: NotLinkCell.reuseIdentifier)
         
         customRefreshControl.observe(scrollView: collectionView)
+        customRefreshControl.layer.zPosition = -1
         collectionView.refreshControl = customRefreshControl
         return collectionView
     }()
@@ -193,10 +194,8 @@ extension CouponListViewController {
         viewModel.shouldEndRefreshing
             .receive(on: DispatchQueue.main)
             .sink { [weak self] bool in
-                if true == bool {
-                    self?.viewModel.resetPullToRefreshSubjects()
-                }
                 self?.customRefreshControl.endRefreshing()
+                self?.viewModel.resetPullToRefreshSubjects()
             }
             .store(in: &cancellables)
         
@@ -546,7 +545,6 @@ extension CouponListViewController: CollectionLayoutConfigurable {
 extension CouponListViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         customRefreshControl.resetRefreshControl()
-        viewModel.resetPullToRefreshSubjects()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

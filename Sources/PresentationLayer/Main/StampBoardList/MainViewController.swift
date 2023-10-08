@@ -94,6 +94,7 @@ final class MainViewController: UIViewController {
         collectionView.register(NotLinkCell.self, forCellWithReuseIdentifier: NotLinkCell.reuseIdentifier)
         
         customRefreshControl.observe(scrollView: collectionView)
+        customRefreshControl.layer.zPosition = -1
         collectionView.refreshControl = customRefreshControl
         return collectionView
     }()
@@ -212,10 +213,8 @@ extension MainViewController {
         viewModel.shouldEndRefreshing
             .receive(on: DispatchQueue.main)
             .sink { [weak self] bool in
-                if true == bool {
-                    self?.viewModel.resetPullToRefreshSubjects()
-                }
                 self?.customRefreshControl.endRefreshing()
+                self?.viewModel.resetPullToRefreshSubjects()
             }
             .store(in: &cancellables)
         
@@ -538,7 +537,6 @@ extension MainViewController: CollectionLayoutConfigurable {
 extension MainViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         customRefreshControl.resetRefreshControl()
-        viewModel.resetPullToRefreshSubjects()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

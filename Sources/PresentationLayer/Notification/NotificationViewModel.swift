@@ -15,7 +15,7 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
     var cancellables = Set<AnyCancellable>()
     var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
     var didEndDraggingSubject = PassthroughSubject<Bool, Never>()
-    var shouldEndRefreshing = PassthroughSubject<Bool, Never>()
+    var shouldEndRefreshing = PassthroughSubject<Void, Never>()
     
     private let repository: NotificationDataRepository
     var userType: UserType
@@ -82,7 +82,7 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
             showLoading(for: centerLoading)
             
             if true == isFirst {
-                self.shouldEndRefreshing.send(true)
+                self.shouldEndRefreshing.send()
             }
             
             do {

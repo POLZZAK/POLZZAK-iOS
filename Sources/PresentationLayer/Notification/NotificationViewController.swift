@@ -137,10 +137,8 @@ extension NotificationViewController {
         viewModel.shouldEndRefreshing
             .receive(on: DispatchQueue.main)
             .sink { [weak self] bool in
-                if true == bool {
-                    self?.viewModel.resetPullToRefreshSubjects()
-                }
                 self?.customRefreshControl.endRefreshing()
+                self?.viewModel.resetPullToRefreshSubjects()
             }
             .store(in: &cancellables)
         
@@ -303,8 +301,6 @@ extension NotificationViewController: NotificationTableViewCellDelegate {
 extension NotificationViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         customRefreshControl.resetRefreshControl()
-        viewModel.resetPullToRefreshSubjects()
-        viewModel.resetBottomRefreshSubjects()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

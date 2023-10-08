@@ -5,11 +5,12 @@
 //  Created by POLZZAK_iOS.
 //
 
-import UIKit
 import Combine
-import SnapKit
-import SharedResources
+import UIKit
+
 import PullToRefresh
+import SharedResources
+import SnapKit
 
 final class ViewController: UIViewController {
     enum Constants {
@@ -62,7 +63,6 @@ extension ViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = customRefreshControl
-        
         customRefreshControl.observe(scrollView: tableView)
     }
     
@@ -73,13 +73,9 @@ extension ViewController {
     private func bindViewModel() {
         viewModel.shouldEndRefreshing
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] bool in
-                if true == bool {
-                    self?.customRefreshControl.endRefreshing()
-                    self?.viewModel.resetPullToRefreshSubjects()
-                } else {
-                    self?.customRefreshControl.endRefreshing()
-                }
+            .sink { [weak self] _ in
+                self?.customRefreshControl.endRefreshing()
+                self?.viewModel.resetPullToRefreshSubjects()
             }
             .store(in: &cancellables)
         
@@ -132,12 +128,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        viewModel.resetPullToRefreshSubjects()
         customRefreshControl.resetRefreshControl()
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         viewModel.didEndDraggingSubject.send(true)
-//        print("몇번 나가냐???", viewModel.didEndDraggingSubject.send())
     }
 }
