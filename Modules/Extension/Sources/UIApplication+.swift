@@ -1,5 +1,5 @@
 //
-//  UIApplication+extension.swift
+//  UIApplication+.swift
 //  POLZZAK
 //
 //  Created by Jinyoung Kim on 2023/05/23.

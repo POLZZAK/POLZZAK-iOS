@@ -138,6 +138,6 @@ xcuserdata
 # POLZZAK/Common/Constants.swift
 
 # Tuist
-.xcodeproj
-.xcworkspace
+**/*.xcodeproj/
+**/*.xcworkspace/
 **/Derived/

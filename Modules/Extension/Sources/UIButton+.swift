@@ -1,5 +1,5 @@
 //
-//  UIButton+extension.swift
+//  UIButton+.swift
 //  POLZZAK
 //
 //  Created by 이정환 on 2023/06/13.

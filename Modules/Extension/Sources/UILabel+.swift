@@ -1,5 +1,5 @@
 //
-//  UILabel+extension.swift
+//  UILabel+.swift
 //  POLZZAK
 //
 //  Created by 이정환 on 2023/05/14.
