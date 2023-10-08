@@ -2,9 +2,9 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 #if DEBUG
-let entitlementsPath: Path = .relativeToRoot("Config/POLZZAK_Debug.entitlements")
+let entitlementsPath: Entitlements = .file(path: "Config/POLZZAK_Debug.entitlements")
 #else
-let entitlementsPath: Path = .relativeToRoot("Config/POLZZAK_Release.entitlements")
+let entitlementsPath: Entitlements = .file(path: "Config/POLZZAK_Release.entitlements")
 #endif
 
 let project = Project(
@@ -15,6 +15,7 @@ let project = Project(
         .package(url: "https://github.com/z3rosmith/PanModal", .branch("use-in-POLZZAK")),
         .package(url: "https://github.com/CombineCommunity/CombineCocoa", .upToNextMajor(from: "0.2.1")),
         .package(url: "https://github.com/WenchaoD/FSCalendar", .upToNextMajor(from: "2.8.3")),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", .exact("10.15.0")),
         .package(url: "https://github.com/Quick/Nimble", .upToNextMajor(from: "12.0.0")),
         .package(url: "https://github.com/Brightify/Cuckoo", .upToNextMajor(from: "1.9.1"))
     ],
@@ -36,6 +37,8 @@ let project = Project(
                 .package(product: "PanModal"),
                 .package(product: "CombineCocoa"),
                 .package(product: "FSCalendar"),
+                .package(product: "FirebaseAnalytics"),
+                .package(product: "FirebaseMessaging"),
                 .project(target: "Alert", path: "Modules/Alert"),
                 .project(target: "BottomSheetModal", path: "Modules/BottomSheetModal"),
                 .project(target: "DynamicTabView", path: "Modules/DynamicTabView"),
@@ -46,7 +49,7 @@ let project = Project(
                 .project(target: "PolzzakUIKit", path: "Modules/PolzzakUIKit"),
                 .project(target: "PullToRefresh", path: "Modules/PullToRefresh"),
                 .project(target: "SearchBar", path: "Modules/SearchBar"),
-                .project(target: "Toast", path: "Modules/Toast"),
+                .project(target: "Toast", path: "Modules/Toast")
             ]
         ),
         Target(

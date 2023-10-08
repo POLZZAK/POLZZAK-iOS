@@ -141,3 +141,4 @@ xcuserdata
 **/*.xcodeproj/
 **/*.xcworkspace/
 **/Derived/
+Config/GoogleService-Info.plist
