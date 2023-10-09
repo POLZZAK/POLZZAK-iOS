@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Extension
+
 enum BottomSheetState {
     case zero
     case short(height: CGFloat)

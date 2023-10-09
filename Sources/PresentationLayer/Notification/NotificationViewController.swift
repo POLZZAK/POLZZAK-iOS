@@ -310,6 +310,7 @@ extension NotificationViewController: UIScrollViewDelegate {
             checkIfReachedBottom(scrollView)
         }
     }
+    
     private func checkIfReachedBottom(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
