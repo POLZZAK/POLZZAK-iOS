@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: Sources/DataLayer/Network/Services/CouponService.swift at 2023-10-09 17:07:57 +0000
+// MARK: - Mocks generated from file: Sources/DataLayer/Network/Services/CouponService.swift at 2023-10-09 17:10:42 +0000
 
 //
 //  CouponService.swift
