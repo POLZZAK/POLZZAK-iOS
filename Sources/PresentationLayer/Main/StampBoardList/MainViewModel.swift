@@ -14,7 +14,7 @@ import PullToRefresh
 
 final class StampBoardViewModel: TabFilterViewModelProtocol, PullToRefreshProtocol, LoadingViewModelProtocol, ErrorHandlingProtocol {
     var cancellables = Set<AnyCancellable>()
-    var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
+    var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(true)
     var didEndDraggingSubject = PassthroughSubject<Bool, Never>()
     var shouldEndRefreshing = PassthroughSubject<Void, Never>()
     
@@ -62,6 +62,7 @@ final class StampBoardViewModel: TabFilterViewModelProtocol, PullToRefreshProtoc
             }
             
             do {
+                isApiFinishedLoadingSubject.send(false)
                 let result = try await repository.getStampBoardList(for: tabState.value)
                 dataList.send(result)
             } catch {

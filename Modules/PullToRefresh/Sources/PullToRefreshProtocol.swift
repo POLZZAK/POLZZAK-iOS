@@ -19,6 +19,7 @@ public protocol PullToRefreshProtocol: AnyObject {
 
 extension PullToRefreshProtocol {
     public func setupPullToRefreshBinding() {
+        
         didEndDraggingSubject.combineLatest(isApiFinishedLoadingSubject)
             .filter {$0 == true && $1 == true}
             .map { _, apiFinished -> Bool in
@@ -33,6 +34,6 @@ extension PullToRefreshProtocol {
     
     public func resetPullToRefreshSubjects() {
         self.didEndDraggingSubject.send(false)
-        self.isApiFinishedLoadingSubject.send(false)
+        self.isApiFinishedLoadingSubject.send(true)
     }
 }

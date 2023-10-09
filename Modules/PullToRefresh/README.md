@@ -51,6 +51,7 @@
 - **ViewController**
     - **scrollViewWillBeginDragging(UIScrollViewDelegate)**
         - customRefreshControl.resetRefreshControl()
+        - isApiFinishedLoadingSubject를 이용하여 API통신 완료시에만 하도록 해야한다.
     - **scrollViewDidEndDragging(UIScrollViewDelegate)**
         - viewModel.didEndDraggingSubject.send(true)
     - **shouldEndRefreshing 바인딩**

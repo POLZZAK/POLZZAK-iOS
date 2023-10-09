@@ -8,12 +8,16 @@
 import Combine
 import UIKit
 
+import InfiniteScrollLoader
 import Loading
 import PullToRefresh
 import SnapKit
 import Toast
 
-final class NotificationViewController: UIViewController {
+final class NotificationViewController: UIViewController, InfiniteScrolling {
+    typealias InfiniteScrollingViewModelType = NotificationViewModel
+    var viewModel: NotificationViewModel = NotificationViewModel(repository: NotificationDataRepository())
+    
     enum Constants {
         static let topPadding = 16.0
         static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: -topPadding, right: 0)
@@ -24,7 +28,6 @@ final class NotificationViewController: UIViewController {
     
     private var toast: Toast?
     
-    private let viewModel = NotificationViewModel(repository: NotificationDataRepository())
     private var cancellables = Set<AnyCancellable>()
     
     private let notificationSkeletonView = NotificationSkeletonView()
@@ -212,7 +215,7 @@ extension NotificationViewController {
     
     @objc func handleRefresh() {
         customRefreshControl.beginRefreshing()
-        viewModel.loadData()
+        viewModel.reloadData()
     }
 }
 
@@ -300,26 +303,14 @@ extension NotificationViewController: NotificationTableViewCellDelegate {
 
 extension NotificationViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        customRefreshControl.resetRefreshControl()
+        if true == viewModel.isApiFinishedLoadingSubject.value {
+            customRefreshControl.resetRefreshControl()
+        }
+        viewModel.resetBottomRefreshSubjects()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         viewModel.didEndDraggingSubject.send(true)
-        
-        if decelerate && scrollView.contentOffset.y > lastContentOffset {
-            checkIfReachedBottom(scrollView)
-        }
-    }
-    
-    private func checkIfReachedBottom(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let frameHeight = scrollView.frame.size.height
-
-        if offsetY >= contentHeight - frameHeight + 50 {
-            if viewModel.rechedBottomSubject.value == false {
-                viewModel.rechedBottomSubject.send(true)
-            }
-        }
+        scrollViewDidReachEnd(scrollView)
     }
 }

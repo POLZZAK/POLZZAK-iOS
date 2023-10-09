@@ -8,33 +8,25 @@
 import Combine
 import UIKit
 
-import PullToRefresh
-import SharedResources
 import SnapKit
+import InfiniteScrollLoader
 
-final class ViewController: UIViewController {
+final class ViewController: UIViewController, InfiniteScrolling {
+    typealias InfiniteScrollingViewModelType = ViewModel
+    var viewModel: ViewModel = ViewModel()
+    
     enum Constants {
-        static let topPadding = 50.0
         static let cellID = "cell"
-        static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: -topPadding, right: 0)
     }
     
-    private let viewModel = ViewModel()
     private var cancellables = Set<AnyCancellable>()
-    
-    private let customRefreshControl: CustomRefreshControl = {
-        let refreshControl = CustomRefreshControl(topPadding: Constants.topPadding)
-        return refreshControl
-    }()
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellID)
         tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = .gray100
         tableView.separatorStyle = .none
-        tableView.contentInset = Constants.tableViewContentInset
         return tableView
     }()
     
@@ -44,7 +36,6 @@ final class ViewController: UIViewController {
         view.backgroundColor = .white
         setupUI()
         setupTableView()
-        setupAction()
         bindViewModel()
     }
 }
@@ -62,37 +53,15 @@ extension ViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.refreshControl = customRefreshControl
-        customRefreshControl.observe(scrollView: tableView)
-    }
-    
-    private func setupAction() {
-        customRefreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
     private func bindViewModel() {
-        viewModel.shouldEndRefreshing
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.customRefreshControl.endRefreshing()
-                self?.viewModel.resetPullToRefreshSubjects()
-            }
-            .store(in: &cancellables)
-        
         viewModel.$data
             .receive(on: DispatchQueue.main)
-            .map { array -> Bool in
-                return array.isEmpty
-            }
             .sink { [weak self] bool in
                 self?.tableView.reloadData()
             }
             .store(in: &cancellables)
-    }
-    
-    @objc func handleRefresh() {
-        customRefreshControl.beginRefreshing()
-        viewModel.refreshData()
     }
 }
 
@@ -106,7 +75,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellID, for: indexPath)
         let color = viewModel.data[indexPath.section]
         cell.backgroundColor = color
         cell.selectionStyle = .none
@@ -115,25 +84,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
-        return headerView
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
 }
 
 extension ViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if true == viewModel.isApiFinishedLoadingSubject.value {
-            customRefreshControl.resetRefreshControl()
-        }
+        viewModel.resetBottomRefreshSubjects()
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        viewModel.didEndDraggingSubject.send(true)
+        scrollViewDidReachEnd(scrollView)
     }
 }

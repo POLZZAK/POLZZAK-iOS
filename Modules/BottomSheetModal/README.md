@@ -2,7 +2,7 @@
 
 ## **0. ScreenShot**
 
-![BottomSheetModal](https://github.com/POLZZAK/POLZZAK-iOS/assets/62927862/45d4398f-f99f-4e81-9495-fe7c140153f1)
+![BottomSheetModal](https://github.com/POLZZAK/POLZZAK-iOS/assets/62927862/3c2e24aa-5016-4a0b-a1e0-97d5dcd7c013)
 
 ## **1. 모듈 개요**
 
@@ -22,7 +22,6 @@
 │   ├── DemoAppSources
 │   └── DemoAppUITests
 ├── Derived
-├── Resources
 ├── Sources
 │   ├── BottomSheetViewController.swift
 │   ├── BottomSheetPresentationController.swift
@@ -68,7 +67,7 @@
 
 ### **6.1. DemoApp**
 
-- ***`ViewController.swift`***에서 모듈 사용 방법 확인.
+- **`ViewController.swift`**에서 모듈 사용 방법 확인.
 
 ## **7. 의존성**
 

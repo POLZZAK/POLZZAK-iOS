@@ -542,7 +542,9 @@ extension CouponListViewController: CollectionLayoutConfigurable {
 
 extension CouponListViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        customRefreshControl.resetRefreshControl()
+        if true == viewModel.isApiFinishedLoadingSubject.value {
+            customRefreshControl.resetRefreshControl()
+        }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

@@ -11,8 +11,11 @@ import UIKit
 import PullToRefresh
 
 final class ViewModel: PullToRefreshProtocol {
+    enum Constants {
+        static let sleepTime = 1
+    }
     var cancellables = Set<AnyCancellable>()
-    var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
+    var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(true)
     var didEndDraggingSubject = PassthroughSubject<Bool, Never>()
     var shouldEndRefreshing = PassthroughSubject<Void, Never>()
     
@@ -30,11 +33,13 @@ extension ViewModel {
                 isApiFinishedLoadingSubject.send(true)
             }
             
+            isApiFinishedLoadingSubject.send(false)
             data = await fetchData()
         }
     }
     
     func fetchData() async -> [UIColor] {
+        try? await Task.sleep(nanoseconds: UInt64(Constants.sleepTime) * 1_000_000_000)
         return [UIColor](repeating: UIColor.rainbow, count: 20)
     }
 }

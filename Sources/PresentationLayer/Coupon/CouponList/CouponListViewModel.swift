@@ -66,6 +66,7 @@ final class CouponListViewModel: TabFilterViewModelProtocol, PullToRefreshProtoc
             }
             
             do {
+                isApiFinishedLoadingSubject.send(false)
                 let tabState = tabStateToString(tabState.value)
                 let result = try await repository.getCouponList(tabState)
                 dataList.send(result)
