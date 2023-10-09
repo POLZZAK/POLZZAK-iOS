@@ -23,7 +23,6 @@ final class ViewController: UIViewController, InfiniteScrolling {
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellID)
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none

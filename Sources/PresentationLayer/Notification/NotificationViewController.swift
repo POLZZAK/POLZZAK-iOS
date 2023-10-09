@@ -12,6 +12,7 @@ import InfiniteScrollLoader
 import Loading
 import PullToRefresh
 import SnapKit
+import SwipeToDelete
 import Toast
 
 final class NotificationViewController: UIViewController, InfiniteScrolling {
@@ -20,7 +21,7 @@ final class NotificationViewController: UIViewController, InfiniteScrolling {
     
     enum Constants {
         static let topPadding = 16.0
-        static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: -topPadding, right: 0)
+        static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: topPadding, right: 0)
     }
     
     private var lastContentOffset: CGFloat = 0
@@ -46,7 +47,6 @@ final class NotificationViewController: UIViewController, InfiniteScrolling {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: NotificationTableViewCell.reuseIdentifier)
         tableView.contentInset = Constants.tableViewContentInset
         tableView.showsVerticalScrollIndicator = false
@@ -231,6 +231,7 @@ extension NotificationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NotificationTableViewCell.reuseIdentifier, for: indexPath) as! NotificationTableViewCell
         cell.delegate = self
+        cell.swipeableDelegate = self
         let notification = viewModel.notificationList[indexPath.section]
         cell.configure(data: notification)
         return cell
@@ -291,15 +292,17 @@ extension NotificationViewController: NotificationTableViewCellDelegate {
             }
         }
     }
-    
-    func didTapRemoveButton(_ cell: NotificationTableViewCell) {
-        if let section = tableView.indexPath(for: cell)?.section {
-            Task {
-                await viewModel.removeNotification(with: section)
-            }
+}
+
+extension NotificationViewController: SwipeableTableViewCellDelegate {
+    func didTapDeleteButton(_ cell: UITableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        Task {
+            await viewModel.removeNotification(with: indexPath.section)
         }
     }
 }
+
 
 extension NotificationViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

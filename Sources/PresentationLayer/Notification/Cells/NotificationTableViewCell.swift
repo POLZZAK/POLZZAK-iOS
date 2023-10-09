@@ -6,19 +6,18 @@
 //
 
 import UIKit
+
 import SnapKit
+import SwipeToDelete
 
 protocol NotificationTableViewCellDelegate: AnyObject {
     func didTapAcceptButton(_ cell: NotificationTableViewCell)
     func didTapRejectButton(_ cell: NotificationTableViewCell)
-    func didTapRemoveButton(_ cell: NotificationTableViewCell)
 }
 
-final class NotificationTableViewCell: UITableViewCell {
+final class NotificationTableViewCell: SwipeableTableViewCell {
     static let reuseIdentifier = "NotificationTableViewCell"
     weak var delegate: NotificationTableViewCellDelegate?
-    
-    private let panGestureView = UIView()
     
     private let cellStackView: UIStackView = {
         let stackView = UIStackView()
@@ -99,12 +98,6 @@ final class NotificationTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let deleteButton: UIButton = {
-        let button = UIButton()
-        button.setImage(.trashButton, for: .normal)
-        return button
-    }()
-    
     private let completionSubView = UIView()
     private let completionImageView: UIImageView = {
         let imageView = UIImageView()
@@ -135,7 +128,6 @@ final class NotificationTableViewCell: UITableViewCell {
     }()
     
     private let bottomView = UIStackView()
-    private var isSwipeRemove = true
     var originalCenterCheck = false
     var isSwipe = false
     var swipeOnOriginalCenter = CGFloat()
@@ -147,7 +139,6 @@ final class NotificationTableViewCell: UITableViewCell {
         
         setUI()
         setAction()
-        setupSwipeToDeleteGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -163,98 +154,14 @@ final class NotificationTableViewCell: UITableViewCell {
         super.prepareForReuse()
         resetUI()
     }
-    
-    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
-            let velocity = panGestureRecognizer.velocity(in: self
-            )
-            return abs(velocity.y) < abs(velocity.x)
-        }
-        return true
-    }
-    
-    private func setupSwipeToDeleteGesture() {
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(handleSwipeGesture))
-        gesture.delegate = self
-        panGestureView.addGestureRecognizer(gesture)
-    }
-    
-    @objc func handleSwipeGesture(gesture: UIPanGestureRecognizer) {
-        if false == isSwipeRemove {
-            return
-        }
-        
-        if false == originalCenterCheck {
-            originalCenterCheck = true
-            self.swipeOnOriginalCenter = panGestureView.center.x - 56
-            self.swipeOffOriginalCenter = panGestureView.center.x
-        }
-        
-        let originalCenter = isSwipe ? swipeOnOriginalCenter : swipeOffOriginalCenter
-        let translationX = gesture.translation(in: panGestureView).x
-        
-        if gesture.state == .began {
-            beganOriginalCenter = panGestureView.center.x
-        }
-        
-        if gesture.state == .changed {
-            if originalCenter > panGestureView.center.x {
-                if beganOriginalCenter + translationX <= originalCenter {
-                    panGestureView.center.x = beganOriginalCenter + translationX
-                }  else if translationX >= 0 {
-                    panGestureView.center.x = swipeOffOriginalCenter
-                }
-            } else {
-                if false == isSwipe {
-                    if panGestureView.center.x > beganOriginalCenter + translationX {
-                        panGestureView.center.x = beganOriginalCenter + translationX
-                    }
-                } else {
-                    if swipeOffOriginalCenter >= beganOriginalCenter + translationX {
-                        panGestureView.center.x = beganOriginalCenter + translationX
-                    } else {
-                        panGestureView.center.x = swipeOffOriginalCenter
-                    }
-                }
-            }
-        } else if gesture.state == .ended {
-            if translationX < -20 {
-                isSwipe = true
-                UIView.animate(withDuration: 0.2, animations: { [weak self] in
-                    self?.panGestureView.center.x = self?.swipeOnOriginalCenter ?? 0
-                })
-            } else if translationX > 10  {
-                isSwipe = false
-                UIView.animate(withDuration: 0.2, animations: { [weak self] in
-                    self?.panGestureView.center.x = self?.swipeOffOriginalCenter ?? 0
-                })
-            } else {
-                panGestureView.center.x = (isSwipe ? swipeOnOriginalCenter : swipeOffOriginalCenter)
-            }
-        }
-    }
 }
 
 extension NotificationTableViewCell {
     private func setUI() {
         selectionStyle = .none
-        contentView.backgroundColor = .error500
-        panGestureView.backgroundColor = .white
         
         contentView.addBorder(cornerRadius: 8)
         panGestureView.addBorder(cornerRadius: 8)
-        
-        contentView.addSubview(deleteButton)
-        deleteButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(16)
-            $0.width.height.equalTo(24)
-        }
-        
-        contentView.addSubview(panGestureView)
-        panGestureView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
         
         panGestureView.addSubview(cellStackView)
         cellStackView.snp.makeConstraints {
@@ -423,21 +330,16 @@ extension NotificationTableViewCell {
     private func setAction() {
         acceptButton.addTarget(self, action: #selector(acceptButtonTapped), for: .touchUpInside)
         rejectButton.addTarget(self, action: #selector(rejectButtonTapped), for: .touchUpInside)
-        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
     
     @objc private func acceptButtonTapped() {
-//        delegate?.didTapAcceptButton(self)
+        delegate?.didTapAcceptButton(self)
         updateUIForCompletion(true)
         
     }
     
     @objc private func rejectButtonTapped() {
-//        delegate?.didTapRejectButton(self)
+        delegate?.didTapRejectButton(self)
         updateUIForCompletion(false)
-    }
-    
-    @objc private func deleteButtonTapped() {
-//        delegate?.didTapRemoveButton(self)
     }
 }

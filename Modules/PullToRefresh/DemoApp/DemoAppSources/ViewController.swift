@@ -16,7 +16,7 @@ final class ViewController: UIViewController {
     enum Constants {
         static let topPadding = 50.0
         static let cellID = "cell"
-        static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: -topPadding, right: 0)
+        static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: topPadding, right: 0)
     }
     
     private let viewModel = ViewModel()
@@ -29,7 +29,6 @@ final class ViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellID)
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = .gray100
@@ -54,7 +53,8 @@ extension ViewController {
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints {
-            $0.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.trailing.equalToSuperview()
         }
     }
@@ -113,16 +113,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.accessibilityIdentifier = Constants.cellID + "\(indexPath.section)"
         cell.accessibilityLabel = color.accessibilityDescription
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
-        return headerView
     }
 }
 

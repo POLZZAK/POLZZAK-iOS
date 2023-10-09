@@ -11,6 +11,13 @@ import Toast
 
 final class ViewController: UIViewController {
     
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        return stackView
+    }()
+    
     private lazy var successButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Show Success Toast", for: .normal)
@@ -36,16 +43,15 @@ final class ViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        let stackView = UIStackView(arrangedSubviews: [successButton, errorButton])
-        stackView.axis = .vertical
-        stackView.spacing = 16
+        [successButton, errorButton].forEach {
+            stackView.addArrangedSubview($0)
+        }
+        
         view.addSubview(stackView)
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+        stackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
     
     @objc private func showSuccessToast() {

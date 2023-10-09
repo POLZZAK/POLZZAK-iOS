@@ -49,6 +49,7 @@ let project = Project(
                 .project(target: "PolzzakUIKit", path: "Modules/PolzzakUIKit"),
                 .project(target: "PullToRefresh", path: "Modules/PullToRefresh"),
                 .project(target: "SearchBar", path: "Modules/SearchBar"),
+                .project(target: "SwipeToDelete", path: "Modules/SwipeToDelete"),
                 .project(target: "Toast", path: "Modules/Toast")
             ]
         ),
