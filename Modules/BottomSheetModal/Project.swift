@@ -3,8 +3,9 @@ import ProjectDescription
 let project = Project(
     name: "BottomSheetModal",
     packages: [
-            .package(url: "https://github.com/Quick/Nimble", .upToNextMajor(from: "12.0.0")),
-            .package(url: "https://github.com/SnapKit/SnapKit", .upToNextMajor(from: "5.0.0"))
+        .package(url: "https://github.com/Quick/Nimble", .upToNextMajor(from: "12.0.0")),
+        .package(url: "https://github.com/SnapKit/SnapKit", .upToNextMajor(from: "5.0.0"))
+        
     ],
     targets: [
         Target(
@@ -19,21 +20,7 @@ let project = Project(
             dependencies: [
                 .package(product: "SnapKit"),
                 .project(target: "Extension", path: "../Extension"),
-                .project(target: "SharedResources", path: "../SharedResources"),
-                .project(target: "PolzzakUIKit", path: "../PolzzakUIKit")
-            ]
-        ),
-        Target(
-            name: "BottomSheetModalTests",
-            platform: .iOS,
-            product: .unitTests,
-            bundleId: "polzzak.module.BottomSheetModalTests",
-            deploymentTarget: .iOS(targetVersion: "15.0", devices: .iphone),
-            infoPlist: .default,
-            sources: ["Tests/**"],
-            dependencies: [
-                .target(name: "BottomSheetModal"),
-                .package(product: "Nimble")
+                .project(target: "SharedResources", path: "../SharedResources")
             ]
         ),
         Target(
