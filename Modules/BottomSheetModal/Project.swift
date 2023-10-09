@@ -17,7 +17,11 @@ let project = Project(
             infoPlist: .default,
             sources: ["Sources/**"],
             resources: [],
-            dependencies: []
+            dependencies: [
+                .package(product: "SnapKit"),
+                .project(target: "Extension", path: "../Extension"),
+                .project(target: "SharedResources", path: "../SharedResources")
+            ]
         ),
         Target(
             name: "BottomSheetModalDemoApp",

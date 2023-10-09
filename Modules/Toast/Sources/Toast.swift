@@ -24,6 +24,8 @@ public final class Toast: NSObject {
     
     public var isToastShown: Bool = false
     
+    private static var currentToast: Toast?
+    
     private var type: ToastType?
     
     private let toastContainer: UIView = {
@@ -93,8 +95,8 @@ extension Toast {
         case .success(let text, let image):
             toastLabel.text = text
             toastContainer.backgroundColor = .blue600
-            if let img = image {
-                imageView.image = img
+            if let image {
+                imageView.image = image
             } else {
                 let acceptButton = UIImage.acceptButton?.withRenderingMode(.alwaysTemplate)
                 imageView.image = acceptButton
@@ -102,8 +104,8 @@ extension Toast {
         case .error(let text, let image):
             toastLabel.text = text
             toastContainer.backgroundColor = .error500
-            if let img = image {
-                imageView.image = img
+            if let image {
+                imageView.image = image
             } else {
                 imageView.image = UIImage.informationButton
             }
@@ -115,11 +117,14 @@ extension Toast {
         toastContainer.addGestureRecognizer(panGesture)
     }
     
-    public func show() {
+    @MainActor public func show() {
         guard false == isToastShown else  { return }
+        Toast.currentToast?.closeToast(immediate: false)
+        
         guard let topViewController = UIApplication.getTopViewController() else { return }
         topViewController.view.addSubview(toastContainer)
         isToastShown = true
+        Toast.currentToast = self
         
         setUI()
         setGesture()
@@ -159,14 +164,21 @@ extension Toast {
         }
     }
     
-    @MainActor private func closeToast() {
-        UIView.animate(withDuration: Constants.toastEndTime, animations: {
-            self.toastContainer.alpha = 0.0
-            self.toastContainer.transform = CGAffineTransform(translationX: 0, y: self.toastContainer.frame.height)
-        }) { _ in
-            self.toastContainer.removeFromSuperview()
-            self.toastContainer.transform = .identity
-            self.isToastShown = false
+    @MainActor private func closeToast(immediate: Bool = false) {
+        if true == immediate {
+            toastContainer.removeFromSuperview()
+            toastContainer.transform = .identity
+            isToastShown = false
+            return
+        } else {
+            UIView.animate(withDuration: Constants.toastEndTime, animations: {
+                self.toastContainer.alpha = 0.0
+                self.toastContainer.transform = CGAffineTransform(translationX: 0, y: self.toastContainer.frame.height)
+            }) { _ in
+                self.toastContainer.removeFromSuperview()
+                self.toastContainer.transform = .identity
+                self.isToastShown = false
+            }
         }
     }
 }

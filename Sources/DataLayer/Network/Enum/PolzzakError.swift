@@ -49,4 +49,8 @@ extension PolzzakError: CustomStringConvertible {
             return "UnknownError"
         }
     }
+    
+    var userDescription: String {
+        return "요청에 실패하였습니다. 잠시 후 다시 시도해주세요."
+    }
 }

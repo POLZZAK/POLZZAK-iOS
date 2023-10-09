@@ -8,6 +8,7 @@
 import UIKit
 
 import BottomSheetModal
+import SnapKit
 
 class ViewController: UIViewController {
 
