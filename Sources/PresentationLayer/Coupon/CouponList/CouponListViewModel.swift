@@ -12,7 +12,7 @@ import DynamicTabView
 import Loading
 import PullToRefresh
 
-final class CouponListViewModel: TabFilterViewModelProtocol, PullToRefreshProtocol, LoadingViewModelProtocol {
+final class CouponListViewModel: TabFilterViewModelProtocol, PullToRefreshProtocol, LoadingViewModelProtocol, ErrorHandlingProtocol {
     var cancellables = Set<AnyCancellable>()
     var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
     var didEndDraggingSubject = PassthroughSubject<Bool, Never>()
@@ -194,33 +194,5 @@ final class CouponListViewModel: TabFilterViewModelProtocol, PullToRefreshProtoc
         case .none:
             return nil
         }
-    }
-    
-    func handleError(_ error: Error) {
-        if let internalError = error as? PolzzakError {
-            handleInternalError(internalError)
-        } else if let networkError = error as? NetworkError {
-            handleNetworkError(networkError)
-        } else if let decodingError = error as? DecodingError {
-            handleDecodingError(decodingError)
-        } else {
-            handleUnknownError(error)
-        }
-    }
-    
-    private func handleInternalError(_ error: PolzzakError) {
-        showErrorAlertSubject.send(error)
-    }
-    
-    private func handleNetworkError(_ error: NetworkError) {
-        showErrorAlertSubject.send(error)
-    }
-    
-    private func handleDecodingError(_ error: DecodingError) {
-        showErrorAlertSubject.send(error)
-    }
-    
-    private func handleUnknownError(_ error: Error) {
-        showErrorAlertSubject.send(error)
     }
 }

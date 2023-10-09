@@ -258,8 +258,9 @@ extension MainViewController {
         viewModel.showErrorAlertSubject
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
-            .sink { error in
-                //TODO: - 에러처리 어떻게 할지 기획필요
+            .sink { _ in
+                let error = PolzzakError.userError.description
+                Toast(type: .error(error)).show()
             }
             .store(in: &cancellables)
     }

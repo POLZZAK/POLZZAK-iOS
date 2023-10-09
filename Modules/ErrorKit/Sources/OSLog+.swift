@@ -13,10 +13,21 @@ public extension OSLog {
     static let network = OSLog(subsystem: subsystem, category: "Network")
     static let keychain = OSLog(subsystem: subsystem, category: "Keychain")
     static let polzzakAPI = OSLog(subsystem: subsystem, category: "polzzakAPI")
+    
+    func os_log(log: OSLog, file: String = #fileID, function: String = #function, errorDescription: String) {
+        os.os_log("error at file (%@), at function (%@)\nerror: %@", log: .polzzakAPI, file, function, errorDescription)
+    }
 }
 
 // TODO: log파라미터를 쓰지 않고 있는데 지우거나 사용하도록 만들기
-
 public func os_log(log: OSLog, file: String = #fileID, function: String = #function, errorDescription: String) {
     os.os_log("error at file (%@), at function (%@)\nerror: %@", log: .polzzakAPI, file, function, errorDescription)
+}
+
+struct Logger {
+    static let shared = Logger()
+    
+    func os_log(log: OSLog, file: String = #fileID, function: String = #function, errorDescription: String) {
+        os.os_log("error at file (%@), at function (%@)\nerror: %@", log: log, file, function, errorDescription)
+    }
 }

@@ -34,7 +34,7 @@ extension DataRepositoryProtocol {
         validStatusCodes: [Int] = Array(200..<300)
     ) throws {
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw NetworkError.invalidResponse
+            throw PolzzakError.serverError
         }
         
         guard validStatusCodes.contains(httpResponse.statusCode) else {

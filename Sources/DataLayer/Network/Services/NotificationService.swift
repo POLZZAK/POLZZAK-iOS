@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class NotificationService: LinkRequestService {
+class NotificationService: LinkRequestService {
     let networkService: NetworkServiceProvider
     
     init(networkService: NetworkServiceProvider = NetworkService(requestInterceptor: TokenInterceptor())) {

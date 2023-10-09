@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: POLZZAK/Network/NetworkService/NetworkService.swift at 2023-09-21 08:25:55 +0000
+// MARK: - Mocks generated from file: Sources/DataLayer/Network/Services/BaseServices/NetworkService.swift at 2023-10-09 17:07:57 +0000
 
 //
 //  NetworkService.swift

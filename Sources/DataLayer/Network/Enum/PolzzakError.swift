@@ -7,13 +7,16 @@
 
 import Foundation
 
-enum PolzzakError: Error {
+import ErrorKit
+
+enum PolzzakError: DescribableError {
     case repositoryError(code: Int, messages: [String]?)
     case invalidStatusCode(_ statusCode: Int)
     case serviceError(_ statusCode: Int)
     case serverError
     case userDefalutsError
     case unknownError
+    case userError
 }
 
 extension PolzzakError: CustomStringConvertible {
@@ -47,10 +50,8 @@ extension PolzzakError: CustomStringConvertible {
             
         case .unknownError:
             return "UnknownError"
+        case .userError:
+            return "요청에 실패하였습니다. 잠시 후 다시 시도해주세요."
         }
-    }
-    
-    var userDescription: String {
-        return "요청에 실패하였습니다. 잠시 후 다시 시도해주세요."
     }
 }

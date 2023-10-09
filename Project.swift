@@ -42,6 +42,7 @@ let project = Project(
                 .project(target: "Alert", path: "Modules/Alert"),
                 .project(target: "BottomSheetModal", path: "Modules/BottomSheetModal"),
                 .project(target: "DynamicTabView", path: "Modules/DynamicTabView"),
+                .project(target: "ErrorKit", path: "Modules/ErrorKit"),
                 .project(target: "Extension", path: "Modules/Extension"),
                 .project(target: "InfiniteScrollLoader", path: "Modules/InfiniteScrollLoader"),
                 .project(target: "SharedResources", path: "Modules/SharedResources"),

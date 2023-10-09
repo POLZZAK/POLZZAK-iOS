@@ -7,6 +7,7 @@
 
 import Foundation
 
+import ErrorKit
 import Extension
 
 struct StampBoardDetailAPI {
