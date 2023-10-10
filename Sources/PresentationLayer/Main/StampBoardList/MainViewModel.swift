@@ -9,15 +9,14 @@ import Combine
 import Foundation
 
 import DynamicTabView
-import FilterBottomSheet
 import Loading
 import PullToRefresh
 
 final class StampBoardViewModel: TabFilterViewModelProtocol, PullToRefreshProtocol, LoadingViewModelProtocol, ErrorHandlingProtocol {
     var cancellables = Set<AnyCancellable>()
-    var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
+    var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(true)
     var didEndDraggingSubject = PassthroughSubject<Bool, Never>()
-    var shouldEndRefreshing = PassthroughSubject<Bool, Never>()
+    var shouldEndRefreshing = PassthroughSubject<Void, Never>()
     
     private let repository: StampBoardsDataRepository
     var userType: UserType
@@ -59,10 +58,11 @@ final class StampBoardViewModel: TabFilterViewModelProtocol, PullToRefreshProtoc
             showLoading(for: centerLoading)
             
             if true == isFirst {
-                self.shouldEndRefreshing.send(true)
+                self.shouldEndRefreshing.send()
             }
             
             do {
+                isApiFinishedLoadingSubject.send(false)
                 let result = try await repository.getStampBoardList(for: tabState.value)
                 dataList.send(result)
             } catch {

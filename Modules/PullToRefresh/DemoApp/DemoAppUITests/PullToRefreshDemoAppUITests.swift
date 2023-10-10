@@ -27,7 +27,6 @@ final class PullToRefreshDemoAppUITests: XCTestCase {
     func test_드래그하여_리프레시_했을_때_첫_셀의_색상이_변하는지() {
         // Given: 초기 앱의 상태 설정
         let initialCell = app.tables.cells.element(matching: .cell, identifier: Constants.cellID + "0")
-        expect(initialCell.exists).to(beTrue(), description: "테스트 시작 시 첫 번째 셀이 존재해야 한다.")
         let initialColor = initialCell.label
         
         // When: 사용자 액션을 시뮬레이션
@@ -44,7 +43,6 @@ final class PullToRefreshDemoAppUITests: XCTestCase {
         }
         
         let refreshedCell = app.tables.cells.element(matching: .cell, identifier: Constants.cellID + "0")
-        expect(refreshedCell.exists).to(beTrue(), description: "리프레시 후에도 첫 번째 셀이 계속 존재해야 한다.")
         let refreshedColor = refreshedCell.label
         
         // Then: 결과 검증

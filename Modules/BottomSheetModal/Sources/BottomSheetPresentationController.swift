@@ -6,12 +6,16 @@
 //
 
 import UIKit
-import Extension
 
 final class BottomSheetPresentationController: UIPresentationController {
-    private var dimmingView: UIView!
-    private let statusBarHeight = UIApplication.shared.statusBarHeight
     private let initialState: BottomSheetState
+    
+    private lazy var dimmingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0)
+        view.isOpaque = false
+        return view
+    }()
     
     init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, initialState: BottomSheetState) {
         self.initialState = initialState
@@ -27,11 +31,10 @@ final class BottomSheetPresentationController: UIPresentationController {
         guard let containerView = containerView else { return }
         
         dimmingView = UIView(frame: containerView.bounds)
-        dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0)
-        dimmingView.isOpaque = false
-        
         containerView.addSubview(dimmingView)
-        containerView.addSubview(presentedView!)
+        if let presentedView {
+            containerView.addSubview(presentedView)
+        }
         
         let coordinator = presentingViewController.transitionCoordinator
         coordinator?.animate(alongsideTransition: { [weak self] context in

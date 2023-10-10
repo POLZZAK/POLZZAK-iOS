@@ -42,13 +42,15 @@ let project = Project(
                 .project(target: "Alert", path: "Modules/Alert"),
                 .project(target: "BottomSheetModal", path: "Modules/BottomSheetModal"),
                 .project(target: "DynamicTabView", path: "Modules/DynamicTabView"),
+                .project(target: "ErrorKit", path: "Modules/ErrorKit"),
                 .project(target: "Extension", path: "Modules/Extension"),
-                .project(target: "FilterBottomSheet", path: "Modules/FilterBottomSheet"),
+                .project(target: "InfiniteScrollLoader", path: "Modules/InfiniteScrollLoader"),
                 .project(target: "SharedResources", path: "Modules/SharedResources"),
                 .project(target: "Loading", path: "Modules/Loading"),
                 .project(target: "PolzzakUIKit", path: "Modules/PolzzakUIKit"),
                 .project(target: "PullToRefresh", path: "Modules/PullToRefresh"),
                 .project(target: "SearchBar", path: "Modules/SearchBar"),
+                .project(target: "SwipeToDelete", path: "Modules/SwipeToDelete"),
                 .project(target: "Toast", path: "Modules/Toast")
             ]
         ),

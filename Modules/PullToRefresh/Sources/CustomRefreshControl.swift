@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import SnapKit
+
 import SharedResources
+import SnapKit
 
 public class CustomRefreshControl: UIRefreshControl {
     public var initialContentOffsetY: Double = 0.0

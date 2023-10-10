@@ -11,7 +11,6 @@ import UIKit
 import CombineCocoa
 import DynamicTabView
 import Loading
-import FilterBottomSheet
 import SnapKit
 import PolzzakUIKit
 import PullToRefresh
@@ -85,6 +84,7 @@ final class CouponListViewController: UIViewController {
         collectionView.register(NotLinkCell.self, forCellWithReuseIdentifier: NotLinkCell.reuseIdentifier)
         
         customRefreshControl.observe(scrollView: collectionView)
+        customRefreshControl.layer.zPosition = -1
         collectionView.refreshControl = customRefreshControl
         return collectionView
     }()
@@ -193,10 +193,8 @@ extension CouponListViewController {
         viewModel.shouldEndRefreshing
             .receive(on: DispatchQueue.main)
             .sink { [weak self] bool in
-                if true == bool {
-                    self?.viewModel.resetPullToRefreshSubjects()
-                }
                 self?.customRefreshControl.endRefreshing()
+                self?.viewModel.resetPullToRefreshSubjects()
             }
             .store(in: &cancellables)
         
@@ -271,8 +269,9 @@ extension CouponListViewController {
         viewModel.showErrorAlertSubject
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
-            .sink { [weak self] error in
-                
+            .sink { _ in
+                let error = PolzzakError.userError.description
+                Toast(type: .error(error)).show()
             }
             .store(in: &cancellables)
     }
@@ -284,11 +283,10 @@ extension CouponListViewController {
         case .section(let memberId):
             guard let section = viewModel.sectionOfMember(with: memberId) else { return }
             let family = viewModel.dataList.value[section].family
-            if viewModel.userType == .child {
-                filterView.handleChildSectionFilterButtonTap(with: family)
-            } else {
-                filterView.handleParentSectionFilterButtonTap(with: family)
-            }
+            let nickname = family.nickname
+            let memberName = family.memberType.detail ?? ""
+            let isParent = viewModel.userType == .parent
+            filterView.handleSectionFilterButtonTap(isParent: isParent, nickname: nickname, memberName: memberName)
         case .none:
             break
         }
@@ -545,8 +543,9 @@ extension CouponListViewController: CollectionLayoutConfigurable {
 
 extension CouponListViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        customRefreshControl.resetRefreshControl()
-        viewModel.resetPullToRefreshSubjects()
+        if true == viewModel.isApiFinishedLoadingSubject.value {
+            customRefreshControl.resetRefreshControl()
+        }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

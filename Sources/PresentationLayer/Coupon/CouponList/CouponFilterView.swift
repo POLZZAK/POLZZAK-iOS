@@ -8,7 +8,6 @@
 import UIKit
 
 import Extension
-import FilterBottomSheet
 import PolzzakUIKit
 import SnapKit
 
@@ -50,16 +49,22 @@ public final class CouponFilterView: BaseFilterView {
         nameStackView.isHidden = true
     }
     
-    func handleChildSectionFilterButtonTap(with family: FamilyMember) {
-        super.handleChildSectionFilterButtonTap(with: family)
+    func handleSectionFilterButtonTap(isParent: Bool, nickname: String, memberName: String) {
+        super.handleSectionFilterButtonTap(isParent: isParent, nickname: nickname, memberName: memberName)
         nameStackView.isHidden = false
         headerLabel.text = "From"
     }
     
-    func handleParentSectionFilterButtonTap(with family: FamilyMember) {
-        super.handleParentSectionFilterButtonTap(with: family)
-        nameStackView.isHidden = false
-        headerLabel.text = "To"
-    }
+//    func handleChildSectionFilterButtonTap(with family: FamilyMember) {
+//        super.handleChildSectionFilterButtonTap(with: family)
+//        nameStackView.isHidden = false
+//        headerLabel.text = "From"
+//    }
+//    
+//    func handleParentSectionFilterButtonTap(with family: FamilyMember) {
+//        super.handleParentSectionFilterButtonTap(with: family)
+//        nameStackView.isHidden = false
+//        headerLabel.text = "To"
+//    }
 }
 

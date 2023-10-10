@@ -8,14 +8,16 @@
 import Combine
 import Foundation
 
+import InfiniteScrollLoader
 import Loading
 import PullToRefresh
 
-final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtocol, ErrorHandlingProtocol {
+final class NotificationViewModel: PullToRefreshProtocol, InfiniteScrollingViewModel, LoadingViewModelProtocol, ErrorHandlingProtocol {
     var cancellables = Set<AnyCancellable>()
     var isApiFinishedLoadingSubject = CurrentValueSubject<Bool, Never>(false)
     var didEndDraggingSubject = PassthroughSubject<Bool, Never>()
-    var shouldEndRefreshing = PassthroughSubject<Bool, Never>()
+    var shouldEndRefreshing = PassthroughSubject<Void, Never>()
+    var rechedBottomSubject = CurrentValueSubject<Bool, Never>(false)
     
     private let repository: NotificationDataRepository
     var userType: UserType
@@ -26,7 +28,6 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
     
     var isSkeleton = CurrentValueSubject<Bool, Never>(true)
     var isCenterLoading = CurrentValueSubject<Bool, Never>(false)
-    var rechedBottomSubject = CurrentValueSubject<Bool, Never>(false)
     var showErrorAlertSubject = PassthroughSubject<Error, Never>()
     
     init(repository: NotificationDataRepository) {
@@ -39,18 +40,12 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
         setupBottomRefreshBindings()
     }
     
-    private func setupBottomRefreshBindings() {
-        rechedBottomSubject.combineLatest(didEndDraggingSubject)
-            .map { rechedBottom, _ -> Bool in
-                return rechedBottom
-            }
+    func setupBottomRefreshBindings() {
+        rechedBottomSubject
             .filter { $0 }
             .filter { [weak self] _ in
-                return false == self?.isCenterLoading.value
-            }
-            .filter { [weak self] _ in
                 guard let self else { return false }
-                return self.notificationList.count >= 10
+                return (saveStartID != nil) && self.notificationList.count >= 10
             }
             .sink { [weak self] _ in
                 self?.fetchNotificationList(for: true)
@@ -58,7 +53,7 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
             .store(in: &cancellables)
     }
     
-    func loadData(for centerLoading: Bool = false) {
+    func reloadData(for centerLoading: Bool = false) {
         guard false == isSkeleton.value else { return }
         saveStartID = nil
         fetchNotificationList(for: centerLoading, more: false)
@@ -82,10 +77,11 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
             showLoading(for: centerLoading)
             
             if true == isFirst {
-                self.shouldEndRefreshing.send(true)
+                self.shouldEndRefreshing.send()
             }
             
             do {
+                isApiFinishedLoadingSubject.send(false)
                 let result = try await repository.fetchNotificationList(with: saveStartID)
                 guard let result else { return }
                 if false == more {
@@ -140,10 +136,6 @@ final class NotificationViewModel: PullToRefreshProtocol, LoadingViewModelProtoc
         } catch {
             handleError(error)
         }
-    }
-    
-    func resetBottomRefreshSubjects() {
-        self.rechedBottomSubject.send(false)
     }
     
     func fetchNotificationSettingList() {
