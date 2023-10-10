@@ -30,8 +30,8 @@ extension UserInfoTarget: BasicTargetType {
     
     var headers: [String : String]? {
         var headers = ["Content-Type": "application/json"]
-        if let accessToken = UserInfoManager.readToken(type: .access),
-           let refreshToken = UserInfoManager.readToken(type: .refresh) {
+        if let accessToken = UserInfoManager.PolzzakToken.readToken(type: .access),
+           let refreshToken = UserInfoManager.PolzzakToken.readToken(type: .refresh) {
             headers.updateValue("Bearer \(accessToken)", forKey: "Authorization")
             headers.updateValue("RefreshToken=\(refreshToken)", forKey: "Cookie")
         }

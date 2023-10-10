@@ -14,8 +14,9 @@ enum Constants {
     }
     
     enum KeychainKey {
-        static let accessToken = "accessToken"
-        static let refreshToken = "refreshToken"
+        static let polzzakAccessToken = "accessToken"
+        static let polzzakRefreshToken = "refreshToken"
+        static let fcmToken = "fcmToken"
         static let registerUsername = "registerUsername"
         static let registerSocialType = "registerSocialType"
     }

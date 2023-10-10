@@ -13,7 +13,7 @@ class TokenInterceptor: RequestInterceptor {
     func adapt(for urlRequest: URLRequest) async throws -> URLRequest {
         var urlRequest = urlRequest
         
-        if let accessToken = UserInfoManager.readToken(type: .access) {
+        if let accessToken = UserInfoManager.PolzzakToken.readToken(type: .access) {
             urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
         
@@ -39,8 +39,8 @@ class TokenInterceptor: RequestInterceptor {
                 print("TokenInterceptor -")
                 print("🥬🪙 refreshed accessToken: ", accessToken)
                 print("🥬🪙 refreshed refreshToken: ", refreshToken)
-                UserInfoManager.saveToken(accessToken, type: .access)
-                UserInfoManager.saveToken(refreshToken, type: .refresh)
+                UserInfoManager.PolzzakToken.saveToken(accessToken, type: .access)
+                UserInfoManager.PolzzakToken.saveToken(refreshToken, type: .refresh)
                 return .retry
             } else {
                 let httpResponse = response as? HTTPURLResponse

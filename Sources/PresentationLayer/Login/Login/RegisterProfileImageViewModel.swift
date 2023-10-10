@@ -41,7 +41,7 @@ final class RegisterProfileImageViewModel {
     
     private func requestRegister() {
         guard let memberType = registerModel.memberType, let nickname = registerModel.nickname,
-              let (username, socialType) = UserInfoManager.readRegisterInfo()
+              let (username, socialType) = UserInfoManager.RegisterInfo.readRegisterInfo()
         else { return }
         
         Task { [weak self] in
@@ -56,12 +56,12 @@ final class RegisterProfileImageViewModel {
                 guard let accessToken = dto?.data?.accessToken else { return }
                 print("✅ register success!")
                 print("🪙 accessToken: ", accessToken)
-                UserInfoManager.saveToken(accessToken, type: .access)
+                UserInfoManager.PolzzakToken.saveToken(accessToken, type: .access)
                 if let refreshToken = httpResponse.getRefreshTokenFromCookie() {
                     print("🪙 refreshToken: ", refreshToken)
-                    UserInfoManager.saveToken(refreshToken, type: .refresh)
+                    UserInfoManager.PolzzakToken.saveToken(refreshToken, type: .refresh)
                 }
-                UserInfoManager.deleteRegisterInfo()
+                UserInfoManager.RegisterInfo.deleteRegisterInfo()
                 output.send(.showMain)
             case 400:
                 print("⚠️ failed register")

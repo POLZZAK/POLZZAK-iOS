@@ -33,7 +33,7 @@ final class LinkManagementViewModel {
         self.repository = repository
         
         //TODO: - DTO에서 Model로 변환할때 UserType을 단순하게 부모인지 아이인지 변환하고 UserInfo에서 사용하는 Model에 userType을 추가했으면 좋겠음.
-        let userInfo = UserInfoManager.readUserInfo()
+        let userInfo = UserInfoManager.UserInfo.readUserInfo()
         userType = (userInfo?.memberType.detail == "아이" ? .child : .parent)
     }
     

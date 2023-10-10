@@ -51,11 +51,11 @@ final class InitialLoadingViewController: UIViewController {
         case 200..<300:
             let dto = try? JSONDecoder().decode(UserInfoDTO.self, from: data)
             guard let data = dto?.data else { return }
-            UserInfoManager.saveUserInfo(data)
+            UserInfoManager.UserInfo.saveUserInfo(data)
             AppFlowController.shared.showHome()
         default: // TODO: 네트워크 연결이 끊겼을 경우 여기를 탈 것으로 예상되는데 그 떄는 로그인 화면으로 가면 안 될듯.. 처리 필요할듯
-            UserInfoManager.deleteToken(type: .access)
-            UserInfoManager.deleteToken(type: .refresh)
+            UserInfoManager.PolzzakToken.deleteToken(type: .access)
+            UserInfoManager.PolzzakToken.deleteToken(type: .refresh)
             AppFlowController.shared.showLogin()
         }
         
