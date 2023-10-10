@@ -7,7 +7,7 @@
 
 import Foundation
 
-import Extension //Error
+import Extension
 
 final class DetailBoardRepository {
     private let stampBoardID: Int
@@ -31,11 +31,11 @@ final class DetailBoardRepository {
                 return .fail(statusCode: statusCode)
             }
         } catch {
+            os_log(log: .polzzakAPI, errorDescription: String(describing: error))
             if let urlError = error as? URLError {
                 // TODO: URLError의 timedOut, networkConnectionLost, notConnectedToInternet에 대해 공통처리 하는 부분은 빼도 좋지 않을까?
                 return .urlError(urlError)
             }
-            os_log(log: .polzzakAPI, errorDescription: String(describing: error))
             return .unknown(error)
         }
     }

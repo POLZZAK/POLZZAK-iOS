@@ -44,8 +44,7 @@ final class RegisterProfileImageViewModel {
               let (username, socialType) = UserInfoManager.RegisterInfo.readRegisterInfo()
         else { return }
         
-        Task { [weak self] in
-            guard let self else { return }
+        Task {
             guard let (data, response) = try? await AuthAPI.register(username: username, socialType: socialType, memberType: memberType, nickname: nickname, image: registerModel.profileImage) else { return }
             guard let httpResponse = response as? HTTPURLResponse else { return }
             let statusCode = httpResponse.statusCode

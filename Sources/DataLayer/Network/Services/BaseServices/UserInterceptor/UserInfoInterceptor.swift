@@ -19,6 +19,7 @@ class UserInfoInterceptor: RequestInterceptor {
     }
     
     func retry(previousData: Data, response: URLResponse) async throws -> RetryResult {
+        // TODO: statusCode가 400 말고 그냥 UserInfo get이 실패했을 경우에 retry 하는게 좋지않을까?
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400,
               let data = try? JSONDecoder().decode(BaseResponseDTO<String>.self, from: previousData),
               let accessToken = data.data,

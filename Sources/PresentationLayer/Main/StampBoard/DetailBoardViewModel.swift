@@ -6,7 +6,6 @@
 //
 
 import Combine
-import Foundation
 
 final class DetailBoardViewModel {
     enum Action {

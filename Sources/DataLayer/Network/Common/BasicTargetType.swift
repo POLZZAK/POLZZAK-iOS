@@ -15,12 +15,17 @@ extension BasicTargetType {
     func getURLRequest() throws -> URLRequest {
         let url = try url()
         var urlRequest = URLRequest(url: url)
-
+        print("😂", bodyParameters)
         // httpBody
-        if let bodyParameters = try bodyParameters?.toDictionary() {
-            if !bodyParameters.isEmpty {
-                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: bodyParameters)
+        do {
+            if let bodyParameters = try bodyParameters?.toDictionary() {
+                print("💀 ", bodyParameters)
+                if !bodyParameters.isEmpty {
+                    urlRequest.httpBody = try JSONSerialization.data(withJSONObject: bodyParameters)
+                }
             }
+        } catch {
+            print("💀 ", error)
         }
 
         // httpMethod
