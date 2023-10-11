@@ -7,7 +7,7 @@
         # Directories
         REPOSITORY_DIR="${PROJECT_DIR}/Sources/DataLayer/Repositories"
         MAPPER_DIR="${PROJECT_DIR}/Sources/DataLayer/Network/Mappers"
-        BASIC_SERVICE_DIR="${PROJECT_DIR}/Sources/Network/NetworkService"
+        BASIC_SERVICE_DIR="${PROJECT_DIR}/Sources/DataLayer/Network/Services"
         SERVICE_DIR="${PROJECT_DIR}/Sources/DataLayer/Network/Services"
 
         # Directories Mocks
@@ -28,7 +28,7 @@
         generate_mock "${REPOSITORY_DIR}/NotificationRepository.swift" "${MOCK_REPOSITORY_DIR}/MockNotificationRepository.swift"
 
         # Services Mocks
-        generate_mock "${BASIC_SERVICE_DIR}/NetworkService.swift" "${MOCK_SERVICE_DIR}/MockNetworkServiceProvider.swift"
+        generate_mock "${BASIC_SERVICE_DIR}/BaseServices/NetworkService.swift" "${MOCK_SERVICE_DIR}/MockNetworkServiceProvider.swift"
         generate_mock "${SERVICE_DIR}/StampBoardsService.swift" "${MOCK_SERVICE_DIR}/MockStampBoardsService.swift"
         generate_mock "${SERVICE_DIR}/LinkManagementService.swift" "${MOCK_SERVICE_DIR}/MockLinkManagementService.swift"
         generate_mock "${SERVICE_DIR}/CouponService.swift" "${MOCK_SERVICE_DIR}/MockCouponService.swift"

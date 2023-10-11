@@ -7,7 +7,7 @@
 
 import Foundation
 
-import Extension
+import ErrorKit
 
 final class DetailBoardRepository {
     private let stampBoardID: Int

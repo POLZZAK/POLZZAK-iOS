@@ -8,15 +8,20 @@
 import Combine
 import UIKit
 
+import InfiniteScrollLoader
 import Loading
 import PullToRefresh
 import SnapKit
+import SwipeToDelete
 import Toast
 
-final class NotificationViewController: UIViewController {
+final class NotificationViewController: UIViewController, InfiniteScrolling {
+    typealias InfiniteScrollingViewModelType = NotificationViewModel
+    var viewModel: NotificationViewModel = NotificationViewModel(repository: NotificationDataRepository())
+    
     enum Constants {
         static let topPadding = 16.0
-        static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: -topPadding, right: 0)
+        static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: topPadding, right: 0)
     }
     
     private var lastContentOffset: CGFloat = 0
@@ -24,7 +29,6 @@ final class NotificationViewController: UIViewController {
     
     private var toast: Toast?
     
-    private let viewModel = NotificationViewModel(repository: NotificationDataRepository())
     private var cancellables = Set<AnyCancellable>()
     
     private let notificationSkeletonView = NotificationSkeletonView()
@@ -43,7 +47,6 @@ final class NotificationViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: NotificationTableViewCell.reuseIdentifier)
         tableView.contentInset = Constants.tableViewContentInset
         tableView.showsVerticalScrollIndicator = false
@@ -137,10 +140,8 @@ extension NotificationViewController {
         viewModel.shouldEndRefreshing
             .receive(on: DispatchQueue.main)
             .sink { [weak self] bool in
-                if true == bool {
-                    self?.viewModel.resetPullToRefreshSubjects()
-                }
                 self?.customRefreshControl.endRefreshing()
+                self?.viewModel.resetPullToRefreshSubjects()
             }
             .store(in: &cancellables)
         
@@ -172,8 +173,9 @@ extension NotificationViewController {
         viewModel.showErrorAlertSubject
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
-            .sink { [weak self] error in
-                
+            .sink { _ in
+                let error = PolzzakError.userError.description
+                Toast(type: .error(error)).show()
             }
             .store(in: &cancellables)
     }
@@ -214,7 +216,7 @@ extension NotificationViewController {
     
     @objc func handleRefresh() {
         customRefreshControl.beginRefreshing()
-        viewModel.loadData()
+        viewModel.reloadData()
     }
 }
 
@@ -230,6 +232,7 @@ extension NotificationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NotificationTableViewCell.reuseIdentifier, for: indexPath) as! NotificationTableViewCell
         cell.delegate = self
+        cell.swipeableDelegate = self
         let notification = viewModel.notificationList[indexPath.section]
         cell.configure(data: notification)
         return cell
@@ -290,39 +293,28 @@ extension NotificationViewController: NotificationTableViewCellDelegate {
             }
         }
     }
-    
-    func didTapRemoveButton(_ cell: NotificationTableViewCell) {
-        if let section = tableView.indexPath(for: cell)?.section {
-            Task {
-                await viewModel.removeNotification(with: section)
-            }
+}
+
+extension NotificationViewController: SwipeableTableViewCellDelegate {
+    func didTapDeleteButton(_ cell: UITableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        Task {
+            await viewModel.removeNotification(with: indexPath.section)
         }
     }
 }
 
+
 extension NotificationViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        customRefreshControl.resetRefreshControl()
-        viewModel.resetPullToRefreshSubjects()
+        if true == viewModel.isApiFinishedLoadingSubject.value {
+            customRefreshControl.resetRefreshControl()
+        }
         viewModel.resetBottomRefreshSubjects()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         viewModel.didEndDraggingSubject.send(true)
-        
-        if decelerate && scrollView.contentOffset.y > lastContentOffset {
-            checkIfReachedBottom(scrollView)
-        }
-    }
-    private func checkIfReachedBottom(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let frameHeight = scrollView.frame.size.height
-
-        if offsetY >= contentHeight - frameHeight + 50 {
-            if viewModel.rechedBottomSubject.value == false {
-                viewModel.rechedBottomSubject.send(true)
-            }
-        }
+        scrollViewDidReachEnd(scrollView)
     }
 }

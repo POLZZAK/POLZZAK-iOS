@@ -5,17 +5,18 @@
 //  Created by POLZZAK_iOS.
 //
 
-import UIKit
 import Combine
-import SnapKit
-import SharedResources
+import UIKit
+
 import PullToRefresh
+import SharedResources
+import SnapKit
 
 final class ViewController: UIViewController {
     enum Constants {
         static let topPadding = 50.0
         static let cellID = "cell"
-        static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: -topPadding, right: 0)
+        static let tableViewContentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: topPadding, right: 0)
     }
     
     private let viewModel = ViewModel()
@@ -28,7 +29,6 @@ final class ViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellID)
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = .gray100
@@ -53,7 +53,8 @@ extension ViewController {
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints {
-            $0.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.trailing.equalToSuperview()
         }
     }
@@ -62,7 +63,6 @@ extension ViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = customRefreshControl
-        
         customRefreshControl.observe(scrollView: tableView)
     }
     
@@ -73,13 +73,9 @@ extension ViewController {
     private func bindViewModel() {
         viewModel.shouldEndRefreshing
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] bool in
-                if true == bool {
-                    self?.customRefreshControl.endRefreshing()
-                    self?.viewModel.resetPullToRefreshSubjects()
-                } else {
-                    self?.customRefreshControl.endRefreshing()
-                }
+            .sink { [weak self] in
+                self?.customRefreshControl.endRefreshing()
+                self?.viewModel.resetPullToRefreshSubjects()
             }
             .store(in: &cancellables)
         
@@ -118,26 +114,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.accessibilityLabel = color.accessibilityDescription
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
-        return headerView
-    }
 }
 
 extension ViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        viewModel.resetPullToRefreshSubjects()
-        customRefreshControl.resetRefreshControl()
+        if true == viewModel.isApiFinishedLoadingSubject.value {
+            customRefreshControl.resetRefreshControl()
+        }
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         viewModel.didEndDraggingSubject.send(true)
-//        print("몇번 나가냐???", viewModel.didEndDraggingSubject.send())
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-import Extension
+import ErrorKit
 
 final class InitialLoadingRepository {
     private let dataMapper = StampBoardDetailMapper()

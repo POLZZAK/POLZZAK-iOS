@@ -7,11 +7,11 @@
 
 import UIKit
 
-import PolzzakUIKit
+import SnapKit
+import SharedResources
 
-open class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate {
+open class BottomSheetViewController: UIViewController, UIViewControllerTransitioningDelegate {
     private var initialDragHandlePosition: CGFloat = 0
-    private let statusBarHeight = UIApplication.shared.statusBarHeight
     private lazy var initialState: BottomSheetState = .short(height: initialHeight)
     
     open var initialHeight: CGFloat {
@@ -24,7 +24,7 @@ open class BottomSheetViewController: UIViewController, UIGestureRecognizerDeleg
         return view
     }()
     
-    private let dragHandleView: UIView = {
+    public let dragHandleView: UIView = {
         let view = UIView()
         return view
     }()
@@ -48,6 +48,15 @@ open class BottomSheetViewController: UIViewController, UIGestureRecognizerDeleg
     open override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
+
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        dragHandleView.addGestureRecognizer(gesture)
+    }
+}
+
+extension BottomSheetViewController {
+    private func setupUI() {
         view.backgroundColor = .white
         
         view.addSubview(dragHandleView)
@@ -65,11 +74,7 @@ open class BottomSheetViewController: UIViewController, UIGestureRecognizerDeleg
             $0.top.bottom.equalToSuperview().inset(12)
             $0.leading.trailing.equalToSuperview().inset(12)
         }
-
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-        dragHandleView.addGestureRecognizer(gesture)
     }
-
     
     public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return BottomSheetPresentationController(presentedViewController: presented, presenting: presenting, initialState: initialState)

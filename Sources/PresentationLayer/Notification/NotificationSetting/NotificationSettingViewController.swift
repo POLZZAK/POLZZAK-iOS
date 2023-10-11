@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Combine
+import Toast
 
 final class NotificationSettingViewController: UIViewController {
     private let viewModel: NotificationViewModel
@@ -139,6 +140,15 @@ extension NotificationSettingViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
                 self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.showErrorAlertSubject
+            .receive(on: DispatchQueue.main)
+            .compactMap { $0 }
+            .sink { _ in
+                let error = PolzzakError.userError.description
+                Toast(type: .error(error)).show()
             }
             .store(in: &cancellables)
     }

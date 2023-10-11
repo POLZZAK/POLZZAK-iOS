@@ -15,7 +15,7 @@ let project = Project(
             deploymentTarget: .iOS(targetVersion: "15.0", devices: .iphone),
             infoPlist: .default,
             sources: ["Sources/**"],
-            resources: [],
+            resources: ["Resources/**"],
             dependencies: [
                 .package(product: "SnapKit"),
                 .project(target: "Extension", path: "../Extension"),

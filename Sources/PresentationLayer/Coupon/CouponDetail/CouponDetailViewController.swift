@@ -616,8 +616,9 @@ extension CouponDetailViewController {
         viewModel.showErrorAlertSubject
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
-            .sink { [weak self] error in
-                self?.showErrorAlert()
+            .sink { _ in
+                let error = PolzzakError.userError.description
+                Toast(type: .error(error)).show()
             }
             .store(in: &cancellables)
     }

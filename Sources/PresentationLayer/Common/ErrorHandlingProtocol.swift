@@ -9,7 +9,6 @@ import Combine
 import Foundation
 
 import os.log
-import Extension
 
 protocol ErrorHandlingProtocol {
     var showErrorAlertSubject: PassthroughSubject<Error, Never> { get }

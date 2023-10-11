@@ -7,7 +7,7 @@
 
 import Foundation
 
-import Extension
+import ErrorKit
 
 struct PushTokenAPI {
     typealias APIReturnType = (Data, URLResponse)
