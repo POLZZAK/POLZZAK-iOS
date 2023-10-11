@@ -47,12 +47,11 @@ final class RegisterUserTypeViewModel {
     
     private func requestMemberTypes() {
         state.isLoading = true
-        Task { [weak self] in
+        Task {
             defer {
                 state.isLoading = false
             }
             
-            guard let self else { return }
             guard let (data, response) = try? await MemberTypeAPI.getMemberTypes() else { return }
             guard let httpResponse = response as? HTTPURLResponse else { return }
             let statusCode = httpResponse.statusCode

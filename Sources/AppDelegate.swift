@@ -27,52 +27,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: Initialization
-        private func initializeKakaoSDK() {
-            KakaoSDK.initSDK(appKey: Constants.KakaoKey.nativeAppKey)
-        }
+    private func initializeKakaoSDK() {
+        KakaoSDK.initSDK(appKey: Constants.KakaoKey.nativeAppKey)
+    }
+    
+    private func checkFirstLaunch() {
+        UserInfoManager.checkFirstLaunch()
+    }
+    
+    private func initializeFirebase() {
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+    }
+    
+    private func registerFont() {
+        UIFont.registerFont()
+    }
+    
+    private func setupNotifications(for application: UIApplication) {
+        UNUserNotificationCenter.current().delegate = self
         
-        private func checkFirstLaunch() {
-            UserInfoManager.checkFirstLaunch()
-        }
-        
-        private func initializeFirebase() {
-            FirebaseApp.configure()
-            Messaging.messaging().delegate = self
-        }
-        
-        private func registerFont() {
-            UIFont.registerFont()
-        }
-        
-        private func setupNotifications(for application: UIApplication) {
-            UNUserNotificationCenter.current().delegate = self
-            
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: { granted, error in
-                    if let error = error {
-                        print("Error requesting authorization: \(error)")
-                        return
-                    }
-                    
-                    if granted {
-                        DispatchQueue.main.async {
-                            application.registerForRemoteNotifications()
-                        }
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: { granted, error in
+                if let error = error {
+                    print("Error requesting authorization: \(error)")
+                    return
+                }
+                
+                if granted {
+                    DispatchQueue.main.async {
+                        application.registerForRemoteNotifications()
                     }
                 }
-            )
-        }
-
+            }
+        )
+    }
+    
     // MARK: UISceneSession Lifecycle
-
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
@@ -84,11 +84,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
     }
-
 }
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("fcmToken: \(fcmToken)")
+        guard let fcmToken else { return }
+        UserInfoManager.FCMToken.saveToken(fcmToken)
     }
 }

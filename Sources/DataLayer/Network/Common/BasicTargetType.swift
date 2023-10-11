@@ -15,7 +15,7 @@ extension BasicTargetType {
     func getURLRequest() throws -> URLRequest {
         let url = try url()
         var urlRequest = URLRequest(url: url)
-
+        
         // httpBody
         if let bodyParameters = try bodyParameters?.toDictionary() {
             if !bodyParameters.isEmpty {

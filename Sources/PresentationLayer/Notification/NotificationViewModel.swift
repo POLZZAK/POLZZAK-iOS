@@ -33,7 +33,7 @@ final class NotificationViewModel: PullToRefreshProtocol, InfiniteScrollingViewM
     init(repository: NotificationDataRepository) {
         self.repository = repository
         
-        let userInfo = UserInfoManager.readUserInfo()
+        let userInfo = UserInfoManager.UserInfo.readUserInfo()
         userType = (userInfo?.memberType.detail == "아이" ? .child : .parent)
         
         setupPullToRefreshBinding()

@@ -6,7 +6,6 @@
 //
 
 import Combine
-import Foundation
 
 final class DetailBoardViewModel {
     enum Action {
@@ -57,7 +56,7 @@ final class DetailBoardViewModel {
     }
     
     private func getMemberType() {
-        guard let userInfo = UserInfoManager.readUserInfo() else { return }
+        guard let userInfo = UserInfoManager.UserInfo.readUserInfo() else { return }
         userInfo.memberType
     }
 }

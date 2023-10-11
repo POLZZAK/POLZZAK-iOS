@@ -62,10 +62,10 @@ extension LoginViewModel {
             guard let accessToken = dto?.data?.accessToken else { return }
             print("✅ login success!")
             print("🪙 accessToken: ", accessToken)
-            UserInfoManager.saveToken(accessToken, type: .access)
+            UserInfoManager.PolzzakToken.saveToken(accessToken, type: .access)
             if let refreshToken = httpResponse.getRefreshTokenFromCookie() {
                 print("🪙 refreshToken: ", refreshToken)
-                UserInfoManager.saveToken(refreshToken, type: .refresh)
+                UserInfoManager.PolzzakToken.saveToken(refreshToken, type: .refresh)
             }
             output.send(.showMainScreen)
         case 400: // 회원가입 필요
@@ -74,7 +74,7 @@ extension LoginViewModel {
             print("⚠️ need register")
             print("username: ", needRegisterDTO.username)
             print("socialType: ", needRegisterDTO.socialType)
-            UserInfoManager.saveRegisterInfo(username: needRegisterDTO.username, socialType: needRegisterDTO.socialType)
+            UserInfoManager.RegisterInfo.saveRegisterInfo(username: needRegisterDTO.username, socialType: needRegisterDTO.socialType)
             output.send(.showRegisterScreen)
         case 401: // 소셜 로그인 실패
             let dto = try? JSONDecoder().decode(BaseResponseDTO<String>.self, from: data)
