@@ -10,8 +10,6 @@ import Foundation
 import ErrorKit
 
 final class InitialLoadingRepository {
-    private let dataMapper = StampBoardDetailMapper()
-    
     func fetchUserInfoAndPostFCMToken() async -> InitialLoadingRepositoryResult {
         do {
             let result = try await UserAPI.getUserInfo()
