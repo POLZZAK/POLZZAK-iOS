@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol MissionAddViewDelegate: AnyObject {
+    func didUpdateHeight(add height: CGFloat)
+}
+
 final class MissionAddView: UICollectionView {
-    private let stampSizeList: [Int] = StampSize.allCases.map { $0.rawValue.count }
+    private var missionList: [String?] = [nil, nil, nil]
+    
+    weak var heightUpdateDelegate: MissionAddViewDelegate?
     
     init() {
         let layout = MissionAddView.getLayout()
@@ -46,7 +52,7 @@ extension MissionAddView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 3
+            return missionList.count
         case 1...2:
             return 1
         default:
@@ -58,7 +64,21 @@ extension MissionAddView: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissonAddTextFieldCell.reuseIdentifier, for: indexPath) as? MissonAddTextFieldCell else { fatalError("Couldn't dequeue MissonAddTextFieldCell") }
+            cell.configureTextField(text: missionList[indexPath.item])
             cell.cellHeightUpdateDelegate = self
+            cell.bindTextField { [weak self] text in
+                guard let self, indexPath.item < missionList.count else { return }
+                missionList[indexPath.item] = text
+            }
+            cell.bindDeleteButton { [weak self] in
+                guard let self else { return }
+                performBatchUpdates {
+                    guard let indexPath = collectionView.indexPath(for: cell) else { return }
+                    self.missionList.remove(at: indexPath.item)
+                    self.deleteItems(at: [indexPath])
+                }
+                heightUpdateDelegate?.didUpdateHeight(add: 0)
+            }
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissonAddButtonCell.reuseIdentifier, for: indexPath) as? MissonAddButtonCell else { fatalError("Couldn't dequeue MissonAddButtonCell") }
@@ -77,11 +97,10 @@ extension MissionAddView: UICollectionViewDataSource {
 // MARK: - MissonAddTextFieldCellDelegate
 
 extension MissionAddView: MissonAddTextFieldCellDelegate {
-    func didUpdateHeight() {
-        print("?C?C?C?C?")
-        self.performBatchUpdates {
+    func didUpdateHeight(add height: CGFloat) {
+        performBatchUpdates {
             self.collectionViewLayout.invalidateLayout()
-            self.layoutIfNeeded()
+            self.heightUpdateDelegate?.didUpdateHeight(add: height)
         }
     }
 }

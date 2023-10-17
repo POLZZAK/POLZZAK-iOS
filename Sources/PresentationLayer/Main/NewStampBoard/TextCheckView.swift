@@ -36,7 +36,7 @@ final class TextCheckView: UIView {
         return label
     }()
     
-    let textField = CheckTextField()
+    private let textField = CheckTextField()
     
     private let labelStackView: UIStackView = {
         let stackView = UIStackView()
@@ -66,8 +66,21 @@ final class TextCheckView: UIView {
         return label
     }()
     
+    var textFieldFirstResponderChanged: AnyPublisher<CheckTextField.FirstResponderEvent, Never> {
+        return textField.firstResponderChanged
+    }
+    
+    var textFieldTextPublisher: AnyPublisher<String?, Never> {
+        return textField.textPublisher
+    }
+    
     var text: String? {
-        return textField.text
+        get {
+            return textField.text
+        }
+        set {
+            textField.text = newValue
+        }
     }
     
     init(frame: CGRect = .zero, type: TextCheckViewType) {

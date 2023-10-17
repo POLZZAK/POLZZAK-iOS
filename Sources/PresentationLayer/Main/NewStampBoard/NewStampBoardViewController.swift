@@ -56,12 +56,7 @@ final class NewStampBoardViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if isLayoutConfigured {
-            missionAddView.layoutIfNeeded()
-            let missionAddViewHeight = missionAddView.collectionViewLayout.collectionViewContentSize.height
-            missionAddViewHeightConstraint?.deactivate()
-            missionAddView.snp.makeConstraints { make in
-                missionAddViewHeightConstraint = make.height.equalTo(missionAddViewHeight+Constants.missionAddViewTopInset*2).constraint
-            }
+            updateMissionAddViewHeight()
         }
     }
     
@@ -70,6 +65,7 @@ final class NewStampBoardViewController: UIViewController {
         stampSizeSelectionView.alwaysBounceVertical = false
         missionAddView.contentInset = .init(top: Constants.missionAddViewTopInset, left: 0, bottom: Constants.missionAddViewTopInset, right: 0)
         missionAddView.alwaysBounceVertical = false
+        missionAddView.heightUpdateDelegate = self
     }
     
     private func configureLayout() {
@@ -163,5 +159,20 @@ final class NewStampBoardViewController: UIViewController {
                 self?.dismiss(animated: true)
             }
             .store(in: &cancellables)
+    }
+    
+    private func updateMissionAddViewHeight(add height: CGFloat = 0) {
+        missionAddView.layoutIfNeeded()
+        let missionAddViewHeight = missionAddView.collectionViewLayout.collectionViewContentSize.height
+        missionAddViewHeightConstraint?.deactivate()
+        missionAddView.snp.makeConstraints { make in
+            missionAddViewHeightConstraint = make.height.equalTo(missionAddViewHeight+Constants.missionAddViewTopInset*2+height).constraint
+        }
+    }
+}
+
+extension NewStampBoardViewController: MissionAddViewDelegate {
+    func didUpdateHeight(add height: CGFloat) {
+        updateMissionAddViewHeight(add: height) // 20을 추가한 이유는 MissionAddTextFieldCell의 높이가 20만큼 늘어나기 때문이다.
     }
 }

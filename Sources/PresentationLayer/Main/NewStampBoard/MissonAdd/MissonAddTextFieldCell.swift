@@ -11,13 +11,14 @@ import UIKit
 import SnapKit
 
 protocol MissonAddTextFieldCellDelegate: AnyObject {
-    func didUpdateHeight()
+    func didUpdateHeight(add height: CGFloat)
 }
 
 class MissonAddTextFieldCell: UICollectionViewCell {
     static let reuseIdentifier = "MissonAddTextFieldCell"
     
     private var cancellables = Set<AnyCancellable>()
+    private var cancellablesForReuse = Set<AnyCancellable>()
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -52,6 +53,32 @@ class MissonAddTextFieldCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        print("✅")
+        cancellablesForReuse = .init()
+    }
+    
+    func bindTextField(action: @escaping (String?) -> Void) {
+        textCheckView.textFieldTextPublisher
+            .sink { text in
+                action(text)
+            }
+            .store(in: &cancellablesForReuse)
+    }
+    
+    func bindDeleteButton(action: @escaping () -> Void) {
+        deleteButton.tapPublisher
+            .sink { _ in
+                action()
+            }
+            .store(in: &cancellablesForReuse)
+    }
+    
+    func configureTextField(text: String?) {
+        textCheckView.text = text
+    }
 }
 
 extension MissonAddTextFieldCell {
@@ -65,11 +92,12 @@ extension MissonAddTextFieldCell {
     }
     
     private func configureBinding() {
-        textCheckView.textField.firstResponderChanged
+        textCheckView.textFieldFirstResponderChanged
             .sink { [weak self] event in
                 switch event {
                 case .become:
                     self?.updateHeight(Constants.activeHeight)
+                    self?.cellHeightUpdateDelegate?.didUpdateHeight(add: 20)
                 case .resign:
                     self?.updateHeight(Constants.inactiveHeight)
                 }
@@ -84,7 +112,7 @@ extension MissonAddTextFieldCell {
         
         textCheckView.snp.makeConstraints { make in
             make.verticalEdges.leading.equalToSuperview()
-            cellHeightConstraint = make.height.equalTo(Constants.inactiveHeight).constraint
+            cellHeightConstraint = make.height.equalTo(Constants.inactiveHeight).priority(.init(999)).constraint
         }
         
         deleteButton.snp.makeConstraints { make in
@@ -99,11 +127,9 @@ extension MissonAddTextFieldCell {
     }
     
     private func updateHeight(_ height: CGFloat) {
-        print("updateHeight")
         cellHeightConstraint?.deactivate()
         textCheckView.snp.makeConstraints { make in
-            cellHeightConstraint = make.height.equalTo(height).constraint
+            cellHeightConstraint = make.height.equalTo(height).priority(.init(999)).constraint
         }
-        cellHeightUpdateDelegate?.didUpdateHeight()
     }
 }

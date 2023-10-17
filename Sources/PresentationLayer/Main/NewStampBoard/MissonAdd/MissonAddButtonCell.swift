@@ -32,6 +32,7 @@ class MissonAddButtonCell: UICollectionViewCell {
 //        button.layer.borderColor = UIColor.gray300.cgColor
 //        button.layer.borderWidth = 1
 //        button.layer.cornerRadius = 8
+        button.backgroundColor = .green
         return button
     }()
     
@@ -63,7 +64,7 @@ extension MissonAddButtonCell {
         
         missonAddButton.snp.makeConstraints { make in
             make.verticalEdges.leading.equalToSuperview()
-            make.height.equalTo(45)
+            make.height.equalTo(45).priority(.init(999))
         }
         
         missonAddButton.addLineDashedStroke(pattern: [2, 2], radius: 8, color: UIColor.gray.cgColor)
