@@ -56,7 +56,6 @@ class MissonAddTextFieldCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        print("✅")
         cancellablesForReuse = .init()
     }
     
@@ -70,7 +69,7 @@ class MissonAddTextFieldCell: UICollectionViewCell {
     
     func bindDeleteButton(action: @escaping () -> Void) {
         deleteButton.tapPublisher
-            .sink { _ in
+            .sink {
                 action()
             }
             .store(in: &cancellablesForReuse)
@@ -100,6 +99,7 @@ extension MissonAddTextFieldCell {
                     self?.cellHeightUpdateDelegate?.didUpdateHeight(add: 20)
                 case .resign:
                     self?.updateHeight(Constants.inactiveHeight)
+                    self?.cellHeightUpdateDelegate?.didUpdateHeight(add: 0)
                 }
             }
             .store(in: &cancellables)

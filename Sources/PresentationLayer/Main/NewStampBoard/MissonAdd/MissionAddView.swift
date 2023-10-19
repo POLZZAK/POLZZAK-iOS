@@ -67,6 +67,7 @@ extension MissionAddView: UICollectionViewDataSource {
             cell.configureTextField(text: missionList[indexPath.item])
             cell.cellHeightUpdateDelegate = self
             cell.bindTextField { [weak self] text in
+                print(indexPath.item)
                 guard let self, indexPath.item < missionList.count else { return }
                 missionList[indexPath.item] = text
             }
@@ -82,7 +83,15 @@ extension MissionAddView: UICollectionViewDataSource {
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissonAddButtonCell.reuseIdentifier, for: indexPath) as? MissonAddButtonCell else { fatalError("Couldn't dequeue MissonAddButtonCell") }
-            
+            cell.bindAddButton { [weak self] in
+                guard let self else { return }
+                performBatchUpdates {
+                    self.missionList.append(nil)
+                    let indexPath = IndexPath(item: self.missionList.count - 1, section: 0)
+                    self.insertItems(at: [indexPath])
+                }
+                heightUpdateDelegate?.didUpdateHeight(add: 0)
+            }
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissionExampleButtonCell.reuseIdentifier, for: indexPath) as? MissionExampleButtonCell else { fatalError("Couldn't dequeue MissionExampleButtonCell") }
