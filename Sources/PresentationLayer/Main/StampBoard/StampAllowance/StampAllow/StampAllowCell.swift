@@ -51,6 +51,10 @@ final class StampAllowCell: UICollectionViewListCell {
 }
 
 extension StampAllowCell {
+    func configureTitleLabel(text: String?) {
+        titleLabel.text = text
+    }
+    
     func selectCell() {
         wrapperView.layer.borderColor = UIColor.blue500.cgColor
         wrapperView.backgroundColor = .blue100

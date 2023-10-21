@@ -7,6 +7,8 @@
 
 import UIKit
 
+import PanModal
+
 protocol MissionAddViewDelegate: AnyObject {
     func didUpdateHeight(add height: CGFloat)
 }
@@ -20,7 +22,6 @@ final class MissionAddView: UICollectionView {
         let layout = MissionAddView.getLayout()
         super.init(frame: .zero, collectionViewLayout: layout)
         configureView()
-        configureLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -32,9 +33,7 @@ final class MissionAddView: UICollectionView {
         register(MissonAddButtonCell.self, forCellWithReuseIdentifier: MissonAddButtonCell.reuseIdentifier)
         register(MissionExampleButtonCell.self, forCellWithReuseIdentifier: MissionExampleButtonCell.reuseIdentifier)
         dataSource = self
-    }
-    
-    private func configureLayout() {
+        
         backgroundColor = .white
         layer.cornerRadius = 8
         layer.borderWidth = 1
@@ -67,7 +66,6 @@ extension MissionAddView: UICollectionViewDataSource {
             cell.configureTextField(text: missionList[indexPath.item])
             cell.cellHeightUpdateDelegate = self
             cell.bindTextField { [weak self] text in
-                print(indexPath.item)
                 guard let self, indexPath.item < missionList.count else { return }
                 missionList[indexPath.item] = text
             }
@@ -95,7 +93,11 @@ extension MissionAddView: UICollectionViewDataSource {
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissionExampleButtonCell.reuseIdentifier, for: indexPath) as? MissionExampleButtonCell else { fatalError("Couldn't dequeue MissionExampleButtonCell") }
-            
+            cell.bindExampleButton {
+                let topVC = UIApplication.getTopViewController()
+                let vc = MissionExampleSelectingViewController()
+                topVC?.presentPanModal(vc)
+            }
             return cell
         default:
             fatalError("")

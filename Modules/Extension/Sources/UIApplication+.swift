@@ -12,7 +12,7 @@ public extension UIApplication {
         return UIApplication
             .shared
             .connectedScenes
-        //TODO: - 수정필요
+        // TODO: - 수정필요?: 아래 주석처리된 줄이 필요한지 알아봐야함
 //            .filter { $0.activationState == .foregroundActive }
             .compactMap { $0 as? UIWindowScene }
             .flatMap { $0.windows }

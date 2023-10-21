@@ -5,12 +5,16 @@
 //  Created by Jinyoung Kim on 2023/09/16.
 //
 
+import Combine
 import UIKit
 
+import CombineCocoa
 import SnapKit
 
 class MissionExampleButtonCell: UICollectionViewCell {
     static let reuseIdentifier = "MissionExampleButtonCell"
+    
+    private var cancellablesForReuse = Set<AnyCancellable>()
     
     private let missonExampleButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -35,6 +39,19 @@ class MissionExampleButtonCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellablesForReuse = .init()
+    }
+    
+    func bindExampleButton(action: @escaping () -> Void) {
+        missonExampleButton.tapPublisher
+            .sink {
+                action()
+            }
+            .store(in: &cancellablesForReuse)
     }
 }
 
