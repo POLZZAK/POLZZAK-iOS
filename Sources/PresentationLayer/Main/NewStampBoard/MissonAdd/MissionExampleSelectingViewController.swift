@@ -12,6 +12,10 @@ import CombineCocoa
 import PanModal
 import SnapKit
 
+protocol MissionExampleSelectingDelegate: AnyObject {
+    func didSelectMissionExamples(missionExamples: [String])
+}
+
 final class MissionExampleSelectingViewController: UIViewController, PanModalPresentable {
     private enum Constants {
         static let basicInset: CGFloat = 16
@@ -19,7 +23,9 @@ final class MissionExampleSelectingViewController: UIViewController, PanModalPre
     
     private var cancellables = Set<AnyCancellable>()
     
-    private let missionExamples = POLZZAK.Constants.Text.missionExamples
+    private let missionCountUserCanAdd: Int
+    
+    private let viewModel: MissionExampleSelectingViewModel
     
     private let labelStackView: UIStackView = {
         let stackView = UIStackView()
@@ -59,7 +65,11 @@ final class MissionExampleSelectingViewController: UIViewController, PanModalPre
         return button
     }()
     
-    init() {
+    weak var missionExampleSelectingDelegate: MissionExampleSelectingDelegate?
+    
+    init(missionCountUserCanAdd: Int) {
+        self.missionCountUserCanAdd = missionCountUserCanAdd
+        self.viewModel = .init(missionCountUserCanAdd: missionCountUserCanAdd)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -71,15 +81,15 @@ final class MissionExampleSelectingViewController: UIViewController, PanModalPre
         super.viewDidLoad()
         configureView()
         configureLayout()
+        configureBinding()
     }
     
     private func configureView() {
         view.backgroundColor = .white
         titleLabel.text = "마음에 드는 미션들을 추가해보세요!"
         missionExampleListView.dataSource = self
-        missionExampleListView.delegate = self
         missionExampleListView.allowsSelection = false
-        missionExampleListView.register(StampAllowCell.self, forCellWithReuseIdentifier: StampAllowCell.reuseIdentifier)
+        missionExampleListView.register(MissionExampleSelectingCell.self, forCellWithReuseIdentifier: MissionExampleSelectingCell.reuseIdentifier)
     }
     
     private func configureLayout() {
@@ -109,6 +119,17 @@ final class MissionExampleSelectingViewController: UIViewController, PanModalPre
         }
     }
     
+    private func configureBinding() {
+        addButton.tapPublisher
+            .sink { [weak self] in
+                guard let self else { return }
+                let selectedMissionExamples = viewModel.getSelectedMissionExamples()
+                missionExampleSelectingDelegate?.didSelectMissionExamples(missionExamples: selectedMissionExamples)
+                dismiss(animated: true)
+            }
+            .store(in: &cancellables)
+    }
+    
     // MARK: - PanModalPresentable
     
     var panScrollable: UIScrollView? {
@@ -128,23 +149,17 @@ final class MissionExampleSelectingViewController: UIViewController, PanModalPre
 
 extension MissionExampleSelectingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return missionExamples.count
+        return viewModel.numberOfItems()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StampAllowCell.reuseIdentifier, for: indexPath) as? StampAllowCell else {
-            fatalError("StampAllowCell dequeue failed")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissionExampleSelectingCell.reuseIdentifier, for: indexPath) as? MissionExampleSelectingCell else {
+            fatalError("MissionExampleSelectingCell dequeue failed")
         }
-        let text = missionExamples[indexPath.item]
-        cell.configureTitleLabel(text: text)
+        let cellViewModel = viewModel.getCellViewModel(index: indexPath.item)
+        cell.configure(from: cellViewModel)
         return cell
     }
-}
-
-// MARK: - UICollectionViewDelegate
-
-extension MissionExampleSelectingViewController: UICollectionViewDelegate {
-    
 }
 
 // MARK: - Layout

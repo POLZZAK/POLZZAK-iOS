@@ -9,6 +9,7 @@ import UIKit
 
 final class StampSizeSelectionView: UICollectionView {
     private let stampSizeList: [Int] = StampSize.allCases.map { $0.rawValue.count }
+    private var selectedIndex: Int?
     
     init() {
         let layout = StampSizeSelectionView.getLayout()
@@ -24,6 +25,7 @@ final class StampSizeSelectionView: UICollectionView {
     private func configureView() {
         register(StampSizeSelectionCell.self, forCellWithReuseIdentifier: StampSizeSelectionCell.reuseIdentifier)
         dataSource = self
+        delegate = self
     }
     
     private func configureLayout() {
@@ -44,7 +46,17 @@ extension StampSizeSelectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StampSizeSelectionCell.reuseIdentifier, for: indexPath) as? StampSizeSelectionCell else { fatalError("Couldn't dequeue StampSizeSelectionCell") }
         cell.setNumber(number: stampSizeList[indexPath.item])
+        cell.configureSelection(isSelected: indexPath.item == selectedIndex)
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension StampSizeSelectionView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndex = indexPath.item
+        collectionView.reloadData()
     }
 }
 

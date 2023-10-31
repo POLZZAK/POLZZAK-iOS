@@ -14,6 +14,10 @@ protocol MissionAddViewDelegate: AnyObject {
 }
 
 final class MissionAddView: UICollectionView {
+    enum Constants {
+        static let maxMissionCount: Int = 50
+    }
+    
     private var missionList: [String?] = [nil, nil, nil]
     
     weak var heightUpdateDelegate: MissionAddViewDelegate?
@@ -93,9 +97,11 @@ extension MissionAddView: UICollectionViewDataSource {
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissionExampleButtonCell.reuseIdentifier, for: indexPath) as? MissionExampleButtonCell else { fatalError("Couldn't dequeue MissionExampleButtonCell") }
-            cell.bindExampleButton {
+            cell.bindExampleButton { [weak self] in
+                guard let self else { return }
                 let topVC = UIApplication.getTopViewController()
-                let vc = MissionExampleSelectingViewController()
+                let vc = MissionExampleSelectingViewController(missionCountUserCanAdd: Constants.maxMissionCount - missionList.count)
+                vc.missionExampleSelectingDelegate = self
                 topVC?.presentPanModal(vc)
             }
             return cell
@@ -113,6 +119,16 @@ extension MissionAddView: MissonAddTextFieldCellDelegate {
             self.collectionViewLayout.invalidateLayout()
             self.heightUpdateDelegate?.didUpdateHeight(add: height)
         }
+    }
+}
+
+// MARK: - MissionExampleSelectingDelegate
+
+extension MissionAddView: MissionExampleSelectingDelegate {
+    func didSelectMissionExamples(missionExamples: [String]) {
+        missionList.append(contentsOf: missionExamples)
+        reloadDataWithAnimation()
+        heightUpdateDelegate?.didUpdateHeight(add: 0)
     }
 }
 

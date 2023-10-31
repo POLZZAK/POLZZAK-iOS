@@ -14,7 +14,7 @@ class StampSizeSelectionCell: UICollectionViewCell {
     
     private let numberLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .gray400
+        label.textColor = .gray300
         label.font = .subtitle16Sbd
         label.textAlignment = .center
         return label
@@ -37,6 +37,7 @@ extension StampSizeSelectionCell {
         contentView.layer.masksToBounds = true
         contentView.layer.borderColor = UIColor.gray300.cgColor
         contentView.layer.borderWidth = 1
+        contentView.backgroundColor = .white
     }
     
     private func configureLayout() {
@@ -49,5 +50,17 @@ extension StampSizeSelectionCell {
     
     func setNumber(number: Int) {
         numberLabel.text = "\(number)"
+    }
+    
+    func configureSelection(isSelected: Bool) {
+        if isSelected {
+            contentView.layer.borderColor = UIColor.blue500.cgColor
+            contentView.backgroundColor = .blue100
+            numberLabel.textColor = .blue500
+        } else {
+            contentView.layer.borderColor = UIColor.gray300.cgColor
+            contentView.backgroundColor = .white
+            numberLabel.textColor = .gray300
+        }
     }
 }

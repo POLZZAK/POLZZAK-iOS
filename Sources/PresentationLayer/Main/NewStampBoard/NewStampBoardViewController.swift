@@ -72,7 +72,6 @@ final class NewStampBoardViewController: UIViewController {
         
         // MARK: -
         
-        // FIXME: navigationBar
         let navigationBar = UINavigationBar()
         navigationBar.barTintColor = .white
         view.addSubview(navigationBar)
@@ -173,6 +172,6 @@ final class NewStampBoardViewController: UIViewController {
 
 extension NewStampBoardViewController: MissionAddViewDelegate {
     func didUpdateHeight(add height: CGFloat) {
-        updateMissionAddViewHeight(add: height) // 20을 추가한 이유는 MissionAddTextFieldCell의 높이가 20만큼 늘어나기 때문이다.
+        updateMissionAddViewHeight(add: height)
     }
 }
