@@ -14,7 +14,7 @@ protocol MissonAddTextFieldCellDelegate: AnyObject {
     func didUpdateHeight(add height: CGFloat)
 }
 
-class MissonAddTextFieldCell: UICollectionViewCell {
+final class MissonAddTextFieldCell: UICollectionViewCell {
     static let reuseIdentifier = "MissonAddTextFieldCell"
     
     private var cancellables = Set<AnyCancellable>()

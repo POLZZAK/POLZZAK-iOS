@@ -11,7 +11,7 @@ import UIKit
 import CombineCocoa
 import SnapKit
 
-class MissionExampleButtonCell: UICollectionViewCell {
+final class MissionExampleButtonCell: UICollectionViewCell {
     static let reuseIdentifier = "MissionExampleButtonCell"
     
     private var cancellablesForReuse = Set<AnyCancellable>()
